@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC Max - Đăng nhập</title>
+    <link rel="stylesheet" href="./static/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="https://vi.toeicmax.com/icon/frog_256.png" alt="TOEIC Max Logo" class="logo">
+            <h2>TOEIC<sup>®</sup> TUAN</h2>
+            <form action="login" method="POST">
+                <div class="input-group">
+                    <label for="phone">Số điện thoại <span class="red">*</span></label>
+                    <input type="text" id="numberPhone" name="phone" >
+                </div>
+                <div class="input-group">
+                    <label for="password">Mật khẩu <span class="red">*</span></label>
+                    <input type="password" id="password" name="password" >
+                </div>
+                <button type="submit" class="btn" id="login">Đăng nhập</button>
+                <div class="links">
+                    <a href="register">Đăng ký tài khoản</a>
+                    <a href="forgot-password">Quên mật khẩu</a>
+                </div>
+            </form>
+            <a href="home" class="home-link">Về trang chủ</a>
+        </div>
+    </div>
+</body>
+<script src="./static/js/login.js"></script>
+</html>
