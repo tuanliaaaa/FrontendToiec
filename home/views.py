@@ -4,3 +4,6 @@ from django.views import View
 class Login(View):
     def get(self,request):
         return render(request,'login.html')
+class Home(View):
+    def get(self,request):
+        return render(request,'home.html')
