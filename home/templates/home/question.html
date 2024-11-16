@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/home/css/question.css">
+</head>
+<body class="page-question-detail">
+<div class="page-container">
+    <div class="page__header">
+        <a class="header__left" id="back-page">
+            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                <g id="SVGRepo_iconCarrier">
+                    <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                          fill="#FFFFFF"/>
+                </g>
+            </svg>
+            <div class="header__title" id="show-label-part">Part</div>
+        </a>
+        <div class="header__right">
+            <div class="header__img">
+                <img src="/static/img/icons/warning.png">
+            </div>
+            <div class="header__img">
+                <img src="/static/img/icons/settings.png">
+            </div>
+            <span>Giải thích</span>
+        </div>
+    </div>
+    <div id="main-content"></div>
+</div>
+<script type="text/html" id="template-page-content">
+    <div class="page__content">
+        <div class="page-content__top">
+            <div class="top__title">Câu <span id="question-number">1</span></div>
+            <div class="top__action">
+                <div class="btn btn--action" id="back-question">Câu trước</div>
+                <div class="btn btn--action" id="next-question">Câu tiếp</div>
+            </div>
+        </div>
+        <div class="page-content__mid" id="listQuestions"></div>
+    </div>
+</script>
+<script type="text/html" id="template-exam-success">
+    <div class="page-container">
+        <div class="page__content">
+            <div class="page__exam-success">
+                <div class="exam-success__top">
+                    <img src="/static/img/icons/success.png" alt="">
+                    <b>Chúc mừng</b>
+                    <span>Bạn đã hoàn thành bài luyện tập của mình</span>
+                </div>
+                <div class="exam-success__bottom">
+                    <div class="exam-success__notify">
+                        <img src="/static/img/icons/warning_c.png" alt="">
+                        <p>Bạn cần <span>Đăng nhập</span> để lưu lại lịch sử học tập</p>
+                    </div>
+                    <div class="exam-success__result">
+                        <b>Kết quả: <span id="result-label"></span></b>
+                        <div class="result__popup">
+                            <div class="result-popup__top">
+                                <span>Tỷ lệ dúng</span>
+                                <span id="percent-result">0%</span>
+                            </div>
+                            <div class="result-popup__percent">
+                                <div class="percent__result" style="width: 0"></div>
+                            </div>
+                            <b>Hãy cố gắng nhiều hơn nữa nhé!</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer page__footer--success">
+            <div class="footer__action">
+                <a class="btn btn--continue" href="result.html">Xem kết quả</a>
+                <a class="btn btn--continue" id="btn-continue" href="home.html">Tiếp tục</a>
+                <a class="btn btn--action" href="javascript:location.reload()" id="btn-replay">Làm lại</a>
+            </div>
+        </div>
+    </div>
+</script>
+<script src="/static/home/js/main.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search),
+        qtyQuestion = urlParams.get('qty'),
+        partInput = urlParams.get('part');
+    document.getElementById('back-page').setAttribute('href', partInput.substring(4) + '');
+    document.getElementById('show-label-part').textContent = partInput;
+    setPart(partInput, qtyQuestion);
+</script>
+</body>
+</html>

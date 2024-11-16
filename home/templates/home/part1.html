@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Part 1. Mô tả hình ảnh</title>
+    <link rel="stylesheet" href="/static/home/css/question.css">
+</head>
+<body class="page-question">
+<div id="main">
+    <div class="page-container">
+        <div class="page__header">
+            <a class="header__left" href="/home">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                              fill="#FFFFFF"/>
+                    </g>
+                </svg>
+                <div class="header__title">Part 1. Mô tả hình ảnh</div>
+            </a>
+        </div>
+        <div class="page__content">
+            <div class="page-content__top">
+                <div class="top__icon">
+                    <img src="/static/home/img/icons/part1.png">
+                </div>
+                <div class="top__content" id="history-result">
+                    <p>Số câu đã làm: <span>0</span></p>
+                    <p>Score: <span>0</span></p>
+                </div>
+            </div>
+            <div class="page-content__mid">
+                <h4>Câu hỏi:</h4>
+                <b>For each question in this part, you will hear four statements about a picture in your test book. When you
+                    hear the statements, you must select the one statement that best describes what you see in the picture.
+                    Then find the number of the question on your answer sheet and mark your answer. The statements will not
+                    be printed in your test book and will be spoken only one time.</b>
+                <p>Hướng dẫn: Đối với mỗi câu hỏi trong phần này, bạn sẽ nghe bốn câu nói về một bức tranh trong tập kiểm
+                    tra của mình. Khi nghe các câu phát biểu, bạn phải chọn một câu mô tả đúng nhất những gì bạn nhìn thấy
+                    trong hình. Sau đó tìm số câu hỏi trên phiếu trả lời và đánh dấu câu trả lời của bạn. Các câu nói sẽ
+                    không được in trong tập kiểm tra của bạn và sẽ chỉ được nói một lần.</p>
+            </div>
+            <div class="page-content__bottom">
+                <div class="bottom__label">Chọn số lượng câu hỏi.</div>
+                <label class="bottom__select">
+                    <select id="select-qty-question">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </label>
+                <div class="btn btn--action" id="btn-start-exam">Bắt đầu ▸</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/home/js/main.js"></script>
+<script>
+    setPart('part1', 0);
+</script>
+</body>
+</html>
