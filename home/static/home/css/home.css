@@ -113,6 +113,10 @@ body {
     color: white;
     font-size: 13px;
 }
+.continue-btn a{
+    color: white;
+    text-decoration: none;
+}
 .continue-btn:hover{
     border-bottom: 0;
 }

@@ -14,6 +14,7 @@ async function renderQuestionTpl() {
     console.log("render Question",response);
     if (response.status >= 200 && response.status < 300) {
         let template = document.getElementById('template-page-content').innerHTML;
+        questionQty-response.data.length;
         let questionItemsHtml = response.data.map((item, index) => {
             let attachmentsHtml = '',
                 answersHtml = '';
@@ -47,7 +48,7 @@ async function renderQuestionTpl() {
                 })
                 let questionLabel = question.question || 'Câu ' + (indexQuestion + 1) + ':';
                 answersHtml += `<div class="mid-content__answer" data-id="${question.idQuestion}">`
-                if(!partNotShowAnswer.includes(part))answersHtml +='<div class="answer__label">${questionLabel}</div>'
+                if(!partNotShowAnswer.includes(part))answersHtml +=`<div class="answer__label">${questionLabel}</div>`;
                 answersHtml +=    `<div class="answer__list">
                         ${answerItemsHtml}
                     </div>
@@ -165,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 bodyEle.innerHTML = template;
                 let response = await postAjax("http://127.0.0.1:8080/api/v1/histories", JSON.stringify({
                     type: part,
-                    amountQuestionGroup: JSON.parse(localStorage.getItem(part)).length,
+                    amountQuestionGroup: questionQty,
                     questionList: JSON.parse(localStorage.getItem(part))
                 }), localStorage.getItem('access_token'));
                 if (response.status >= 200 && response.status < 300) {

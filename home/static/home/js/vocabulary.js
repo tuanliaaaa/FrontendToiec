@@ -126,15 +126,15 @@ async function optionLessonWord(wordIndex) {
                             <div class="item__icon">
                                 <img src="/static/home/img/icons/sound.png">
                             </div>
-                            <p>/əˈɡriːmənt/</p>
+                            <p>${wordList[wordIndex].transcription}</p>
                         </div>
                     </div>
                     <div class="work-listen__img">
-                        <img src="https://scandict.com/uploads/vocabulary/agreement_64095658329c0.png">
+                        <img src="${wordList[wordIndex].image}">
                     </div>
                     <div class="work-listen__example">
                         <u><i>ví dụ</i></u>
-                        <p>According to the agreement, the caterer will also supply the flowers for the event</p>
+                        <p>${wordList[wordIndex].example}</p>
                     </div>
                     <div class="work-listen___action">
                         <span class="btn btn--action" id="isOptionLessonWord">Học từ này</span>
@@ -159,6 +159,7 @@ async function optionLessonWord(wordIndex) {
         });
         document.getElementById("isNotOptionLessonWord").addEventListener("click", (e) => {
             countChecked++;
+            wordsScore[wordIndex]=2;
             if (countChecked == 4 && wordUseList.length != 0) {
                 wordUseList = shuffleArray(wordUseList);
                 countChecked = 0;
@@ -213,7 +214,7 @@ async function fillInTheBlankExercise(wordIndex) {
                         <button class="audio-button">
                             <img src="https://img.icons8.com/ios-filled/50/ffffff/speaker.png" alt="Play Audio">
                         </button>
-                        <div>/ˌsætɪsˈfækʃən/</div>
+                        <div>${wordList[wordIndex].transcription}</div>
                     </div>
                 </div>
                 <div class="input-container">
@@ -225,8 +226,16 @@ async function fillInTheBlankExercise(wordIndex) {
         `;
         lessonElement.innerHTML = htmlfillInTheBlankExercise;
         wordUseList.shift();
-        document.getElementById("answerOfFillQuestion").addEventListener("keydown", (e) => {
+        document.getElementById("answerOfFillQuestion").addEventListener("keydown", async (e) => {
             if (event.key === "Enter") {
+                console.log("data in Blank: ",e.target.value);
+                if(e.target.value==wordList[wordIndex].nameLesson){
+                    e.target.style.backgroundColor = "#2bc48a";
+                    wordsScore[wordIndex]++;
+                }else{
+                    e.target.style.backgroundColor = "#e74c3c";
+                }
+                await sleep(1500);
                 if (wordUseList.length != 0) start(wordUseList[0]);
                 else start(nowIndex + 1);
             }
@@ -286,6 +295,29 @@ function trueOrFalseExercise(wordIndex) {
 async function start(index) {
     if (index == wordList.length) {
         alert("xong");
+        console.log("Score: ",wordsScore);
+        const template = document.getElementById('template-exam-success').innerHTML,
+        bodyEle = document.querySelector('body');
+        bodyEle.classList.remove('page-result');
+        bodyEle.classList.add('page-exam-success');
+        bodyEle.innerHTML = template;
+        // let response = await postAjax("http://127.0.0.1:8080/api/v1/histories", JSON.stringify({
+        //     type: part,
+        //     amountQuestionGroup: JSON.parse(localStorage.getItem(part)).length,
+        //     questionList: JSON.parse(localStorage.getItem(part))
+        // }), localStorage.getItem('access_token'));
+        // if (response.status >= 200 && response.status < 300) {
+        //      }
+        var sumTotal=0;
+        for (let key in wordsScore) {
+            sumTotal+=wordsScore[key];
+        }
+        console.log(sumTotal);
+        console.log(Object.keys(wordsScore).length*2);
+        bodyEle.querySelector('.exam-success__notify').setAttribute('style', 'display:none');
+        bodyEle.querySelector('#percent-result').textContent = (sumTotal/(Object.keys(wordsScore).length*2)).toFixed(2)*100+'%';
+        bodyEle.querySelector('.percent__result').setAttribute('style', 'width:'+(sumTotal/(Object.keys(wordsScore).length*2))*100+'%');
+       
         return;
     }
     if (isNaN(Number(index))) {

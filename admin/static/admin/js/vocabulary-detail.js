@@ -27,7 +27,7 @@ document.getElementById("addItemButton").addEventListener("click",(e)=>{
                                     <h3  class="nondisplay" >  </h3>
                             </div>
                             <div class="item__headerEdit">
-                                <svg width="64px" height="64px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit [#1482]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-379.000000, -359.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M323,219 L343.660141,219 L343.660141,217.042095 L323,217.042095 L323,219 Z M330.231049,212.147332 L330.231049,209.51395 L339.088052,201.64513 L340.979487,203.643172 L332.880712,212.147332 L330.231049,212.147332 Z M344,203.64513 L339.144867,199 L328.165035,208.687714 L328.165035,214.105237 L333.764966,214.105237 L344,203.64513 Z" id="edit-[#1482]"> </path> </g> </g> </g> </g></svg>
+                                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z" fill="#0F0F0F"></path> </g></svg>
                             </div>
                         </div>
                         <div class="close__item">
@@ -111,7 +111,7 @@ async function postAjax(url, formData, token) {
     });
 }
 async function  addWord(data) {
-    let response = await postAjax("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary",data, localStorage.getItem('access_token'));
+    let response = await postAjax("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/"+topicId+"/words",data, localStorage.getItem('access_token'));
     if (response.status >= 200 && response.status < 300) {
        alert("oke");
     }    
@@ -168,7 +168,7 @@ async function renListWord(params) {
                                     <h3> ${item.nameLesson} </h3>
                             </div>
                             <div class="item__headerEdit">
-                                <svg width="64px" height="64px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>edit [#1482]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-379.000000, -359.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M323,219 L343.660141,219 L343.660141,217.042095 L323,217.042095 L323,219 Z M330.231049,212.147332 L330.231049,209.51395 L339.088052,201.64513 L340.979487,203.643172 L332.880712,212.147332 L330.231049,212.147332 Z M344,203.64513 L339.144867,199 L328.165035,208.687714 L328.165035,214.105237 L333.764966,214.105237 L344,203.64513 Z" id="edit-[#1482]"> </path> </g> </g> </g> </g></svg>
+                                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z" fill="#0F0F0F"></path> </g></svg>
                             </div>
                         </div>
                         <div class="close__item">
@@ -260,10 +260,22 @@ function addEventtForNewItem(){
             e.preventDefault();
             if (!e.target.hasAttribute("idword")) {
                 let data = new FormData();
-                console.log(e.target.closest(".item__body").querySelector(".image-file"));
                 data.append("image",e.target.closest(".item__body").querySelector(".image-file").files[0]);
-                data.append("image",e.target.closest(".item__body").querySelector(".audio-file").files[0]);
-                data.append("metafata","d");
+                data.append("audio",e.target.closest(".item__body").querySelector(".audio-file").files[0]);
+                let nameLesson = e.target.closest(".item__body").querySelector(".meaning").value;
+                let content = e.target.closest(".item__body").querySelector(".meaning").value;
+                let transcription = e.target.closest(".item__body").querySelector(".phonetic").value;
+                let example = e.target.closest(".item__body").querySelector(".example").value;
+                let partOfSpeech = e.target.closest(".item__body").querySelector(".partOfSpeech").value;
+                data.append("newWord",JSON.stringify(
+                    { 
+                        nameLesson:nameLesson,
+                        content:content,
+                        transcription:transcription,
+                        example:example,
+                        partOfSpeech:partOfSpeech
+                    }
+                ));
                 addWord(data);
 
             }

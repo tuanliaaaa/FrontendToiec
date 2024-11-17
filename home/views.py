@@ -20,3 +20,12 @@ class Vocabulary(View):
 class VocabularyDetail(View):
     def get(self,request,id):
         return render(request,'home/vocabulary-detail.html')
+class RoadMap(View):
+      def get(self,request):
+        return render(request,"home/roadmap.html")
+class RoadMapDeatail(View):
+    def get(self,request,id):
+        return render(request,'home/roadmap-detail.html')
+class RoadMapLessonDeatail(View):
+    def get(self,request,id):
+        return render(request,'home/lessDetail.html')

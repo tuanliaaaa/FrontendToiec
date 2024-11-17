@@ -34,6 +34,43 @@
     </div>
 </div>
 <script src="/static/home/js/vocabulary.js"></script>
+<script type="text/html" id="template-exam-success">
+    <div class="page-container">
+        <div class="page__content">
+            <div class="page__exam-success">
+                <div class="exam-success__top">
+                    <img src="/static/img/icons/success.png" alt="">
+                    <b>Chúc mừng</b>
+                    <span>Bạn đã hoàn thành bài luyện tập của mình</span>
+                </div>
+                <div class="exam-success__bottom">
+                    <div class="exam-success__notify">
+                        <img src="/static/img/icons/warning_c.png" alt="">
+                        <p>Bạn cần <span>Đăng nhập</span> để lưu lại lịch sử học tập</p>
+                    </div>
+                    <div class="exam-success__result">
+                        <b>Kết quả: <span id="result-label"></span></b>
+                        <div class="result__popup">
+                            <div class="result-popup__top">
+                                <span>Tỷ lệ dúng</span>
+                                <span id="percent-result">0%</span>
+                            </div>
+                            <div class="result-popup__percent">
+                                <div class="percent__result" style="width: 0"></div>
+                            </div>
+                            <b>Hãy cố gắng nhiều hơn nữa nhé!</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer page__footer--success">
+            <div class="footer__action">
+                <a class="btn btn--continue" id="btn-continue" href="/home">Tiếp tục</a>
+            </div>
+        </div>
+    </div>
+</script>
 <script>
     const urlParams = window.location.href;
     const idTopicWord = urlParams.split("/").pop();

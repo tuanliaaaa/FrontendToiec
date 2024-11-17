@@ -291,7 +291,9 @@ body {
     padding: 5px 5px 5px 30px;
     position: relative;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 14px;
+    font-family: Nunito Sans, Google Sans, sans-serif;
+    font-weight: 400;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -358,6 +360,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    
 }
 
 .mid-left__label {
@@ -375,7 +379,15 @@ body {
     flex-direction: column;
     gap: 15px;
 }
+.mid__content.mid__content--right .answer__label{
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Nunito Sans, Google Sans, sans-serif;
+    line-height: 22px;
+}
+.mid__content.mid__content--right .answer__list{
 
+}
 .top__menu-list {
     display: flex;
     justify-content: space-between;
