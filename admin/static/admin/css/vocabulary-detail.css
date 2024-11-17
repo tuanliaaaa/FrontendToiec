@@ -46,9 +46,20 @@
     font-family: Nunito Sans, Google Sans, sans-serif;
 
 }
-.navbar__menu .menu-item:hover{
-    background-color: #11b777;
+.menu-item a{
+    display: flex;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
 }
+.navbar__menu .menu-item.active a{
+    color: #fff41d;;
+}
+.navbar__menu .menu-item:hover a{
+    color: #fff41d;
+}
+
 .menu-item .dropdown{
     display: none;
     position: absolute;
@@ -90,7 +101,7 @@
 #container_body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 800px;
+    width: 90vw;
     margin: auto;
     background-color: #fff;
     display: flex;

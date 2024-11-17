@@ -1,85 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="/static/admin/css/vocabulary-detail.css">
-    </head>
-    <body>
-        <div id="header">
-            <div id="navbar">
-                <div class="divleft"></div>
-                <div class="navbar__menu">
-                    <div class="menu-item">Thống kê</div>
-                    <div class="menu-item">Quản lý đề thi
-                        {% comment %} <div class="dropdown">
-                            <a href="#">Quản lý chủ đề từ </a>
-                            <a href="#">Quản lý Đề</a>
-                        </div> {% endcomment %}
-                    </div>
-                    <div class="menu-item">
-                        Quản lý từ vựng
-                    </div>
-                    
-                    <div class="menu-item">Quản lý ngữ pháp
-                        {% comment %} <div class="dropdown">
-                            <a href="#">Quản lý lý thuyết ngữ pháp</a>
-                            <a href="#">Quản lý Bài tập ngữ pháp</a>
-                        </div> {% endcomment %}
-                    </div>
-                </div>
-                <div class="navbar__user">
-                    <div class="avatar">
-                        <img src="http://surl.li/uitszn" alt>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="container">
-            <div id="container_body">
-                <div class="container_header">
-                    <div class="selectedMenu">
-                        Trang chủ > Quản lý từ vựng
-                    </div>
-                    <div class="AddIcon" id="addItemButton">
-                        <svg width="64px" height="64px" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" fill="#000000"><g
-                                id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"></g><g
-                                id="SVGRepo_iconCarrier"> <title></title> <g
-                                    id="Complete"> <g id="add-square"> <g> <rect
-                                                data-name="--Rectangle"
-                                                fill="none" height="20"
-                                                id="_--Rectangle" rx="2" ry="2"
-                                                stroke="#000000"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2" width="20"
-                                                x="2" y="2"></rect> <line
-                                                fill="none" stroke="#000000"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2" x1="15.5"
-                                                x2="8.5" y1="12" y2="12"></line>
-                                            <line fill="none" stroke="#000000"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2" x1="12" x2="12"
-                                                y1="15.5" y2="8.5"></line> </g>
-                                    </g> </g> </g></svg>
-                        
-                    </div>
-                </div>
-                <div class="list-section" id="list-item">
-                    
-                </div>
-            </div>
-        </div>
-    </body>
-    <script src="/static/admin/js/vocabulary-detail.js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/admin/css/vocabulary-detail.css" />
+  </head>
+  <body>
+    <div id="header">
+      <div id="navbar">
+        <div class="divleft"></div>
+        <div class="navbar__menu">
+          <div class="menu-item">
+            <a href="/admin/dashboard">Thống kê</a>
+          </div>
+          <div class="menu-item">
+            <a href="/admin/exams">Quản lý đề thi</a>
+          </div>
+          <div class="menu-item active">
+            <a href="/admin/vocabulary">Quản lý từ vựng</a>
+          </div>
 
-    </script>
+          <div class="menu-item">
+            <a href="/admin/roadmap">Quản lý lộ trình</a>
+          </div>
+        </div>
+        <div class="navbar__user">
+          <div class="avatar">
+            <img src="http://surl.li/uitszn" alt />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <div id="container_body">
+        <div class="container_header">
+          <div class="selectedMenu">Quản lý chủ đề từ vựng &gt; từ vựng</div>
+          <div class="AddIcon" id="addItemButton">
+            <svg
+              width="64px"
+              height="64px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <title></title>
+                <g id="Complete">
+                  <g id="add-square">
+                    <g>
+                      <rect
+                        data-name="--Rectangle"
+                        fill="none"
+                        height="20"
+                        id="_--Rectangle"
+                        rx="2"
+                        ry="2"
+                        stroke="#000000"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        width="20"
+                        x="2"
+                        y="2"
+                      ></rect>
+                      <line
+                        fill="none"
+                        stroke="#000000"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        x1="15.5"
+                        x2="8.5"
+                        y1="12"
+                        y2="12"
+                      ></line>
+                      <line
+                        fill="none"
+                        stroke="#000000"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        x1="12"
+                        x2="12"
+                        y1="15.5"
+                        y2="8.5"
+                      ></line>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="list-section" id="list-item"></div>
+      </div>
+    </div>
+  </body>
+  <script src="/static/admin/js/vocabulary-detail.js"></script>
 </html>

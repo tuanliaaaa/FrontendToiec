@@ -8,3 +8,18 @@ class Vocabulary(View):
 class VocabularyDetail(View):
     def get(self,request,id):
         return render(request,'admin/vocabulary-detail.html')
+class Login(View):
+    def get(self,request):
+        return render(request,'admin/login.html')
+class RoadMap(View):
+    def get(self,request):
+        return render(request,'admin/roadmap.html')
+class Exams(View):
+    def get(self,request):
+        return render(request,'admin/exam.html')
+class ExamDetail(View):
+    def get(self,request,id):
+        return render(request,'admin/exam-detail.html')
+class Dashboard(View):
+    def get(self,request):
+        return render(request,'admin/dashboard.html')

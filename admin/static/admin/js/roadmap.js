@@ -46,13 +46,13 @@ async function postAjax(url, jsonData, token) {
 }
 async function getAllTopic()
 {
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic');
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/roadmaps');
     if (response.status >= 200 && response.status < 300) {
         
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
                 <li>
-                    <a href="/admin/vocabulary/word/${topic.id}" class="section">
+                    <a href="/admin/vocabunary/word/${topic.id}" class="section">
                         <div class="word-learn">
                             <p class="name">${topic.name}</p>
                         </div>

@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                         checkAnswer = true
                     } else {
                         this.parentElement.classList.add('wrong');
-                        listAnswerEle[0].querySelector('.answer__answer-item.active').classList.add('show-answer')
+                        if(listAnswerEle[0].querySelector('.answer__answer-item.active'))
+                            listAnswerEle[0].querySelector('.answer__answer-item.active').classList.add('show-answer')
                     }
                     arrAnswer.push({
                         id: itemQuestionEle[0].dataset.id,
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 if (!item.querySelectorAll('.answer__answer-item.show-answer').length) {
                     arrAnswer.push({
                         id: item.dataset.id,
-                        answerList: JSON.stringify([]),
+                        answerList: [],
                         isCorrect: false
                     });
                     localStorage.setItem(part, JSON.stringify(arrAnswer));
@@ -166,7 +167,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 bodyEle.innerHTML = template;
                 let response = await postAjax("http://127.0.0.1:8080/api/v1/histories", JSON.stringify({
                     type: part,
-                    amountQuestionGroup: questionQty,
+                    amountQuestionGroup:  parseInt(questionQty, 10),
                     questionList: JSON.parse(localStorage.getItem(part))
                 }), localStorage.getItem('access_token'));
                 if (response.status >= 200 && response.status < 300) {

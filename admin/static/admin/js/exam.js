@@ -44,17 +44,17 @@ async function postAjax(url, jsonData, token) {
         xhr.send(jsonData);
     });
 }
-async function getAllTopic()
+async function getAllExam()
 {
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic');
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/exams');
     if (response.status >= 200 && response.status < 300) {
         
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
                 <li>
-                    <a href="/admin/vocabulary/word/${topic.id}" class="section">
+                    <a href="/admin/exams/${topic.idExam}" class="section">
                         <div class="word-learn">
-                            <p class="name">${topic.name}</p>
+                            <p class="name">${topic.examName}</p>
                         </div>
                     </a>
                 </li>
@@ -63,4 +63,4 @@ async function getAllTopic()
         document.getElementById("list-item").innerHTML=topicItemsHtml;
     }
 }
-getAllTopic();
+getAllExam();
