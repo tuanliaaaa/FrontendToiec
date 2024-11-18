@@ -1,5 +1,5 @@
 if (!localStorage.getItem("access_token")) {
-    window.location.href = "login.html";
+    window.location.href = "/login";
 } else {
     checkAccount();
 }

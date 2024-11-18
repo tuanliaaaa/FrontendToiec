@@ -107,7 +107,7 @@ async function getAjax(url, token) {
 
 
 
-//------- lIÊN QUAN ĐẾN LÀM bÀI TẬP------------------
+//------- lIÊN QUAN ĐẾN LÀM bÀI TẬP------------
 async function optionLessonWord(wordIndex) {
     if (wordList[wordIndex]) {
         let htmloptionLessonWord = `
@@ -148,24 +148,29 @@ async function optionLessonWord(wordIndex) {
             wordUseList.push(wordIndex + "-1");
             wordUseList.push(wordIndex + "-2");
             if (countChecked < 4) countChecked++;
-            if (countChecked != 4) {
+            if (countChecked != 4 && nowIndex!=wordList.length-1) {
                 start(wordIndex + 1);
-
-            } else {
+            }else{
                 wordUseList = shuffleArray(wordUseList);
                 countChecked = 0;
                 start(wordUseList[0]);
             }
         });
         document.getElementById("isNotOptionLessonWord").addEventListener("click", (e) => {
-            countChecked++;
+            if(countChecked!=4)countChecked++;
             wordsScore[wordIndex]=2;
             if (countChecked == 4 && wordUseList.length != 0) {
                 wordUseList = shuffleArray(wordUseList);
                 countChecked = 0;
                 start(wordUseList[0]);
-            } else {
+            } else if (countChecked == 4 && nowIndex != wordList.length) {
                 start(wordIndex + 1);
+            } else if (countChecked != 4 && nowIndex != wordList.length ) {
+                start(wordIndex + 1);
+            } else if (countChecked != 4 && wordUseList.length != 0) {
+                wordUseList = shuffleArray(wordUseList);
+                countChecked = 0;
+                start(wordUseList[0]);
             }
         });
     }
@@ -237,7 +242,8 @@ async function fillInTheBlankExercise(wordIndex) {
                 }
                 await sleep(1500);
                 if (wordUseList.length != 0) start(wordUseList[0]);
-                else start(nowIndex + 1);
+                else if(nowIndex!=wordList.length)start(nowIndex + 1);
+                else start(nowIndex);
             }
         })
     }
@@ -276,7 +282,8 @@ function trueOrFalseExercise(wordIndex) {
             }
             await sleep(1500);
             if (wordUseList.length != 0) start(wordUseList[0]);
-            else start(nowIndex + 1);
+            else if(nowIndex!=wordList.length)start(nowIndex + 1);
+            else start(nowIndex);
         });
         document.getElementById("correctFalseQuestion").addEventListener("click", async (e) => {
             if(randomNumber==wordIndex){
@@ -287,13 +294,15 @@ function trueOrFalseExercise(wordIndex) {
             }
             await sleep(1500);
             if (wordUseList.length != 0) start(wordUseList[0]);
-            else start(nowIndex + 1);
+            else if(nowIndex!=wordList.length)start(nowIndex + 1);
+            else start(nowIndex);
         });
     }
 }
 
 async function start(index) {
-    if (index == wordList.length) {
+    console.log("index: ",index,"len: ",wordUseList.length);
+    if (index == wordList.length&&wordUseList.length==0) {
         alert("xong");
         console.log("Score: ",wordsScore);
         const template = document.getElementById('template-exam-success').innerHTML,

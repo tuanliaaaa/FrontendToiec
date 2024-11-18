@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="/static/home/css/chatSupport.css">
+</head>
+<body>
+    <div id="header">
+        <div class="header__content">
+            <b class="fs-18">TOEIC® TUAN</b>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <div class="message user">
+                <div class="message-content">Hello, bot!</div>
+            </div>
+            <div class="message bot">
+                <div class="message-content">Hi, how can I help you?</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+<script src="/static/home/js/chatSupport.js"></script>
+</body>
+</html>
