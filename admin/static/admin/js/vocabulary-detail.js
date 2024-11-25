@@ -1,6 +1,6 @@
 let listItemElement = document.getElementById("list-item");
 let topicId= window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
-
+let wordList={};
 document.getElementById("addItemButton").addEventListener("click",(e)=>{
     listItemElement.innerHTML+=
         `
@@ -89,6 +89,36 @@ document.getElementById("addItemButton").addEventListener("click",(e)=>{
         addEventtForNewItem();
         window.scrollTo(0, document.documentElement.scrollHeight);
 })
+async function patchAjax(url, formData, token) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("PATCH", url, true); // Đổi từ POST thành PATCH
+
+        // Đặt header Authorization nếu có token
+        if (token) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) { // Sử dụng DONE thay vì số 4
+                if (xhr.status >= 200 && xhr.status < 300) {
+                        const responseData = JSON.parse(xhr.responseText);
+                        resolve({
+                            status: xhr.status,
+                            data: responseData
+                        });
+                } else {
+                    reject({
+                        status: xhr.status,
+                        error: xhr.statusText || "Request failed"
+                    });
+                }
+            }
+        };
+
+        xhr.send(formData);
+    });
+}
 
 async function postAjax(url, formData, token) {
     return new Promise((resolve, reject) => {
@@ -121,15 +151,16 @@ async function  addWord(data,e) {
     e.target.closest(".item").querySelector(".item___headerTopic svg.rot").classList.remove("nondisplay");
     let response = await postAjax("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/"+topicId+"/words",data, localStorage.getItem('access_token'));
     if (response.status >= 200 && response.status < 300) {
-       e.target.closest(".item").querySelector(".item___headerTopic input").classList.add("nondisplay");
-       let nameWordElement=e.target.closest(".item").querySelector(".item___headerTopic h3");
-       e.target.closest(".item").querySelector(".item___headerTopic svg.rot").classList.add("nondisplay");
-       e.target.closest(".item").querySelector(".item___headerTopic svg.checked").classList.remove("nondisplay");
-       nameWordElement.classList.remove("nondisplay");
-       nameWordElement.innerHTML=response.data.nameLesson;
-       e.target.closest(".item").classList.add("item-"+response.data.idDetail);
-       e.target.closest(".item").setAttribute("itemId",response.data.idDetail)
-       e.target.closest(".item").querySelector(".saveWord").classList.add("nondisplay");
+        wordList[response.data.idDetail] = response.data;
+        e.target.closest(".item").querySelector(".item___headerTopic input").classList.add("nondisplay");
+        let nameWordElement=e.target.closest(".item").querySelector(".item___headerTopic h3");
+        e.target.closest(".item").querySelector(".item___headerTopic svg.rot").classList.add("nondisplay");
+        e.target.closest(".item").querySelector(".item___headerTopic svg.checked").classList.remove("nondisplay");
+        nameWordElement.classList.remove("nondisplay");
+        nameWordElement.innerHTML=response.data.nameLesson;
+        e.target.closest(".item").classList.add("item-"+response.data.idDetail);
+        e.target.closest(".item").setAttribute("itemId",response.data.idDetail)
+        e.target.closest(".item").querySelector(".saveWord").classList.add("nondisplay");
     }    
 }
 async function getAjax(url, token) {
@@ -185,12 +216,13 @@ async function renListWord(params) {
     console.log(response);
     if (response.status === 200) {
         let listItemHtml = response.data.words.map((item,index)=>{
+            wordList[item.idDetail] = item;
             return `
                 <div class="item item-${item.idDetail}" itemId="${item.idDetail}">
                     <div class="item__header">
                         <div class="wordItem">
                             <div class="item___headerTopic">
-                                <svg fill="#000000" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 288.941 288.941" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path id="Check" d="M285.377,46.368c-4.74-4.704-12.439-4.704-17.179,0L96.309,217.114L20.734,142.61 c-4.74-4.704-12.439-4.704-17.179,0s-4.74,12.319,0,17.011l84.2,82.997c4.692,4.644,12.499,4.644,17.191,0l180.43-179.239 C290.129,58.687,290.129,51.06,285.377,46.368C280.637,41.664,290.129,51.06,285.377,46.368z"></path> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+                                <svg class="checked" fill="#000000" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 288.941 288.941" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path id="Check" d="M285.377,46.368c-4.74-4.704-12.439-4.704-17.179,0L96.309,217.114L20.734,142.61 c-4.74-4.704-12.439-4.704-17.179,0s-4.74,12.319,0,17.011l84.2,82.997c4.692,4.644,12.499,4.644,17.191,0l180.43-179.239 C290.129,58.687,290.129,51.06,285.377,46.368C280.637,41.664,290.129,51.06,285.377,46.368z"></path> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
                                 <svg class="rot nondisplay" version="1.1" id="Uploaded to svgrepo.com"
                                     xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -284,9 +316,12 @@ function addEventtForNewItem(){
                 e.classList.add("nondisplay");
                 let itemElement = e.closest(".item");
                 itemElement.querySelector(".saveWord").classList.remove("nondisplay");
+                itemElement.querySelector(".item___headerTopic h3").classList.add("nondisplay");
+                itemElement.querySelector(".item___headerTopic input").classList.remove("nondisplay");
                 itemElement.querySelectorAll("input").forEach((evt2)=>{
                     evt2.removeAttribute('disabled');
                 })
+                itemElement.querySelector("textarea").removeAttribute('disabled');
             }
         })
     })
@@ -347,7 +382,7 @@ function addEventtForNewItem(){
                 let data = new FormData();
                 data.append("image",e.target.closest(".item__body").querySelector(".image-file").files[0]);
                 data.append("audio",e.target.closest(".item__body").querySelector(".audio-file").files[0]);
-                let nameLesson = e.target.closest(".item__body").querySelector(".meaning").value;
+                let nameLesson = e.target.closest(".item").querySelector(".item___headerTopic input").value;
                 let content = e.target.closest(".item__body").querySelector(".meaning").value;
                 let transcription = e.target.closest(".item__body").querySelector(".phonetic").value;
                 let example = e.target.closest(".item__body").querySelector(".example").value;
@@ -362,7 +397,43 @@ function addEventtForNewItem(){
                     }
                 ));
                 addWord(data,e);
-
+            }else{
+                let wordData = wordList[itemParentElement.getAttribute("itemId")];
+                let data = new FormData();
+                const imageFile = e.target.closest(".item__body").querySelector(".image-file").files[0];
+                if (imageFile) {
+                    data.append("image", imageFile);
+                }
+                const audioFile = e.target.closest(".item__body").querySelector(".audio-file").files[0];
+                if (audioFile) {
+                    data.append("audio", audioFile);
+                }
+                const updateWordData = {};
+                let nameLesson = e.target.closest(".item").querySelector(".item___headerTopic input").value;
+                let content = e.target.closest(".item__body").querySelector(".meaning").value;
+                let transcription = e.target.closest(".item__body").querySelector(".phonetic").value;
+                let example = e.target.closest(".item__body").querySelector(".example").value;
+                let partOfSpeech = e.target.closest(".item__body").querySelector(".partOfSpeech").value;
+                if (nameLesson && nameLesson !== wordData.nameLesson) {
+                    updateWordData.nameLesson = nameLesson;
+                }
+                if (content && content !== wordData.content) {
+                    updateWordData.content = content;
+                }
+                if (transcription && transcription !== wordData.transcription) {
+                    updateWordData.transcription = transcription;
+                }
+                if (example && example !== wordData.example) {
+                    updateWordData.example = example;
+                }
+                if (partOfSpeech && partOfSpeech !== wordData.partOfSpeech) {
+                    updateWordData.partOfSpeech = partOfSpeech;
+                }
+                data.append("newWord",JSON.stringify(
+                    updateWordData
+                ));
+                console.log("data update of word: ",updateWordData);
+                updateWord(data,itemParentElement.getAttribute("itemId"),e);
             }
         })
     })
@@ -376,9 +447,36 @@ async function deleteWord(e)
     const wordId = parseInt(e.getAttribute('dataId'),10);
     console.log(document.querySelector(".item-"+wordId));
     let response = await deleteAjax('http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/words/' + wordId);
+    delete wordList[wordId];
     document.querySelector(".item-"+wordId).remove();
     closeDialog();
 }
 
-renListWord();
+async function updateWord(data,idWord,e) {
+    let itemDetailElement = e.target.closest(".item");
+    let rotIconElement = itemDetailElement.querySelector(".item___headerTopic svg.rot");
+    rotIconElement.classList.remove("nondisplay");
+    let response = await patchAjax(" http://localhost:8080/api/v1/lessonbyskill/vocabulary/words/"+idWord,data, localStorage.getItem('access_token'));
+    if (response.status >= 200 && response.status < 300) {
+        wordList[idWord]=response.data;
+        itemDetailElement.querySelector(".item___headerTopic input").classList.add("nondisplay");
+        let nameWordElement=itemDetailElement.querySelector(".item___headerTopic h3");
+        rotIconElement.classList.add("nondisplay");
+        itemDetailElement.querySelector(".item___headerTopic svg.checked").classList.remove("nondisplay");
+        nameWordElement.classList.remove("nondisplay");
+        nameWordElement.innerHTML=response.data.nameLesson;
+        itemDetailElement.querySelector(".saveWord").classList.add("nondisplay");
+        itemDetailElement.querySelector(".item___headerTopic h3").classList.remove("nondisplay");
+        itemDetailElement.querySelector(".item___headerTopic input").classList.add("nondisplay");
+        itemDetailElement.querySelector(".item__headerEdit").classList.remove("nondisplay");
+        itemDetailElement.querySelector(".item__headerEdit").setAttribute("status","0");
 
+        itemDetailElement.querySelector(".item___headerTopic input").classList.add("nondisplay");
+        itemDetailElement.querySelectorAll("input").forEach((evt2)=>{
+            evt2.disabled = true;
+        })
+        itemDetailElement.querySelector("textarea").disabled = true;
+    }  
+}
+
+renListWord();
