@@ -32,3 +32,15 @@ class RoadMapLessonDeatail(View):
 class ChatSupport(View):
     def get(self,request):
         return render(request,'home/chatSupport.html')
+class Exam(View):
+    def get(self,request):
+        return render(request,'home/exam.html')
+class Exams(View):
+     def get(self,request):
+        return render(request,'home/exams.html')
+class ExamResult(View):
+    def get(self,request):
+        return render(request,'home/success-exam.html')
+class Histories(View):
+    def get(self,request,id):
+        return render(request,'home/result.html')

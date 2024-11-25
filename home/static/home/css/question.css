@@ -304,17 +304,21 @@ body {
     margin: unset;
     position: absolute;
     opacity: 0;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .answer__answer-item .checkmark {
     position: absolute;
-    top: 10px;
     left: 5px;
-    height: 15px;
-    width: 15px;
-    background-color: #eee;
+    height: 16px;
     border-radius: 50%;
+    width: 16px;
+    border: 1px solid #999;
+    line-height: 16px;
+    cursor: pointer;
+    background-color: #fff;
 }
 
 .answer__answer-item:hover {
@@ -471,4 +475,8 @@ body.page-result .page-content__mid {
     border-bottom: 3px solid #d28e00;
     text-decoration: none;
     padding: 10px 20px;
+}
+.answer__answer-item.choose-answer input ~ .checkmark {
+    border: 1px solid #2bc48a !important;
+    background-color: #2bc48a !important;
 }

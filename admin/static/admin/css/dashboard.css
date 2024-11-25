@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Nunito Sans, Google Sans, sans-serif;
     font-size: 14px;
 }
 #header{
@@ -22,7 +22,7 @@
 }
 #navbar{
     background-color: #2bc48a;
-    height: 58px;
+    height: 50px;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -41,7 +41,7 @@
     cursor: pointer;
     min-width: 100px;
     padding:0 10px 0 10px;
-    line-height: 58px;
+    line-height: 50px;
 
 }
 .menu-item a{

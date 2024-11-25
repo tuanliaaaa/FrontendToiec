@@ -23,12 +23,15 @@ async function getAjax(url, token) {
           xhr.send();
     });
  }
-renderRoadMap();
 function start(id){
     window.location="/roadmapdetail/"+id;
 }
+let currentUrl = window.location.href.split("/");
+
+let idRoadmap=currentUrl[currentUrl.length - 1];
+renderRoadMap();
 async function renderRoadMap() {
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/roadmaps/52');
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/roadmaps/'+idRoadmap);
     console.log("render Roadmap",response);
     if (response.status >= 200 && response.status < 300) {
         let template = document.getElementById("template-grammar");

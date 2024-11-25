@@ -127,7 +127,7 @@ body {
 
 }
 .lessonByPart-item{
-
+    margin-top: 20px;
 }
 .lessonByPart-item .title{
     margin-bottom: 10px;
@@ -202,8 +202,7 @@ ul li .name{
     margin-top: 5px;
 }
 #practice{
-    margin-top: 20px;
-    margin-bottom: 20px;
+  
 }
 #structureToiec{
     width: 60%;

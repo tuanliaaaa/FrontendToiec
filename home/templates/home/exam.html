@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/home/css/question.css">
+    <link rel="stylesheet" href="/static/home/css/exam.css">
+</head>
+<body class="page-question-detail">
+<div class="page-container">
+    <div class="page-topic-options">
+        <div class="page__content">
+            <div class="page__topic-options">
+                <div class="topic-options__top">
+                    <b>Đề: ETS 01 2024</b>
+                    <p>Số câu hỏi: <b>200</b></p>
+                    <p>Thời gian làm: <b>120 phút</b></p>
+                </div>
+                <img class="topic-options__img" src="/static/home/img/icons/frog_start.png">
+                <div class="topic-options__confirm">
+                    <input type="checkbox">
+                    <span>Bật chế độ như thi thật, chỉ áp dụng khi làm Full đề</span>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer page__footer--success">
+            <div class="footer__action">
+                <a class="btn btn--continue" id="start-exam">Luyện tập</a>
+                <a class="btn btn--action" href="/home">Quay lại</a>
+            </div>
+        </div>
+    </div>
+    <div class="page-topic-exam" style="display: none">
+        <div class="page__header">
+            <a class="header__left" href="/home" id="back-page">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                              fill="#FFFFFF"/>
+                    </g>
+                </svg>
+                <div class="header__title" id="show-label-part"><span id="count-question">0</span>/200</div>
+            </a>
+            <div class="header__right">
+                <div class="header__img btn btn--blue">
+                    <img src="/static/home/img/demos/warning.png">
+                </div>
+                <a class="btn btn--info" href="/success-exam">Nộp bài</a>
+                <div class="count-down btn btn--blue" id="countdown-display"></div>
+                <div class=" header__img btn btn--blue" id="show-popup-board">
+                    <img src="/static/home/img/icons/menu.png">
+                </div>
+                <div class="popup-board">
+                    <div class="board-container" id="board-container" style="display: none">
+                        <div class="note">
+                            <div class="bg-green"></div>
+                            Màu xanh là câu đã trả lời
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main-content">
+            <div class="page__content">
+                <div class="page-content__top">
+                    <div class="top__title">Câu <span id="question-number">1</span></div>
+                </div>
+                <div class="page-content__mid">
+                    <div class="mid__item active" data-part="1" data-index="0" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="1">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label>
+                                    <label class="answer__answer-item" data-index="1" data-id="2">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>B.
+                                    </label>
+                                    <label class="answer__answer-item" data-index="2" data-id="3">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>C.
+                                    </label>
+                                    <label class="answer__answer-item" data-index="3" data-id="4">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>D.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="1" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a42c8b774.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a4296339e.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="2">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label>
+                                    <label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label>
+                                    <label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                    <label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="2" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a4622ead5.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a45edf618.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="3">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label>
+                                    <label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label>
+                                    <label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                    <label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="3" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a595155f9.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a591897bc.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label>
+                                    <label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label>
+                                    <label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                    <label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="4" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a5b65fb5c.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a5b355a25.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label>
+                                    <label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label><label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="5" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a5d5c9671.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a5d2648df.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label><label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="1" data-index="6" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_2_65c0a60d4316e.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="2" data-index="7" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_2_65c0a62633f74.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="2" data-index="8" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_2_65c0a64746ed7.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="2" data-index="9" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_2_65c0a65d5039d.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A.
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B.
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="2" data-index="10" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A. She’s eating in a picnic area
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C. She’s wiping off a bench.
+                                </label><label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D. She’s throwing away a plate.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mid__item" data-part="2" data-index="11" style="display: none">
+                        <div class="mid__content mid__content--left">
+                            <div class="mid-content__left mid-content__left--audio" data-id="1">
+                                <audio controls="">
+                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"
+                                            type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mid-content__left mid-content__left--img" data-id="2">
+                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">
+                            </div>
+                        </div>
+                        <div class="mid__content mid__content--right">
+                            <div class="mid-content__answer" data-id="4">
+                                <div class="answer__list">
+                                    <label class="answer__answer-item active" data-index="0" data-id="1">
+                                        <input type="radio" name="radio">
+                                        <span class="checkmark"></span>A. She’s eating in a picnic area
+                                    </label><label class="answer__answer-item " data-index="1" data-id="2">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck
+                                </label><label class="answer__answer-item " data-index="2" data-id="3">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>C. She’s wiping off a bench.
+                                </label><label class="answer__answer-item " data-index="3" data-id="4">
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>D. She’s throwing away a plate.
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <div class="mid__item" data-part="3" data-index="12" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="4" data-index="13" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="4" data-index="14" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="4" data-index="15" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="5" data-index="16" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="5" data-index="17" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="5" data-index="18" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="6" data-index="19" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="6" data-index="20" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="6" data-index="21" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="7" data-index="22" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="7" data-index="23" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="mid__item" data-part="7" data-index="24" style="display: none">-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;left">-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;audio" data-id="1">-->
+                    <!--                                <audio controls="">-->
+                    <!--                                    <source src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3"-->
+                    <!--                                            type="audio/mpeg">-->
+                    <!--                                </audio>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="mid-content__left mid-content__left&#45;&#45;img" data-id="2">-->
+                    <!--                                <img src="https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png">-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="mid__content mid__content&#45;&#45;right">-->
+                    <!--                            <div class="mid-content__answer" data-id="4">-->
+                    <!--                                <div class="answer__label">4</div>-->
+                    <!--                                <div class="answer__list">-->
+                    <!--                                    <label class="answer__answer-item active" data-index="0" data-id="1">-->
+                    <!--                                        <input type="radio" name="radio">-->
+                    <!--                                        <span class="checkmark"></span>A. She’s eating in a picnic area-->
+                    <!--                                    </label><label class="answer__answer-item " data-index="1" data-id="2">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>B. She’s waiting in line at a food truck-->
+                    <!--                                </label><label class="answer__answer-item " data-index="2" data-id="3">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>C. She’s wiping off a bench.-->
+                    <!--                                </label><label class="answer__answer-item " data-index="3" data-id="4">-->
+                    <!--                                    <input type="radio" name="radio">-->
+                    <!--                                    <span class="checkmark"></span>D. She’s throwing away a plate.-->
+                    <!--                                </label>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/home/js/exam.js"></script>
+</body>
+</html>

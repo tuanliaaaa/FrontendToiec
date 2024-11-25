@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     Login,Home,Question,QuestionDetail,Vocabulary,VocabularyDetail,RoadMap,RoadMapDeatail,RoadMapLessonDeatail,
-    ChatSupport
+    ChatSupport,Exam,ExamResult,Exams,Histories
 )
 urlpatterns = [
     path('login', Login.as_view()),
@@ -13,5 +13,10 @@ urlpatterns = [
     path('roadmap',RoadMap.as_view()),
     path('roadmap/<int:id>',RoadMapDeatail.as_view()),
     path('roadmapdetail/<int:id>',RoadMapLessonDeatail.as_view()),
-    path('chatsupport',ChatSupport.as_view())
+    path('chatsupport',ChatSupport.as_view()),
+    path('exam',Exam.as_view()),
+    path('exams',Exams.as_view()),
+    path('success-exam',ExamResult.as_view()),
+    path('histories/<int:id>',Histories.as_view()),
+    
 ]
