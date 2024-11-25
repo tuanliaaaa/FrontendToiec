@@ -148,6 +148,7 @@ async function postAjax(url, formData, token) {
     });
 }
 async function  addWord(data,e) {
+    let itemDetailElement = e.target.closest(".item");
     e.target.closest(".item").querySelector(".item___headerTopic svg.rot").classList.remove("nondisplay");
     let response = await postAjax("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/"+topicId+"/words",data, localStorage.getItem('access_token'));
     if (response.status >= 200 && response.status < 300) {
@@ -161,6 +162,13 @@ async function  addWord(data,e) {
         e.target.closest(".item").classList.add("item-"+response.data.idDetail);
         e.target.closest(".item").setAttribute("itemId",response.data.idDetail)
         e.target.closest(".item").querySelector(".saveWord").classList.add("nondisplay");
+        itemDetailElement.querySelector(".item__headerEdit").setAttribute("status","0");
+
+        itemDetailElement.querySelector(".item___headerTopic input").classList.add("nondisplay");
+        itemDetailElement.querySelectorAll("input").forEach((evt2)=>{
+            evt2.disabled = true;
+        })
+        itemDetailElement.querySelector("textarea").disabled = true;
     }    
 }
 async function getAjax(url, token) {
@@ -373,6 +381,18 @@ function addEventtForNewItem(){
             } 
         });
     })
+    
+    let audioFileInputElements = document.querySelectorAll(".audio-file"); 
+    audioFileInputElements.forEach((inputElement) => {
+        inputElement.addEventListener("change", (event) => {
+            if (event.target.files && event.target.files[0]) {
+                const audioElement = event.target.nextElementSibling; 
+                audioElement.src = URL.createObjectURL(event.target.files[0]);
+                audioElement.load(); 
+            }
+        });
+    });
+
     let saveWordElement = document.querySelectorAll(".saveWord");
     saveWordElement.forEach((btnElement)=>{
         btnElement.addEventListener("click",(e)=>{
