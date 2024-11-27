@@ -165,20 +165,8 @@
         <img src="/static/home/img/icons/close.png">
     </div>
 </div>
-<script>
-    const buttonMenus = document.getElementsByClassName('menu-list__item');
-    const resultContentTabs = document.getElementsByClassName('result__list-question');
-
-    Array.from(buttonMenus).forEach(buttonMenu => {
-        buttonMenu.addEventListener("click", function () {
-            Array.from(buttonMenus).forEach(btn => btn.classList.remove('menu-list__item--active'));
-            Array.from(resultContentTabs).forEach(tab => tab.style.display = "none");
-            if (document.getElementsByClassName(this.getAttribute('data-type')).length) {
-                document.getElementsByClassName(this.getAttribute('data-type'))[0].style.display = "block";
-            }
-            this.classList.add('menu-list__item--active');
-        });
-    });
+<script type="module" src="/static/home/js/result.js">
+    
 </script>
 </body>
 </html>

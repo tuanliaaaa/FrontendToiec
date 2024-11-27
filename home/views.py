@@ -44,3 +44,9 @@ class ExamResult(View):
 class Histories(View):
     def get(self,request,id):
         return render(request,'home/result.html')
+class Result(View):
+    def get(self,request):
+        return render(request,'home/result.html')
+class Test(View):
+    def get(self,request):
+        return render(request,'home/lessonByPart.html')

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     Login,Home,Question,QuestionDetail,Vocabulary,VocabularyDetail,RoadMap,RoadMapDeatail,RoadMapLessonDeatail,
-    ChatSupport,Exam,ExamResult,Exams,Histories
+    ChatSupport,Exam,ExamResult,Exams,Histories,Result,Test
 )
 urlpatterns = [
     path('login', Login.as_view()),
@@ -18,5 +18,6 @@ urlpatterns = [
     path('exams',Exams.as_view()),
     path('success-exam',ExamResult.as_view()),
     path('histories/<int:id>',Histories.as_view()),
-    
+    path('result',Result.as_view()),
+    path("test",Test.as_view())
 ]

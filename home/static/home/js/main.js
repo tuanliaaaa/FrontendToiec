@@ -77,7 +77,7 @@ async function renderQuestionTpl() {
 }
 
 async function renderHistoryResultTpl() {
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories?size=1&page=0&type=' + part, localStorage.getItem('access_token'));
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/lessonbypart?size=1&page=0&type=' + part, localStorage.getItem('access_token'));
     if (response.status >= 200 && response.status < 300) {
         let data = response.data,
             historyResult = document.getElementById('history-result');

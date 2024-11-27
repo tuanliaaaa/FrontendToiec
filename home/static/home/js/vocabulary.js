@@ -5,6 +5,7 @@ let wordsScore = {};
 let nowIndex = 0;
 let countChecked = 0;
 let lessonElement = document.getElementById('page__main');
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -39,6 +40,7 @@ async function renderVocabularyTpl() {
 }
 
 async function renderVocabularyDetailTpl() {
+    let dataHistory = await getHistorieVocabularyOfUser();
     let response = await getAjax('http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/' + topicWord + '/newwords');
     if (response.status === 200) {
         document.getElementById("lessonName").innerHTML = response.data.name;
@@ -54,10 +56,10 @@ async function renderVocabularyDetailTpl() {
                                 <path class="circle-bg" d="M18 2.0845
                                         a 15.9155 15.9155 0 0 1 0 31.831
                                         a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                <path class="circle" stroke-dasharray="0, 100" d="M18 2.0845
+                                <path class="circle" stroke-dasharray="${dataHistory[item.idDetail]?(dataHistory[item.idDetail]['score']/2)*100:0}, 100" d="M18 2.0845
                                         a 15.9155 15.9155 0 0 1 0 31.831
                                         a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                <text x="18" y="21.35" class="percentage">0%</text>
+                                <text x="18" y="21.35" class="percentage">${dataHistory[item.idDetail]?(dataHistory[item.idDetail]['score']/2)*100:0}%</text>
                             </svg>
                         </div>
                     </div>
@@ -104,10 +106,45 @@ async function getAjax(url, token) {
         xhr.send();
     });
 }
+async function postAjax(url, jsonData, token) {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(JSON.parse(this.responseText));
+                } else {
+                    reject("Error: " + this.status);
+                }
+            }
+        };
+        xhr.send(jsonData);
+    });
+}
 
 
+async function getHistorieVocabularyOfUser()
+{
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=12&page=0',localStorage.getItem("access_token"));
+    if (response.status === 200) {
+        let data ={};
+        response.data[0]['historyDetails'].forEach(element => {
+            data[element.idLessonDetail]=element;
+        });
+        console.log("histories: ",data);
+        return data;
+    } else{
+        return {};
+    }
+}
 
-//------- lIÊN QUAN ĐẾN LÀM bÀI TẬP------------
+
+//----------------- Liên quan đến làm bài tập-------------------//
 async function optionLessonWord(wordIndex) {
     if (wordList[wordIndex]) {
         let htmloptionLessonWord = `
@@ -303,23 +340,33 @@ function trueOrFalseExercise(wordIndex) {
 async function start(index) {
     console.log("index: ",index,"len: ",wordUseList.length);
     if (index == wordList.length&&wordUseList.length==0) {
-        alert("xong");
         console.log("Score: ",wordsScore);
         const template = document.getElementById('template-exam-success').innerHTML,
         bodyEle = document.querySelector('body');
         bodyEle.classList.remove('page-result');
         bodyEle.classList.add('page-exam-success');
         bodyEle.innerHTML = template;
-        // let response = await postAjax("http://127.0.0.1:8080/api/v1/histories", JSON.stringify({
-        //     type: part,
-        //     amountQuestionGroup: JSON.parse(localStorage.getItem(part)).length,
-        //     questionList: JSON.parse(localStorage.getItem(part))
-        // }), localStorage.getItem('access_token'));
-        // if (response.status >= 200 && response.status < 300) {
-        //      }
+
+        
+        let words=[];
         var sumTotal=0;
         for (let key in wordsScore) {
             sumTotal+=wordsScore[key];
+            words.push({
+                id:wordList[key].idDetail,
+                score:wordsScore[key]
+            })
+        }
+        console.log("history post: ",{
+            topicId: topicWord,
+            words:words
+        });
+        let response = await postAjax("http://127.0.0.1:8080/api/v1/histories/vocabularies", JSON.stringify({
+            topicId: topicWord,
+            words:words
+        }), localStorage.getItem('access_token'));
+        if (response.status >= 200 && response.status < 300) {
+             
         }
         console.log(sumTotal);
         console.log(Object.keys(wordsScore).length*2);
@@ -345,3 +392,5 @@ async function start(index) {
 async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+
