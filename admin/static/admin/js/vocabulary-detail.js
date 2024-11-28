@@ -90,6 +90,7 @@ document.getElementById("addItemButton").addEventListener("click",(e)=>{
         window.scrollTo(0, document.documentElement.scrollHeight);
 })
 
+
 async function editTopic() {
     let response = await patchAjaxJson("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/"+topicId,
         JSON.stringify({

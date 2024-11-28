@@ -64,3 +64,6 @@ async function getAllTopic()
     }
 }
 getAllTopic();
+document.querySelector(".AddIcon").addEventListener("click",()=>{
+    window.location.href="/admin/vocabulary/add";
+})
