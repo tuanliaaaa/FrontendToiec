@@ -23,3 +23,6 @@ class ExamDetail(View):
 class Dashboard(View):
     def get(self,request):
         return render(request,'admin/dashboard.html')
+class VocabularyAdd(View):
+    def get(self,request):
+        return render(request,'admin/vocabulary-add.html')

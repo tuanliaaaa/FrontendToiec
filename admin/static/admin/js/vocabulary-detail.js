@@ -89,16 +89,61 @@ document.getElementById("addItemButton").addEventListener("click",(e)=>{
         addEventtForNewItem();
         window.scrollTo(0, document.documentElement.scrollHeight);
 })
+
+async function editTopic() {
+    let response = await patchAjaxJson("http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/"+topicId,
+        JSON.stringify({
+            nameLesson:document.getElementById("topicInput").value
+        }),
+        localStorage.getItem("access_token"));
+    if(response.status>=200&&response.status<400)
+    {
+        let editItemTopic = document.querySelector(".item__headerEditTopic");
+        editItemTopic.classList.remove("nondisplay");
+        editItemTopic.closest(".selectedMenu__content").nextElementSibling.classList.add("nondisplay");
+        editItemTopic.closest(".selectedMenu__content").querySelector("h1").classList.remove("nondisplay");
+        editItemTopic.closest(".selectedMenu__content").querySelector("h1").innerHTML=document.getElementById("topicInput").value;
+        editItemTopic.closest(".selectedMenu__content").querySelector("input").classList.add("nondisplay");
+    }
+}
+
 async function patchAjax(url, formData, token) {
     return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("PATCH", url, true); // Đổi từ POST thành PATCH
-
-        // Đặt header Authorization nếu có token
+        let xhr = new XMLHttpRequest();
+        xhr.open("PATCH", url, true);
         if (token) {
             xhr.setRequestHeader("Authorization", "Bearer " + token);
         }
 
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4) {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve({
+                        status: this.status,
+                        data: JSON.parse(this.responseText)
+                    });
+                } else {
+                    reject({
+                        status: this.status,
+                        error: this.statusText
+                    });
+                }
+            }
+        };
+
+        xhr.send(formData);
+    });
+}
+
+async function patchAjaxJson(url, formData, token) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("PATCH", url, true); 
+
+        if (token) {
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+        }
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) { // Sử dụng DONE thay vì số 4
                 if (xhr.status >= 200 && xhr.status < 300) {
@@ -223,6 +268,27 @@ async function renListWord(params) {
     let response = await getAjax('http://127.0.0.1:8080/api/v1/lessonbyskill/vocabulary/topic/' + topicId + '/newwords');
     console.log(response);
     if (response.status === 200) {
+        let topicHtml=`
+             <div class="selectedMenu__content">
+              <h1>${response.data.name}</h1>
+              <input class="nondisplay"  type="text" name="" id="topicInput" value="${response.data.name}"> 
+              <div class="item__headerEditTopic" status="0">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z" fill="#0F0F0F"></path> </g></svg>
+              </div>
+            </div>
+            <div class="selectedMenuToiec__save nondisplay">
+                <button onclick="editTopic()">Save</button>
+            </div>
+        `;
+        document.getElementById('topicContent').innerHTML=topicHtml;
+        let editItemTopic = document.querySelector(".item__headerEditTopic");
+        editItemTopic.addEventListener("click",(e)=>{
+            e.target.closest(".selectedMenu__content").querySelector(".item__headerEditTopic").classList.add("nondisplay");
+            e.target.closest(".selectedMenu__content").nextElementSibling.classList.remove("nondisplay");
+            e.target.closest(".selectedMenu__content").querySelector("h1").classList.add("nondisplay");
+            e.target.closest(".selectedMenu__content").querySelector("input").classList.remove("nondisplay");
+            
+        })
         let listItemHtml = response.data.words.map((item,index)=>{
             wordList[item.idDetail] = item;
             return `
@@ -315,6 +381,8 @@ async function renListWord(params) {
     }
 }
 function addEventtForNewItem(){
+    
+
     let listEditItem = document.querySelectorAll(".item__headerEdit");
     listEditItem.forEach((e)=>{
         e.addEventListener("click",(evt1)=>{
