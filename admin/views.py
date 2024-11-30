@@ -26,3 +26,15 @@ class Dashboard(View):
 class VocabularyAdd(View):
     def get(self,request):
         return render(request,'admin/vocabulary-add.html')
+class LearningPath(View):
+    def get(self,request):
+        return render(request,'admin/learning-path.html')
+class LearningPathAdd(View):
+    def get(self,request):
+        return render(request,'admin/learning-path-add.html')
+class Lesson(View):
+    def get(self,request):
+        return render(request,'admin/lessons.html')
+class LessonDetail(View):
+    def get(self,request,id):
+        return render(request,'admin/lesson-detail.html')  

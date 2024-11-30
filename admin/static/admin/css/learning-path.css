@@ -1,4 +1,5 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,7 +7,10 @@
     font-size: 14px;
 }
 #header{
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 #banner{
     height: 100px;
@@ -38,12 +42,10 @@
     
 }
 .navbar__menu .menu-item{
-    font-size: 16px;
     cursor: pointer;
     min-width: 100px;
     padding:0 10px 0 10px;
     line-height: 50px;
-    font-family: Nunito Sans, Google Sans, sans-serif;
 
 }
 .menu-item a{
@@ -91,74 +93,106 @@
     width: 48px;
     height: 48px;
 }
-#container{
-}
-#container_body,#container_header{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 90vw;
-    margin: auto;
-    background-color: #fff;
+#container {
     display: flex;
+    margin: 50px 0 0 0;
+    padding: 20px 0 0  0;
+    height: calc(100vh - 50px);
+    background-color: #f5f5f5;
+}
+
+
+.sidebar {
+    width: 20%;
+    background-color: #2bc48a;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar h2 {
     margin-bottom: 20px;
 }
-#container_header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#container_header .selectedMenu{
-    
-}
-#container_header .AddIcon{
 
+.sidebar ul {
+    list-style-type: none;
 }
-.AddIcon button{
-    border-radius: 50%;
-    border: none;
-    background: none;
+
+.sidebar ul li {
+    margin: 10px 0;
 }
-.AddIcon  img{
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    color: red;
-    border-radius: 50%;
-    cursor: pointer;
-}
-#container_body .list-section {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 15px;
-}
-.list-section li {
-    width: calc(50% - 15px);
-    border: 1px solid #eee;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-a {
+
+.sidebar ul li a {
+    color: #fff;
     text-decoration: none;
-    color: #000000;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
 }
-.list-section li .section .word-learn {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+
+.sidebar ul li a:hover {
+    background-color: #38b2ac;
 }
-.list-section li .section .name {
-    height: 60px;
+
+#container .container__content{
+    width: 100%;
+    padding: 0 20px;
+}
+.main-content {
+    background-color: #fff;
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+    min-height: 100%;
+    padding: 10px;
+}
+.main-content .containner__title{
+    margin-top: 20px;
     display: flex;
-    align-items: center;
-    line-height: 20px;
-    font-weight: 500;
-    text-align: center;
     width: 100%;
     justify-content: center;
-    padding: 0 10px;
-    font-size: 14px;
+}
+.containner__title h2{
+    color: #2bc48a;
+    font-size: 18px;
+}
+.study-plan {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.day-box {
+    background-color: #fff;
+    border-left: 5px solid #00c853;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.day-box h2 {
+    color: #333;
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.day-box ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.day-box ul li {
+    margin: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #555;
+}
+
+.day-box ul li::before {
+    content: '✔';
+    color: #00c853;
+    position: absolute;
+    left: 0;
+    font-size: 16px;
 }

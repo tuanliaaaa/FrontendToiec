@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>exams</title>
-    <link rel="stylesheet" href="/static/admin/css/roadmap.css">
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="/static/admin/css/learning-path.css">
 </head>
-
 <body>
     <div id="header">
         <div id="navbar">
             <div class="divleft"></div>
             <div class="navbar__menu">
-                <div class="menu-item">
+                <div class="menu-item active">
                     <a href="/admin/dashboard">Thống kê</a>
                 </div>
                 <div class="menu-item">
@@ -23,33 +21,37 @@
                     <a href="/admin/vocabulary">Quản lý từ vựng</a>
                 </div>
                 
-                <div class="menu-item active">
+                <div class="menu-item">
                     <a href="/admin/roadmap">Quản lý lộ trình</a>
                 </div>
             </div>
             <div class="navbar__user">
                 <div class="avatar">
-                    <!-- <img src="http://surl.li/uitszn" alt=""> -->
                 </div>
             </div>
         </div>
     </div>
+
     <div id="container">
-        <div id="container_header">
-            <div class="selectedMenu">
-                Trang chủ &gt; Quản lý từ vựng
-            </div>
-            <div class="AddIcon">
-                <img src="/static/img/ok.img" alt="">
-            </div>
-        </div>
-        <div id="container_body">
-            <ul class="list-section" id="list-item">
-                
+        <div class="sidebar">
+            <h2>Danh mục</h2>
+            <ul>
+                <li><a href="#">Doanh thu</a></li>
+                <li><a href="#">Lịch sử giao dịch</a></li>
             </ul>
+        </div>
+
+        <div class="container__content">
+            <div class="main-content">
+                <div class="containner__title">
+                    <h2> Quản lý lộ trình</h2>
+                </div>
+                <div class="study-plan" id="learningPath">
+
+                </div>
+            </div>
         </div>
     </div>
 </body>
-<script src="/static/admin/js/roadmap.js">
-</script>
+<script src="/static/admin/js/learning-path.js"></script>
 </html>
