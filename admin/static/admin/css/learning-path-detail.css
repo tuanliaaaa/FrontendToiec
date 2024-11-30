@@ -106,11 +106,13 @@
     width: 20%;
     background-color: #2bc48a;
     color: #fff;
-    padding: 20px;
+    padding: 20px 0 0 30px;
 }
 
 .sidebar h2 {
     margin-bottom: 20px;
+    font-size: 18px;
+
 }
 
 .sidebar ul {
@@ -128,10 +130,13 @@
     display: block;
     padding: 10px;
     border-radius: 5px;
+    font-size: 16px;
 }
-
+.sidebar ul li a.active{
+    color: #fff41d;
+}
 .sidebar ul li a:hover {
-    background-color: #38b2ac;
+    color: #fff41d;
 }
 
 #container .container__content{
@@ -195,8 +200,9 @@
     transition: all 0.3s ease;
 }
 .actionLearningPath input:focus {
-    border-color: #66afe9;
-    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+   
+    border-color: #2bc48a;
+    box-shadow: 0 0 5px rgba(43, 196, 138, 0.5);
 }
 
 /* Popup dropdown styling */
@@ -238,12 +244,46 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.day-box__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+    padding-bottom: 10px;
+}
 
-.day-box h2 {
+.day-box__header p {
     color: #333;
     margin-top: 0;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.day-box__content {
+    margin-top: 20px;
+}
+.group-btn{
+    display: flex;
+    gap: 2px;
+
+}
+.btn {
+    border: 0px;
+}
+
+.btn-clear {
+    background-color: #e61026;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-collapse {
+    background-color: #2bc48a;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .day-box ul {

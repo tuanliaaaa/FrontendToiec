@@ -11,9 +11,7 @@ class VocabularyDetail(View):
 class Login(View):
     def get(self,request):
         return render(request,'admin/login.html')
-class RoadMap(View):
-    def get(self,request):
-        return render(request,'admin/roadmap.html')
+
 class Exams(View):
     def get(self,request):
         return render(request,'admin/exam.html')
@@ -29,9 +27,9 @@ class VocabularyAdd(View):
 class LearningPath(View):
     def get(self,request):
         return render(request,'admin/learning-path.html')
-class LearningPathAdd(View):
-    def get(self,request):
-        return render(request,'admin/learning-path-add.html')
+class LearningPathDetail(View):
+    def get(self,request,idLearningPath):
+        return render(request,'admin/learning-path-detail.html')
 class Lesson(View):
     def get(self,request):
         return render(request,'admin/lessons.html')

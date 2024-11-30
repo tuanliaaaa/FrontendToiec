@@ -30,7 +30,7 @@ async function getAllLearningPath()
         console.log(response);
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
-                <div class="day-box">
+                <div class="day-box" onclick="goToLearningPathDetail(${topic.id})">
                     <h2>${topic.name}</h2>
                     <ul>
                         ${topic.grammars.map(grammar =>
@@ -46,3 +46,7 @@ async function getAllLearningPath()
     }
 }
 getAllLearningPath();
+function goToLearningPathDetail(id)
+{
+    window.location.href="/admin/learningpath/"+id;
+}

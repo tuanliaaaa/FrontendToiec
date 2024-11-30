@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thống kê</title>
-    <link rel="stylesheet" href="/static/admin/css/learning-path-add.css">
+    <link rel="stylesheet" href="/static/admin/css/learning-path-detail.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/js/all.min.js"
+    integrity="sha512-1JkMy1LR9bTo3psH+H4SV5bO2dFylgOy+UJhMus1zF4VEFuZVu5lsi4I6iIndE4N9p01z1554ZDcvMSjMaqCBQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div id="header">
@@ -22,7 +25,7 @@
                 </div>
                 
                 <div class="menu-item">
-                    <a href="/admin/roadmap">Quản lý lộ trình</a>
+                    <a href="/admin/learningpath">Quản lý lộ trình</a>
                 </div>
             </div>
             <div class="navbar__user">
@@ -36,8 +39,8 @@
         <div class="sidebar">
             <h2>Danh mục</h2>
             <ul>
-                <li><a href="#">Doanh thu</a></li>
-                <li><a href="#">Lịch sử giao dịch</a></li>
+                <li><a href="/admin/learningpath" class="active">Quản lý lộ trình</a></li>
+                <li><a href="/admin/lesson">Quản lý bài học</a></li>
             </ul>
         </div>
 
@@ -52,28 +55,18 @@
                 </div>
                 <div class="container__body">
                     <div class="actionLearningPath">
-                        <input type="text" placeholder="Search..." id="searchInput" oninput="showPopup()">
+                        <input type="text" placeholder="Search..." id="searchInput" oninput="showPopup()" onfocus="focusSearch()">
                         <div id="popup" class="popup">
-                            <p onclick="addItemToDayBox(this)">Result 1</p>
-                            <p onclick="addItemToDayBox(this)">Result 2</p>
-                            <p onclick="addItemToDayBox(this)">Result 3</p>
+                            
                         </div>
                     </div>
                     <div class="study-plan" id="learningPath">
-                        <div class="day-box">
-                            <h2>Insert</h2>
-                        </div>
-                        <div class="day-box">
-                            <h2>Insert</h2>
-                        </div>
-                        <div class="day-box">
-                            <h2>Insert</h2>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/static/admin/js/learning-path-add.js"></script>
+<script src="/static/admin/js/learning-path-detail.js"></script>
 </html>
