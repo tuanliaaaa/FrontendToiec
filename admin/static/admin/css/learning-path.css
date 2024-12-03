@@ -39,6 +39,7 @@
 #navbar .navbar__menu{
     display: flex;
     align-items: center;
+    padding-left: 10%;
     
 }
 .navbar__menu .menu-item{
@@ -53,7 +54,7 @@
     color: white;
     text-decoration: none;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
 }
 .navbar__menu .menu-item.active a{
     color: #fff41d;;
@@ -149,14 +150,34 @@
     padding: 10px;
 }
 .main-content .containner__title{
+    position: relative;
+    margin: 0 auto;
     margin-top: 20px;
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: center;
 }
 .containner__title h2{
     color: #2bc48a;
     font-size: 18px;
+}
+.containner__title .icon__createLearningPath{
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #2bc48a;
+}
+.containner__title .icon__createLearningPath:hover{
+    opacity: 0.7;
+}
+.icon__createLearningPath svg{
+   color: white;
 }
 .study-plan {
     width: 90%;

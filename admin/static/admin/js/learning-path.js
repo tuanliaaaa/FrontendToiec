@@ -50,3 +50,7 @@ function goToLearningPathDetail(id)
 {
     window.location.href="/admin/learningpath/"+id;
 }
+function goToLearningPathAddPage()
+{
+    window.location.href="/admin/learningpath/add";
+}

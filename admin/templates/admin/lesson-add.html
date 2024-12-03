@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thống kê</title>
-    <link rel="stylesheet" href="/static/admin/css/lessons.css">
+    <link rel="stylesheet" href="/static/admin/css/lesson-detail.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/js/all.min.js"
     integrity="sha512-1JkMy1LR9bTo3psH+H4SV5bO2dFylgOy+UJhMus1zF4VEFuZVu5lsi4I6iIndE4N9p01z1554ZDcvMSjMaqCBQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -14,7 +14,7 @@
         <div id="navbar">
             <div class="divleft"></div>
             <div class="navbar__menu">
-                <div class="menu-item active">
+                <div class="menu-item">
                     <a href="/admin/dashboard">Thống kê</a>
                 </div>
                 <div class="menu-item">
@@ -24,7 +24,7 @@
                     <a href="/admin/vocabulary">Quản lý từ vựng</a>
                 </div>
                 
-                <div class="menu-item">
+                <div class="menu-item active">
                     <a href="/admin/learningpath">Quản lý lộ trình</a>
                 </div>
             </div>
@@ -39,31 +39,32 @@
         <div class="sidebar">
             <h2>Danh mục</h2>
             <ul>
-                <li><a href="/admin/learningpath" >Quản lý lộ trình</a></li>
-                <li><a href="/admin/lesson" class="active">Quản lý bài học</a></li>
+                <li><a href="/admin/learningpath"  >Quản lý lộ trình</a></li>
+                <li><a href="/admin/lesson"  class="active">Quản lý bài học</a></li>
             </ul>
         </div>
 
         <div class="container__content">
             <div class="main-content">
                 <div class="containner__title">
-                    <h2> Danh sách bài học</h2>
-                    <div class="icon__createLearningPath" onclick="goToLessonAddPage()">
+                    <h2> Quản lý lộ trình</h2>
+                    <!-- <div class="icon__createLearningPath">
                         <i class="fa-solid fa-plus"></i>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="container__body">
-                    <div class="actionLearningPath">
-                        <input type="text" placeholder="Search..." id="searchInput" oninput="showPopup()" onfocus="focusSearch()">
-
+                    <div class="lesson__content">
+                        <div class="lesson__navbar">
+                            <button class="active">Lý thuyết</button>
+                            <button>Bài Tập</button>
+                        </div>
                     </div>
-                    <div class="study-plan" id="learningPath">
-                        
+                    <div class="lesson__body">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="/static/admin/js/lessons.js"></script>
 </html>

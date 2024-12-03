@@ -1,0 +1,47 @@
+.tdoc-text-left{ 
+    text-align: left; 
+  } 
+  .tdoc-text-right{ 
+      text-align: right; 
+  } 
+  .tdoc-text-center{ 
+     text-align: center;
+  }
+   .tdoc-numls-1-0{
+       counter-increment: tdoc-numls-1-0;
+   }
+
+   .tdoc-numls-1-0:before {
+       content: counter(tdoc-numls-1-0, decimal) ". "; 
+   }
+
+   .tdoc-numls-1-1 {
+       counter-increment: tdoc-numls-1-1;
+       margin-left: 20px; 
+   }
+
+   .tdoc-numls-1-1:before {
+       content: counter(tdoc-numls-1-0, decimal) "." counter(tdoc-numls-1-1, decimal) ". "; 
+   }
+
+   .tdoc-numls-1-2 {
+       counter-increment: tdoc-numls-1-2;
+       margin-left: 40px;
+   }
+
+   .tdoc-numls-1-2::before {
+       content: counter(tdoc-numls-1-0, decimal) "." counter(tdoc-numls-1-1, decimal) "." counter(tdoc-numls-1-2, decimal) ". ";
+   }
+   
+    .tdoc-numls-1-3 {
+       counter-increment: tdoc-numls-1-3;
+       margin-left: 60px;
+   }
+
+   .tdoc-numls-1-3::before {
+       content: counter(tdoc-numls-1-0, decimal) "." counter(tdoc-numls-1-1, decimal) "." counter(tdoc-numls-1-2, decimal) ". " counter(tdoc-numls-1-3, decimal) ". ";
+   }
+   .tdoc-numlsIcon::before {
+      content: "";
+      font-family: Wingdings;
+   }

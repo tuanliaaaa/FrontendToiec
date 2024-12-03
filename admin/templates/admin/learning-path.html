@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thống kê</title>
     <link rel="stylesheet" href="/static/admin/css/learning-path.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/js/all.min.js"
+    integrity="sha512-1JkMy1LR9bTo3psH+H4SV5bO2dFylgOy+UJhMus1zF4VEFuZVu5lsi4I6iIndE4N9p01z1554ZDcvMSjMaqCBQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div id="header">
@@ -36,8 +39,8 @@
         <div class="sidebar">
             <h2>Danh mục</h2>
             <ul>
-                <li><a href="#" class="active">Quản lý lộ trình</a></li>
-                <li><a href="#">Quản lý bài học</a></li>
+                <li><a href="/admin/learningpath"  class="active">Quản lý lộ trình</a></li>
+                <li><a href="/admin/lesson" >Quản lý bài học</a></li>
             </ul>
         </div>
 
@@ -45,6 +48,9 @@
             <div class="main-content">
                 <div class="containner__title">
                     <h2> Quản lý lộ trình</h2>
+                    <div class="icon__createLearningPath" onclick="goToLearningPathAddPage()">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
                 </div>
                 <div class="study-plan" id="learningPath">
 

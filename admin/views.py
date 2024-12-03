@@ -16,8 +16,8 @@ class Exams(View):
     def get(self,request):
         return render(request,'admin/exam.html')
 class ExamDetail(View):
-    def get(self,request,id):
-        return render(request,'admin/exam-detail.html')
+    def get(self,request,id,part):
+        return render(request,"admin/exam-detail/"+part+".html")
 class Dashboard(View):
     def get(self,request):
         return render(request,'admin/dashboard.html')
@@ -36,3 +36,6 @@ class Lesson(View):
 class LessonDetail(View):
     def get(self,request,id):
         return render(request,'admin/lesson-detail.html')  
+class LessonAdd(View):
+    def get(self,request):
+        return render(request,'admin/lesson-add.html')  
