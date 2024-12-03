@@ -57,6 +57,7 @@ async function getLearningPath(idLearningPath)
     let response = await getAjax('http://127.0.0.1:8080/api/v1/roadmaps/'+idLearningPath);
     if (response.status >= 200 && response.status < 300) {
         console.log(response);
+        document.getElementById("nameDay").innerHTML = response.data.name;
         let topicItemsHtml = response.data.grammars.map((lesson, index) => {
             if(lesson.idDetail)lsIdLearningpath.push(lesson.idDetail);
             return lesson.idDetail?`

@@ -44,15 +44,19 @@
         <div class="sidebar">
             <h2>Danh mục</h2>
             <ul>
-                <li><a href="#" >Quản lý lộ trình</a></li>
-                <li><a href="#" class="active">Quản lý bài học</a></li>
+                <li><a href="/admin/learningpath" >Quản lý lộ trình</a></li>
+                <li><a href="/admin/lesson" class="active">Quản lý bài học</a></li>
             </ul>
         </div>
 
         <div class="container__content">
             <div class="main-content">
                 <div class="containner__title">
+                    <div class="helpCenter3"></div>
                     <h2> Quản lý bài học</h2>
+                    <div class="helpCenter3">
+                        <button class="btn btn-save" onclick="updateLesson()">Save</button>
+                    </div>
                 </div>
                 <div class="container__body">
                     <div class="lesson__content">
@@ -78,7 +82,7 @@
                                             <div class="resource__item--upload-doc">
                                                 Upload Doc
                                             </div>
-                                            <input type="file" name="upload-doc" class="no-active" accept=".doc,.docx" />
+                                            <input type="file" name="upload-doc" class="no-active" accept=".doc,.docx" id="uploadFile"/>
                                             <div class="preview-container" id="preview-container"></div>
                                         </div>
                                     </div>

@@ -26,16 +26,11 @@ class VocabularyAdd(View):
         return render(request,'admin/vocabulary-add.html')
 class LearningPath(View):
     def get(self,request):
-        return render(request,'admin/learning-path.html')
+        return render(request,'admin/learning-path/learning-path.html')
 class LearningPathDetail(View):
     def get(self,request,idLearningPath):
-        return render(request,'admin/learning-path-detail.html')
-class Lesson(View):
+        return render(request,'admin/learning-path/learning-path-detail.html')
+
+class LearningPathAdd(View):
     def get(self,request):
-        return render(request,'admin/lessons.html')
-class LessonDetail(View):
-    def get(self,request,id):
-        return render(request,'admin/lesson-detail.html')  
-class LessonAdd(View):
-    def get(self,request):
-        return render(request,'admin/lesson-add.html')  
+        return render(request,"admin/learning-path/learning-path-add.html")
