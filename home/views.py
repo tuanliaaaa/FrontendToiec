@@ -49,4 +49,4 @@ class Result(View):
         return render(request,'home/result.html')
 class Test(View):
     def get(self,request):
-        return render(request,'home/lessonByPart.html')
+        return render(request,'home/topic-exam.html')

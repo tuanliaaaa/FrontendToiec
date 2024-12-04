@@ -16,6 +16,28 @@ Array.from(buttonMenus).forEach(buttonMenu => {
         this.classList.add('menu-list__item--active');
     });
 });
+
+function renderQuestion(idQuestion,part,idAnswerCorrect,idAnswerUserSelected){
+    if(part=="part1"){
+
+    }else if(par=="part2"){
+
+    }else if(par=="part3"){
+
+    }else if(par=="part4"){
+
+    }
+    else if(par=="part5"){
+
+    }else if(par=="part6"){
+
+    }else{
+
+    }
+
+}
+
+
 function renderHistoryOfUser(idHistory)
 {
 
