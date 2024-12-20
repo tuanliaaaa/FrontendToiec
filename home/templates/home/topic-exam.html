@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/home/css/question.css">
+    <link rel="stylesheet" href="/static/home/css/exam.css">
+</head>
+<body class="page-question-detail">
+<div class="page-container">
+    <div class="page-content-block page-topic-exam-block" id="page-topic-exam-block">
+        <div class="page-topic-options">
+            <div class="page__content">
+                <div class="page__topic-options">
+                    <div class="topic-options__top">
+                        <b>Đề: ETS 01 2024</b>
+                        <p>Số câu hỏi: <b>200</b></p>
+                        <p>Thời gian làm: <b>120 phút</b></p>
+                    </div>
+                    <img class="topic-options__img" src="/static/home/img/icons/frog_start.png">
+                    <div class="topic-options__confirm">
+                        <input type="checkbox">
+                        <span>Bật chế độ như thi thật, chỉ áp dụng khi làm Full đề</span>
+                    </div>
+                </div>
+            </div>
+            <div class="page__footer page__footer--success">
+                <div class="footer__action">
+                    <a class="btn btn--continue" id="start-exam">Luyện tập</a>
+                    <a class="btn btn--action" href="home.html">Quay lại</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-topic-exam" style="display: none">
+            <div class="page__header">
+                <a class="header__left" href="home.html" id="back-page">
+                    <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                                  fill="#FFFFFF"/>
+                        </g>
+                    </svg>
+                    <div class="header__title" id="show-label-part"><span id="count-question">0</span>/200</div>
+                </a>
+                <div class="header__right">
+                    <div class="header__img btn btn--blue">
+                        <img src="/static/home/img/demos/warning.png">
+                    </div>
+                    <a class="btn btn--info" id="show-success">Nộp bài</a>
+                    <div class="count-down btn btn--blue" id="countdown-display"></div>
+                    <div class=" header__img btn btn--blue" id="show-popup-board">
+                        <img src="/static/home/img/demos/menu.png">
+                    </div>
+                    <div class="popup-board">
+                        <div class="board-container" id="board-container" style="display: none">
+                            <div class="note">
+                                <div class="bg-green"></div>
+                                Màu xanh là câu đã trả lời
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-content">
+                <div class="page__content">
+                    <div class="page-content__top">
+                        <div class="top__title">Câu <span id="question-number">1</span></div>
+                    </div>
+                    <div class="page-content__mid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content-block page-exam-success-content" id="page-exam-success-content" style="display: none"></div>
+</div>
+<script type="text/html" id="template-exam-success">
+    <div class="page__content">
+        <div class="page__exam-success">
+            <div class="exam-success__top">
+                <img src="/static/home/img/icons/success.png" alt="">
+                <b>Chúc mừng</b>
+                <span>Bạn đã hoàn thành bài thi của mình</span>
+            </div>
+        </div>
+    </div>
+    <div class="page__footer page__footer--success">
+        <div class="footer__action">
+            <div class="btn btn--continue" id="btn-result">Xem kết quả</div>
+            <a class="btn btn--continue" id="btn-continue" href="home.html">Tiếp tục</a>
+        </div>
+    </div>
+</script>
+<script src="/static/home/js/topic.js"></script>
+<style>
+    #page-exam-success-content{
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+    }
+</style>
+</body>
+</html>

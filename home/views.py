@@ -8,12 +8,7 @@ class Login(View):
 class Home(View):
     def get(self,request):
         return render(request,'home/home.html')
-class QuestionDetail(View):
-    def get(self,request):
-        return render(request,'home/question.html')
-class Question(View):
-    def get(self,request,id):
-        return render(request,'home/part'+id+".html")
+
 class Vocabulary(View):
     def get(self,request):
         return render(request,"home/vocabulary.html")
@@ -50,3 +45,7 @@ class Result(View):
 class Test(View):
     def get(self,request):
         return render(request,'home/topic-exam.html')
+class StudyBySection(View):
+    def get(self,request,section):
+        return render(request,'home/studyBySection/'+section+'.html')
+        

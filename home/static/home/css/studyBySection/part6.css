@@ -1,0 +1,73 @@
+.explain{
+    height: 100%;
+    flex-flow: column;
+    touch-action: pan-y;
+    z-index: 100;
+    margin-bottom: 10px;
+    width: 33.33%;
+}
+.explain .tab{
+    position: relative;
+    padding: 0 10px;
+    background-color: #2bc48a;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    display: flex;
+}
+.tab .list-tab{
+    white-space: nowrap;
+    width: 95%;
+    overflow-y: auto;
+    display: flex;
+}
+.list-tab span{
+    display: inline-block;
+    padding: 10px 10px 7px 10px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+    font-size: 14px;
+}
+.list-tab span.active{
+    font-weight: 500;
+    color: #000;
+    border-bottom: 3px solid #ffac07;
+}
+.explain .tab .close-explain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    right: 10px;
+    height: 100%;
+    top: 0;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+.explain .tab .close-explain b {
+    background-color: #fff;
+    color: #0ea169;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    line-height: 18px;
+    font-size: 14px;
+}
+.explain .content{
+    background-color: #fff;
+    padding: 10px 15px;
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    touch-action: pan-y;
+}
+.content .preline{
+    white-space: pre-line;
+}
+.nondisplay{
+    display: none!important;
+}

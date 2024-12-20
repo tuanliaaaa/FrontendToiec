@@ -1,4 +1,4 @@
-function createAjaxRequest(method, url, token, data = null) {
+function createAjaxRequest(method, url, data = null,token = null) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
@@ -16,7 +16,7 @@ function createAjaxRequest(method, url, token, data = null) {
                         message: "Request Success"
                     });
                 } else {
-                    reject({
+                    resolve({
                         status: this.status,
                         data: this.responseText ? JSON.parse(this.responseText) : null,
                         message: "Request Failed"
@@ -31,22 +31,21 @@ function createAjaxRequest(method, url, token, data = null) {
                 message: "Unable to Connect to the Server"
             });
         };
-        xhr.send(data ? JSON.stringify(data) : null);
+        xhr.send(data ? data: null);
     });
 }
 
 async function getAjax(url, token) {
-    return createAjaxRequest("GET", url, token);
+    return createAjaxRequest("GET", url, null, token);
 }
 
-async function postAjax(url, token, data) {
-    return createAjaxRequest("POST", url, token, data);
+async function postAjax(url, data, token) {
+    return createAjaxRequest("POST", url, data, token);
 }
 
 async function patchAjax(url, token, data) {
-    return createAjaxRequest("PATCH", url, token, data);
+    return createAjaxRequest("PATCH", url, data, token);
 }
 async function deleteAjax(url, token) {
-    return createAjaxRequest("DELETE", url, token);
+    return createAjaxRequest("DELETE", url, null, token);
 }
-export { getAjax, postAjax, patchAjax, deleteAjax };

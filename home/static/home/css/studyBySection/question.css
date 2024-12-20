@@ -1,8 +1,14 @@
+*{
+    box-sizing: border-box;
+}
 body {
     padding: unset;
     margin: unset;
+    box-sizing: border-box;
 }
-
+#main-content{
+    height: calc(100vh - 50px);
+}
 .page__header {
     display: flex;
     align-items: center;
@@ -13,7 +19,6 @@ body {
 }
 
 .page__header svg {
-    width: 30px;
     height: 25px;
     padding: 0 15px;
 }
@@ -37,16 +42,24 @@ body {
     gap: 10px;
     border-bottom: 1px solid #efefef;
 }
-
+.page-question-detail .page-content__top{
+    height: 52px;
+}
+.page__content{
+    height: 100%;
+}
 .top__content p {
     margin: 0 0 5px 0;
 }
-
+.page-content__mid{
+}
 .page-content__mid .mid__item {
+    height: 100%;
     margin: 10px;
     border: 1px solid #efefef;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
 }
 
 .page-content__mid h4 {
@@ -120,6 +133,7 @@ body {
 }
 
 .page-question-detail .page-content__top {
+    height: 52px;
     position: relative;
     justify-content: center;
 }
@@ -132,6 +146,10 @@ body {
 .page-question-detail .top__title {
     position: absolute;
     left: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #2bc48a;
+    line-height: 33px;
 }
 
 .page-question-detail .page-content__mid .mid__item {
@@ -279,6 +297,7 @@ body {
 
 .page-exam-success .page__content {
     margin-top: 100px;
+
 }
 
 .exam-success__notify span {
@@ -377,19 +396,19 @@ body {
     display: flex;
     gap: 20px;
 }
-
-.mid__content.mid__content--right {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.mid__content.mid__content--right .answer__label{
+.mid__content.mid__content--left .answer__label{
     font-size: 14px;
     font-weight: bold;
     font-family: Nunito Sans, Google Sans, sans-serif;
     line-height: 22px;
 }
-.mid__content.mid__content--left .answer__label{
+.mid__content.mid__content--right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mid__content.mid__content--right .answer__label{
     font-size: 14px;
     font-weight: bold;
     font-family: Nunito Sans, Google Sans, sans-serif;
@@ -421,7 +440,9 @@ body {
     background: white;
 }
 .page-content__mid{
+    height: calc(100% - 52px);
     padding: 10px;
+
 }
 body.page-result .page-content__mid {
     border: unset;
