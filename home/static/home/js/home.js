@@ -151,7 +151,7 @@ function renHtmlFirstForPageHome()
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/exam">
+                                        <a href="/exams">
                                             <span>
                                                 <img src="/static/home/img/icons/exam.png" alt="">
                                             </span>
