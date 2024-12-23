@@ -7,165 +7,172 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/static/home/css/question.css">
+    <script src="/static/home/js/middleware/auth.js"></script>
+    <script src="/static/home/js/lib/UtilJsonAjax.js"></script>
+
 </head>
 <body class="page-result page-question-detail">
+<div id="main">
+    <!-- <div class="page-container">
+        <div class="page__header">
+            <a class="header__left" href="/home">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                              fill="#FFFFFF"/>
+                    </g>
+                </svg>
+                <div class="header__title">Hiển thị đáp án</div>
+            </a>
+        </div>
+        <div class="page__content">
+            <div class="page-content__top">
+                <div class="top__menu-list">
+                    <div class="menu-list__item menu-list__item--active" data-type="result__list-question--all">Tất cả</div>
+                    <div class="menu-list__item" data-type="result__list-question--correct">Chọn đúng</div>
+                    <div class="menu-list__item" data-type="result__list-question--wrong">Chọn sai</div>
+                </div>
+            </div>
+            <div class="page-content__mid">
+                <div class="result__list-question result__list-question--all">
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/close.png">
+                            <span>Câu 1</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer item__answer--wrong">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/warning_c.png">
+                            <span>Câu 2</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/check.png">
+                            <span>Câu 3</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/check.png">
+                            <span>Câu 4</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/close.png">
+                            <span>Câu 5</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer item__answer--wrong">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/close.png">
+                            <span>Câu 6</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer item__answer--wrong">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result__list-question result__list-question--correct" style="display: none">
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/check.png">
+                            <span>Câu 3</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/check.png">
+                            <span>Câu 4</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result__list-question result__list-question--wrong" style="display: none">
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/close.png">
+                            <span>Câu 5</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer item__answer--wrong">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                    <div class="list-question__item">
+                        <div class="item__left">
+                            <img src="/static/home/img/icons/close.png">
+                            <span>Câu 6</span>
+                        </div>
+                        <div class="item__right">
+                            <div class="item__answer item__answer--correct">A</div>
+                            <div class="item__answer item__answer--wrong">B</div>
+                            <div class="item__answer">C</div>
+                            <div class="item__answer">D</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer page__footer--result">
+            <span>Click vào đáp án để xem giải thích chi tiết </span>
+            <img src="/static/home/img/icons/close.png">
+        </div>
+    </div> -->
+</div>
+
+
 <!-- <div class="page-container">
-    <div class="page__header">
-        <a class="header__left" href="part2.html">
-            <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                <g id="SVGRepo_iconCarrier">
-                    <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
-                          fill="#FFFFFF"/>
-                </g>
-            </svg>
-            <div class="header__title">Hiển thị đáp án</div>
-        </a>
-    </div>
-    <div class="page__content">
-        <div class="page-content__top">
-            <div class="top__menu-list">
-                <div class="menu-list__item menu-list__item--active" data-type="result__list-question--all">Tất cả</div>
-                <div class="menu-list__item" data-type="result__list-question--correct">Chọn đúng</div>
-                <div class="menu-list__item" data-type="result__list-question--wrong">Chọn sai</div>
-            </div>
-        </div>
-        <div class="page-content__mid">
-            <div class="result__list-question result__list-question--all">
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/close.png">
-                        <span>Câu 1</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer item__answer--wrong">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/warning_c.png">
-                        <span>Câu 2</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/check.png">
-                        <span>Câu 3</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/check.png">
-                        <span>Câu 4</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/close.png">
-                        <span>Câu 5</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer item__answer--wrong">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/close.png">
-                        <span>Câu 6</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer item__answer--wrong">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-            </div>
-            <div class="result__list-question result__list-question--correct" style="display: none">
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/check.png">
-                        <span>Câu 3</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/check.png">
-                        <span>Câu 4</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-            </div>
-            <div class="result__list-question result__list-question--wrong" style="display: none">
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/close.png">
-                        <span>Câu 5</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer item__answer--wrong">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-                <div class="list-question__item">
-                    <div class="item__left">
-                        <img src="/static/home/img/icons/close.png">
-                        <span>Câu 6</span>
-                    </div>
-                    <div class="item__right">
-                        <div class="item__answer item__answer--correct">A</div>
-                        <div class="item__answer item__answer--wrong">B</div>
-                        <div class="item__answer">C</div>
-                        <div class="item__answer">D</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page__footer page__footer--result">
-        <span>Click vào đáp án để xem giải thích chi tiết </span>
-        <img src="/static/home/img/icons/close.png">
-    </div>
-</div> -->
-<div class="page-container">
     <div class="page__header">
         <a class="header__left" id="back-page" href="1">
             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -228,7 +235,7 @@
                 </div></div>
     </div>
 </div>
-</div>
+</div> -->
 <script type="module" src="/static/home/js/result.js">
     
 </script>

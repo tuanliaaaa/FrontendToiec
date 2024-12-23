@@ -48,4 +48,6 @@ class Test(View):
 class StudyBySection(View):
     def get(self,request,section):
         return render(request,'home/studyBySection/'+section+'.html')
-        
+class Setting(View):
+    def get(self,request):
+        return render(request,'home/setting.html')

@@ -52,7 +52,7 @@ async function getAllExam()
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
                 <li>
-                    <a href="/admin/exams/${topic.idExam}" class="section">
+                    <a href="/admin/exams/${topic.idExam}/part1" class="section">
                         <div class="word-learn">
                             <p class="name">${topic.examName}</p>
                         </div>

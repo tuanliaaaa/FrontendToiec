@@ -1,13 +1,15 @@
 let mainElement = document.getElementById("main");
 let part="2",questionTotal=0;
+const idExam = window.location.href.match(/\/exams\/(\d+)\//)[1];
 let questionPart=25;
-renPageQuestion();
+let checkAuth = checkAccount();
+if(checkAuth)renPageQuestion();
 // ----------------------------------------Ren Page-----------------------------------------------
 async function renPageQuestion()
 {
     mainElement.innerHTML = renHtmlFirstQuestion();
     mainElement.classList.add("page-question");
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/exams/1/part/'+part,localStorage.getItem("access_token"));
+    let response = await getAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}/part/${part}`,localStorage.getItem("access_token"));
     console.log("render Question: ",response.data);
     if (response.status >= 200 && response.status < 300) {
         questionTotal = response.data.data.questionGroups.length;
@@ -171,6 +173,9 @@ async function renPageQuestion()
                     <div class="day-box__content--container d-flex" style="gap: 10px;">
                         <div class="question-answer d-flex justify-content-between align-self-center">
                             <div class="question-answer__container">
+                                <div class="question">
+                                    <input type="text" name="questionInput2" placeholder="Question" >
+                                </div>
                                 <div class="answer">
                                     <div class="answer-group">
                                         <input type="radio" name="correctAnswer1">
@@ -246,13 +251,13 @@ function renHtmlFirstQuestion(){
             <div class="sidebar">
                 <h2>Danh mục</h2>
                 <ul>
-                    <li><a href="/admin/exams/1/part1" >Part 1</a></li>
-                    <li><a href="/admin/exams/1/part2" class="active">Part 2</a></li>
-                    <li><a href="/admin/exams/1/part3">Part 3</a></li>
-                    <li><a href="/admin/exams/1/part4">Part 4</a></li>
-                    <li><a href="/admin/exams/1/part5">Part 5</a></li>
-                    <li><a href="/admin/exams/1/part6">Part 6</a></li>
-                    <li><a href="/admin/exams/1/part7">Part 7</a></li>
+                    <li><a href="/admin/exams/${idExam}/part1" >Part 1</a></li>
+                    <li><a href="/admin/exams/${idExam}/part2" class="active">Part 2</a></li>
+                    <li><a href="/admin/exams/${idExam}/part3">Part 3</a></li>
+                    <li><a href="/admin/exams/${idExam}/part4">Part 4</a></li>
+                    <li><a href="/admin/exams/${idExam}/part5">Part 5</a></li>
+                    <li><a href="/admin/exams/${idExam}/part6">Part 6</a></li>
+                    <li><a href="/admin/exams/${idExam}/part7">Part 7</a></li>
                 </ul>
             </div>
     

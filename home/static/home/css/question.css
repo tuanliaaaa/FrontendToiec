@@ -408,7 +408,7 @@ body {
 }
 
 .menu-list__item {
-    width: calc(100% / 3);
+    width: calc(100%);
     display: flex;
     align-items: center;
     justify-content: center;
