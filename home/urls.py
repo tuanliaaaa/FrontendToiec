@@ -15,12 +15,15 @@ urlpatterns = [
     path('roadmap/<int:id>',RoadMapDeatail.as_view()),
     path('roadmapdetail/<int:id>',RoadMapLessonDeatail.as_view()),
     path('chatsupport',ChatSupport.as_view()),
-    path('exam/<int:id>',ExamDetail.as_view()),
-    path('exams',Exams.as_view()),
+
     path('success-exam',ExamResult.as_view()),
     path('histories/<int:id>',Histories.as_view()),
     path('result',Result.as_view()),
     path("test",Test.as_view()),
     path("setting",Setting.as_view()),
     path('studybysection/<str:section>',StudyBySection.as_view())
+]
+urlpatterns+=[
+    path('exam/<int:id>',ExamDetail.as_view()),
+    path('exams',Exams.as_view()),
 ]

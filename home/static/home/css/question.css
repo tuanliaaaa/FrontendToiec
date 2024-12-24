@@ -159,7 +159,7 @@ body {
 }
 
 .page__footer--success {
-    background-image: url(../../web/images/icons/footer.png);
+    background-image: url('/static/home/img/icons/footer.png');
     width: 100%;
     height: 200px;
     position: relative;
@@ -487,4 +487,7 @@ body.page-result .page-content__mid {
 .answer__answer-item.choose-answer input ~ .checkmark {
     border: 1px solid #2bc48a !important;
     background-color: #2bc48a !important;
+}
+.nondisplay{
+    display: none!important;
 }
