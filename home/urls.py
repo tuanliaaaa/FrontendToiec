@@ -15,9 +15,8 @@ urlpatterns = [
     path('roadmap/<int:id>',RoadMapDeatail.as_view()),
     path('roadmapdetail/<int:id>',RoadMapLessonDeatail.as_view()),
     path('chatsupport',ChatSupport.as_view()),
-
     path('success-exam',ExamResult.as_view()),
-    path('histories/<int:id>',Histories.as_view()),
+    path('histories/part/<int:id>',Histories.as_view()),
     path('result',Result.as_view()),
     path("test",Test.as_view()),
     path("setting",Setting.as_view()),
