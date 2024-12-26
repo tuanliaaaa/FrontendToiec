@@ -18,17 +18,17 @@ async function renResultPage(){
                 answersHtml = '';
             if (item.resourceList && item.resourceList.length) {
                 item.resourceList.forEach((resource) => {
-                    if (resource.resourceContent === 'audio') {
+                    if (resource.resourceType === 'audio') {
                         attachmentsHtml += `<div class="mid-content__left mid-content__left--audio" data-id="${resource.idResource}">
                             <audio controls>
                                 <source src="${resource.resourceContent}" type="audio/mpeg">
                             </audio>
                         </div>`;
-                    } else if (resource.resourceContent === 'image') {
+                    } else if (resource.resourceType === 'image') {
                         attachmentsHtml += `<div class="mid-content__left mid-content__left--img" data-id="${resource.idResource}">
                             <img src="${resource.resourceContent}">
                         </div>`;
-                    } else if (resource.resourceContent === 'docs') {
+                    } else if (resource.resourceType === 'docs') {
                         attachmentsHtml += `<div class="mid-content__left mid-content__left--text" data-id="${resource.idResource}">
                             <p>${resource.resourceContent}</p>
                         </div>`;
@@ -39,20 +39,22 @@ async function renResultPage(){
             item.questionList.forEach((question, indexQuestion) => {
                 let answerItemsHtml = '';
                 let answerResultItemHtml=``;
+                let checkSelected = false;
                 question.answerList.forEach((answer, indexAnswer) => {
                     answerItemsHtml += `<label class="answer__answer-item ${(answer.isUserSelect ? 'show-answer active'  : (answer.isCorrect ? 'wrong' : ''))}" data-index="${indexAnswer}" data-id="${answer.idAnswer}">
                                 <input type="radio" name="radio">
                                 <span class="checkmark"></span>${String.fromCharCode(65 + indexAnswer)}
                             </label>`;
                     answerResultItemHtml+=`
-                        <div class="item__answer item__answer--correct">${String.fromCharCode(65 + indexAnswer)}</div>
+                        <div class="item__answer ${(answer.isUserSelect ? 'item__answer--correct'  : (answer.isCorrect ? 'item__answer--wrong' : ''))}">${String.fromCharCode(65 + indexAnswer)}</div>
                     `;
+                    if(answer.isUserSelect)checkSelected=true;
                 })
 
                 answerResultHtml+=`
                     <div class="list-question__item">
                         <div class="item__left">
-                            <img src="/static/home/img/icons/warning_c.png">
+                            <img src="${!checkSelected?'/static/home/img/icons/warning_c.png':(question.isCorrect?'/static/home/img/icons/check.png':'/static/home/img/icons/close.png')}">
                             <span>Câu 2</span>
                         </div>
                         <div class="item__right">
