@@ -328,7 +328,7 @@ function renHtmlFirstQuestion(){
                 <div class="divleft"></div>
                 <div class="navbar__menu">
                     <div class="menu-item active">
-                        <a href="/admin/dashboard">Thống kê</a>
+                        <a href="/admin/questiongroups">Quản lý câu hỏi</a>
                     </div>
                     <div class="menu-item">
                         <a href="/admin/exams">Quản lý đề thi</a>

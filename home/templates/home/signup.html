@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC TUAN - Đăng ký</title>
+    <link rel="stylesheet" href="./static/home/css/signup.css">
+    <script src="./home/js/lib/UtilJsonAjax.js"> </script>
+    
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="https://vi.toeicmax.com/icon/frog_256.png" alt="TOEIC Max Logo" class="logo">
+            <h2>TOEIC<sup>®</sup> TUAN</h2>
+            <form action="login" method="POST">
+                <div class="input-group">
+                    <label for="phone">Số điện thoại <span class="red">*</span></label>
+                    <input type="text" id="numberPhone" name="phone" >
+                </div>
+                <div class="input-group">
+                    <label for="fullName">Họ và tên<span class="red">*</span></label>
+                    <input type="text" id="fullName" name="fullName" >
+                </div>
+                <div class="input-group">
+                    <label for="password">Mật khẩu <span class="red">*</span></label>
+                    <input type="password" id="password" name="password" >
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Nhập lại mật khẩu <span class="red">*</span></label>
+                    <input type="confirmPassword" id="confirmPassword" name="confirmPassword" >
+                </div>
+                <button type="submit" class="btn" id="signup">Đăng ký</button>
+            </form>
+            <a href="home" class="home-link">Về trang chủ</a>
+        </div>
+    </div>
+</body>
+<script>
+    var domain = "http://127.0.0.1:8080";
+</script>
+<script src="./static/home/js/signup.js" defer></script>
+</html>

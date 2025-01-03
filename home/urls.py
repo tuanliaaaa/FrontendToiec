@@ -3,7 +3,8 @@ from .views import (
     Login,Home,Vocabulary,VocabularyDetail,RoadMap,RoadMapDeatail,RoadMapLessonDeatail,
     ChatSupport,ExamDetail,ExamResult,Exams,Histories,Result,Test,
     StudyBySection,
-    Setting
+    Setting,
+    Signup
 )
 
 urlpatterns = [
@@ -25,4 +26,8 @@ urlpatterns = [
 urlpatterns+=[
     path('exam/<int:id>',ExamDetail.as_view()),
     path('exams',Exams.as_view()),
+]
+
+urlpatterns+=[
+    path('signup',Signup.as_view()),
 ]

@@ -51,3 +51,6 @@ class StudyBySection(View):
 class Setting(View):
     def get(self,request):
         return render(request,'home/setting.html')
+class Signup(View):
+    def get(self,request):
+        return render(request,'home/signup.html')

@@ -93,7 +93,7 @@ async function renExamPage()
     mainElement.innerHTML = `
         <div class="page-topic-exam" >
                     <div class="page__header">
-                        <a class="header__left" href="home.html" id="back-page">
+                        <a class="header__left" href="/exams" id="back-page">
                             <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
@@ -170,7 +170,7 @@ function renHtmlIntroPage()
                     <div class="page__footer page__footer--success">
                         <div class="footer__action">
                             <a class="btn btn--continue" id="start-exam">Luyện tập</a>
-                            <a class="btn btn--action" href="home.html">Quay lại</a>
+                            <a class="btn btn--action" href="/exams">Quay lại</a>
                         </div>
                     </div>
                 </div>

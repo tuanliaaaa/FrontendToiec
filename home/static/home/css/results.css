@@ -1,3 +1,6 @@
 .nondisplay{
     display:none;
 }
+#result .page__content{
+    height: calc(100vh - 85px);
+}

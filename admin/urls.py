@@ -7,6 +7,9 @@ from .views import (
 from .view.grammarViews import(
     Lesson,LessonDetail,LessonAdd
 )
+from .view.questionGroupViews import(
+    QuestionGroupList
+)
 urlpatterns = [
     path('vocabulary',Vocabulary.as_view()),
     path('vocabulary/add',VocabularyAdd.as_view()),
@@ -23,4 +26,7 @@ urlpatterns+=[
     path('lesson',Lesson.as_view()),
     path('lessons/add',LessonAdd.as_view()),
     path('lessons/<int:id>',LessonDetail.as_view()),
+]
+urlpatterns+=[
+    path('questiongroups',QuestionGroupList.as_view())
 ]

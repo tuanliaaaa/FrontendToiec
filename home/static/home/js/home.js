@@ -1,11 +1,25 @@
 let mainElement = document.getElementById("main");
+let partImage = {
+    part1: '/static/home/img/icons/part1.png',
+    part2: '/static/home/img/icons/part2.png',
+    part3: '/static/home/img/icons/part3.png',
+    part4: '/static/home/img/icons/part4.png',
+    part5: '/static/home/img/icons/part5.png',
+    part6: '/static/home/img/icons/part6.png',
+    part7: '/static/home/img/icons/part7.png'
+};
+
 let checkAuth = checkAccount();
 if(checkAuth) renPageHome();
 
 function renPageHome()
 {
     mainElement.innerHTML = renHtmlFirstForPageHome();
+
+    renEvenListenerPageHome();
 }
+
+
 function renHtmlFirstForPageHome()
 {
     return `
@@ -18,19 +32,10 @@ function renHtmlFirstForPageHome()
             <div id="containerContent">
                 <div id="progress">
                     <div class="mb-10">
-                        Lộ trình học Toiec của bạn
+                        Học theo lộ trình
                        
                     </div>
-                    <div class="flex statistic">
-                        <div class="ss-item">
-                            <p class="ss-value mb-5"><b>11%</b></p>
-                            <p class="ss-text">Hoàn thành</p>
-                        </div>
-                        <div class="ss-item">
-                            <p class="ss-value mb-5"><b>63%</b></p>
-                            <p class="ss-text">Tỷ lệ đúng</p>
-                        </div>
-                    </div>
+                    
                     <div class="btn">
                         <button class="continue-btn" ><a href="/roadmap">Tiếp tục học</a></button>
                     </div>
@@ -203,40 +208,12 @@ function renHtmlFirstForPageHome()
                             </div>
                             <div class="content content-his">
                                 <div class="content-tab">
-                                    <p class="active">Tất cả</p>
-                                    <p>Từ vựng</p>
-                                    <p>Luyện tập</p>
-                                    <p>Thi Thử</p>
+                                    <p class="itemTabHis active" id="hisVocabunary" >Từ vựng</p>
+                                    <p class="itemTabHis" id="hisPratice" >Luyện tập</p>
+                                    <p class="itemTabHis" id="hisExam" >Thi Thử</p>
                                 </div>
-                                <div class="content-body">
-                                    <div class="lstHistory">
-                                        <div class="lstHistoryDetail">
-                                            <a href="/histories/265748" >
-                                                <p  class="lstHistoryDetail-image">
-                                                    <img src="https://vi.toeicmax.com/icon/vocabulary.png">
-                                                </p>
-                                                <div  class="lstHistoryDetail-content">
-                                                    <p class="lstHistoryDetail-lesson">
-                                                        <b>Bài 3: Warranties</b>
-                                                    </p>
-                                                    <span class="lstHistoryDetail-point">
-                                                        hoàn thành 
-                                                        <b >4</b>/
-                                                        <b >4</b> 
-                                                    </span>
-                                                    
-                                                    <div class="lstHistoryDetail-process">
-                                                        <p class="processBar">
-                                                            <span class="percent"></span>
-                                                        </p>
-                                                        <p class="processValue">
-                                                            <b class="cl-green">100%</b>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="content-body" id="hisListContent" >
+                                    
                                     
                                 </div>
                             </div>
@@ -298,4 +275,193 @@ function renHtmlFirstForPageHome()
             </div>
         </div>
     `;
+}
+async function renEvenListenerPageHome()
+{
+
+
+    let hisListContentElement = document.getElementById("hisListContent");
+    let hisVocabunaryElement = document.getElementById("hisVocabunary");
+    hisVocabunaryElement.addEventListener("click",async ()=>{
+        if(!hisVocabunaryElement.classList.contains("active"))
+        {
+            document.querySelector(".itemTabHis.active").classList.remove("active");
+            let htmlHisListContent="";
+            let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=4&page=0',localStorage.getItem("access_token"));
+            console.log("render History: ",response.data);
+            if (response.status >= 200 && response.status < 300) {
+                htmlHisListContent=response.data.data.map((his,index)=>{
+                    return `
+                        <div class="lstHistory">
+                            <div class="lstHistoryDetail">
+                                <a href="/histories/${his.idHistory}" >
+                                    <p  class="lstHistoryDetail-image">
+                                        <img src="https://vi.toeicmax.com/icon/vocabulary.png">
+                                    </p>
+                                    <div  class="lstHistoryDetail-content">
+                                        <p class="lstHistoryDetail-lesson">
+                                            <b>${his.lessonName}</b>
+                                        </p>
+                                        <span class="lstHistoryDetail-point">
+                                            hoàn thành 
+                                            ${his.historyDetails.length} 
+                                            từ
+                                        </span>
+                                        
+                                        <div class="lstHistoryDetail-process">
+                                            <p class="processBar">
+                                                <span class="percent" style="width: ${his.score*50}%"></span>
+                                            </p>
+                                            <p class="processValue">
+                                                <b class="cl-green">${his.score*50}%</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            hisListContentElement.innerHTML = htmlHisListContent;
+            hisVocabunaryElement.classList.add("active");
+        }
+    })
+
+    let hisPraticElement = document.getElementById("hisPratice");
+    hisPraticElement.addEventListener("click",async()=>{
+        if(!hisPraticElement.classList.contains("active"))
+        {
+            document.querySelector(".itemTabHis.active").classList.remove("active");
+            let htmlHisListContent="";
+            let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/lessonbypart?&size=4&page=0',localStorage.getItem("access_token"));
+            console.log("render History: ",response.data);
+            if (response.status >= 200 && response.status < 300) {
+                htmlHisListContent=response.data.data.map((his,index)=>{
+                    return `
+                        <div class="lstHistory">
+                            <div class="lstHistoryDetail">
+                                <a href="/histories/${his.idHistory}" >
+                                    <p  class="lstHistoryDetail-image">
+                                        <img src="${partImage[his.type]}">
+                                    </p>
+                                    <div  class="lstHistoryDetail-content">
+                                        <p class="lstHistoryDetail-lesson">
+                                            <b>${his.type}</b>
+                                        </p>
+                                        <span class="lstHistoryDetail-point">
+                                            hoàn thành 
+                                            ${his.amountQuestionGroup} 
+                                            từ
+                                        </span>
+                                        
+                                        <div class="lstHistoryDetail-process">
+                                            <p class="processBar">
+                                                <span class="percent" style="width: ${his.score*10}%"></span>
+                                            </p>
+                                            <p class="processValue">
+                                                <b class="cl-green">${ Math.round(his.score*10)}%</b>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            hisListContentElement.innerHTML = htmlHisListContent;
+            hisPraticElement.classList.add("active");
+        }
+    }
+    )
+    
+
+    let hisExamElement = document.getElementById("hisExam");
+    hisExamElement.addEventListener("click",async()=>{
+            if(!hisExamElement.classList.contains("active"))
+            {
+                document.querySelector(".itemTabHis.active").classList.remove("active");
+                let htmlHisListContent="";
+                let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/exam?&size=4&page=0',localStorage.getItem("access_token"));
+                console.log("render History: ",response.data);
+                if (response.status >= 200 && response.status < 300) {
+                    htmlHisListContent=response.data.data.map((his,index)=>{
+                        return `
+                            <div class="lstHistory">
+                                <div class="lstHistoryDetail">
+                                    <a href="/histories/${his.idHistory}" >
+                                        <p  class="lstHistoryDetail-image">
+                                            <img src="/static/home/img/icons/exam.png">
+                                        </p>
+                                        <div  class="lstHistoryDetail-content">
+                                            <p class="lstHistoryDetail-lesson">
+                                                <b>${his.type}</b>
+                                            </p>
+                                            <span class="lstHistoryDetail-point">
+                                                hoàn thành với kết quả
+                                               ${his.score}
+                                            </span>
+                                            
+                                            <div class="lstHistoryDetail-process">
+                                                <p class="processBar">
+                                                    <span class="percent" style="width: ${Math.round(his.score/990*100)}%"></span>
+                                                </p>
+                                                <p class="processValue">
+                                                    <b class="cl-green">${ Math.round(his.score/990*100)}%</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                hisListContentElement.innerHTML = htmlHisListContent;
+                hisExamElement.classList.add("active");
+            }
+        }
+    )
+
+    // call lần đầu
+    let htmlHisListContent="";
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=4&page=0',localStorage.getItem("access_token"));
+    console.log("render History: ",response.data);
+    if (response.status >= 200 && response.status < 300) {
+        htmlHisListContent=response.data.data.map((his,index)=>{
+            return `
+                <div class="lstHistory">
+                    <div class="lstHistoryDetail">
+                        <a href="/histories/${his.idHistory}" >
+                            <p  class="lstHistoryDetail-image">
+                                <img src="https://vi.toeicmax.com/icon/vocabulary.png">
+                            </p>
+                            <div  class="lstHistoryDetail-content">
+                                <p class="lstHistoryDetail-lesson">
+                                    <b>${his.lessonName}</b>
+                                </p>
+                                <span class="lstHistoryDetail-point">
+                                    hoàn thành 
+                                    ${his.historyDetails.length} 
+                                    từ
+                                </span>
+                                
+                                <div class="lstHistoryDetail-process">
+                                    <p class="processBar">
+                                        <span class="percent" style="width: ${his.score*50}%"></span>
+                                    </p>
+                                    <p class="processValue">
+                                        <b class="cl-green">${his.score*50}%</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    hisListContentElement.innerHTML = htmlHisListContent;
+
 }

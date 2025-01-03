@@ -1,0 +1,80 @@
+#container  .container__content{
+    width: 100%;
+}
+.condition {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 90%;
+    margin: 1rem  auto;
+    gap: 2rem ;
+}
+
+.condition__search {
+    display: flex;
+    align-items: center;
+}
+
+.condition__search input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.condition__search button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #2bc48a;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.condition__search button i {
+    font-size: 16px;
+}
+
+.condition__filter, .condition__sort {
+    display: flex;
+    align-items: center;
+}
+
+.condition__filter select, .condition__sort select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #2bc48a;
+    color: white;
+}
+
+option {
+    background-color: #2bc48a;
+    border-radius: 10px;
+}
+
+option:hover {
+    display: inline;
+    background-color: white;
+}
+.day-box>div {
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.day-box h2 {
+    border-bottom: none;
+}
+.day-box ul li::before {
+    content: '';
+    color: #00c853;
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+}
