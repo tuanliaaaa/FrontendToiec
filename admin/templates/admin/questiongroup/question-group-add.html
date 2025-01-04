@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="/static/admin/css/exam-detail.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/js/all.min.js"
+        integrity="sha512-1JkMy1LR9bTo3psH+H4SV5bO2dFylgOy+UJhMus1zF4VEFuZVu5lsi4I6iIndE4N9p01z1554ZDcvMSjMaqCBQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Docx Preview -->
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="/static/admin/js/docx-preview.js"></script>
+    <script src="/static/home/js/lib/UtilJsonAjax.js"></script>
+    <script src="/static/admin/js/middleware/auth.js"></script>
+    <link rel="stylesheet" href="/static/admin/css/question-group-add.css">
+    <link rel="stylesheet" href="/static/admin/css/tabs.css">
+    <script src="/static/admin/js/tabs.js"></script>
+</head>
+
+<body>
+    <div id="main">
+
+    </div>
+   
+
+    <script src="/static/admin/js/question-group-add.js" ></script>
+
+    <script src="../upload-resource.js"></script>
+    <script src="../clear-btn.js"></script>
+    <!-- script -->
+    <script>
+        var uniqueQuestionId = 0;
+        var totalQuestion = 5;
+
+        // Add auto increment question id .no-question
+        const autoIncrementQuestionId = () => {
+            let noQuestion = 0;
+            document.querySelectorAll('.add-qa .question-answer__container').forEach((container, index) => {
+                const question = container.querySelector('.question');
+                // remove the existing .no-question element
+                const existingNoQuestion = question.querySelector('span');
+                if (existingNoQuestion) {
+                    existingNoQuestion.remove();
+                }
+                const numero = document.createElement('span');
+                if (numero) {
+                    numero.textContent = `${noQuestion + 1}`;
+                }
+                noQuestion++;
+                question.insertBefore(numero, question.firstChild);
+            });
+        }
+        autoIncrementQuestionId();
+
+        // Add Question and Answer Btn
+        document.querySelectorAll('.btn-add-qa').forEach(btnAddQuestion => {
+            btnAddQuestion.addEventListener('click', () => {
+                const questionAnswer = btnAddQuestion.closest('.question-answer');
+                if (questionAnswer) {
+                    // Create a new .question-answer__container node
+                    const questionAnswerContainer = document.createElement('div');
+                    questionAnswerContainer.classList.add('question-answer__container');
+
+                    uniqueQuestionId++;
+                    // Count the number of existing .question-answer__container elements
+                    const containerCount = questionAnswer.querySelectorAll('.question-answer__container').length + uniqueQuestionId;
+
+                    // Set the inner HTML of the new container
+                    questionAnswerContainer.innerHTML = `
+                        <div class="question">
+                            <input type="text" name="questionInput${containerCount}" placeholder="Question">
+                        </div>
+                        <div class="answer">
+                            <div class="answer-group">
+                                <input type="radio" name="correctAnswer${containerCount}">
+                                <label for="answerInput${containerCount}-A">A</label>
+                                <input type="text" id="answer${containerCount}-A">
+                            </div>
+                            <div class="answer-group">
+                                <input type="radio" name="correctAnswer${containerCount}">
+                                <label for="answerInput${containerCount}-B">B</label>
+                                <input type="text" id="answer${containerCount}-B">
+                            </div>
+                            <div class="answer-group">
+                                <input type="radio" name="correctAnswer${containerCount}">
+                                <label for="answerInput${containerCount}-C">C</label>
+                                <input type="text" id="answer${containerCount}-C">
+                            </div>
+                            <div class="answer-group">
+                                <input type="radio" name="correctAnswer${containerCount}">
+                                <label for="answerInput${containerCount}-D">D</label>
+                                <input type="text" id="answer${containerCount}-D">
+                            </div>
+                        </div>
+                        <button class="btn btn-delete" title="Delete question and answer">
+                            <i class="fa-solid fa-xmark"></i>    
+                        </button>
+                    `;
+
+                    // Find the last .question-answer__container
+                    const lastQuestionAnswerContainer = questionAnswer.querySelector('.question-answer__container:last-of-type');
+
+                    // Append the new container after the last .question-answer__container
+                    if (lastQuestionAnswerContainer) {
+                        lastQuestionAnswerContainer.insertAdjacentElement('afterend', questionAnswerContainer);
+                    } else {
+                        // If there are no existing .question-answer__container elements, append to .question-answer
+                        questionAnswer.appendChild(questionAnswerContainer);
+                    }
+
+                    // Add event listener to the delete button
+                    addDeleteBtn(questionAnswerContainer.querySelector('.btn-delete'), questionAnswerContainer);
+
+                    // Update question quantity and check if the add button should be hidden
+                    updateQuestionQuantity();
+                    toggleAddButtonVisibility(questionAnswer, btnAddQuestion);
+
+                    // Check and hide delete buttons if there are only 2 containers
+                    checkDeleteButtonVisibility(questionAnswer);
+                }
+            });
+            // Initial check to hide the add button if there are already 5 or more containers
+            const questionAnswer = btnAddQuestion.closest('.question-answer');
+            toggleAddButtonVisibility(questionAnswer, btnAddQuestion);
+
+            // Initial check to hide delete buttons if there are only 2 containers
+            checkDeleteButtonVisibility(questionAnswer);
+        });
+
+        // add delete button to .question-answer__container in the top right corner
+        function addDeleteBtn(deleteBtn, container) {
+            deleteBtn.addEventListener('click', () => {
+                updateQuestionQuantity();
+                const questionAnswer = deleteBtn.closest('.question-answer');
+                container.remove();
+                if (questionAnswer) {
+                    const btnAddQuestion = questionAnswer.querySelector('.btn-add-qa');
+                    toggleAddButtonVisibility(questionAnswer, btnAddQuestion);
+                    checkDeleteButtonVisibility(questionAnswer);
+                    autoIncrementQuestionId();
+                } else {
+                    console.error('Error: .question-answer element not found.');
+                }
+            });
+        }
+
+        function updateQuestionQuantity() {
+            const questionQuantity = document.querySelector('.question-quantity span');
+            if (questionQuantity) {
+                questionQuantity.textContent = document.querySelectorAll('.add-qa .question-answer__container[id]').length + '/' + totalQuestion;
+            }
+            autoIncrementQuestionId();
+        }
+
+        function toggleAddButtonVisibility(questionAnswer, btnAddQuestion) {
+            const containerCount = questionAnswer.querySelectorAll('.add-qa .question-answer__container').length;
+            if (containerCount >= 5) {
+                btnAddQuestion.style.display = 'none';
+            } else {
+                btnAddQuestion.style.display = 'block';
+            }
+        }
+
+        function checkDeleteButtonVisibility(questionAnswer) {
+            const containerCount = questionAnswer.querySelectorAll('.add-qa .question-answer__container').length;
+            const deleteButtons = questionAnswer.querySelectorAll('.btn-delete');
+            if (containerCount <= 2) {
+                deleteButtons.forEach(btn => {
+                    btn.style.display = 'none';
+                });
+            } else {
+                deleteButtons.forEach(btn => {
+                    btn.style.display = 'block';
+                });
+            }
+        }
+
+        document.querySelectorAll('.add-qa .question-answer__container').forEach(container => {
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('btn-delete');
+            deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            deleteBtn.title = 'Delete question and answer'; // Add tooltip
+            container.appendChild(deleteBtn);
+
+            addDeleteBtn(deleteBtn, container);
+        });
+
+        // Initial check for delete button visibility
+        document.querySelectorAll('.question-answer').forEach(questionAnswer => {
+            checkDeleteButtonVisibility(questionAnswer);
+        });
+    </script>
+    <script src="../add-qa-type1.js"></script>
+    <script src="../add-qa-type2.js"></script>
+</body>
+
+</html>

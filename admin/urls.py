@@ -2,13 +2,13 @@ from django.urls import path
 from .views import (
     Vocabulary,VocabularyDetail,Login,Exams,ExamDetail,Dashboard,VocabularyAdd,
     LearningPath,LearningPathDetail,LearningPathAdd,
-   
+    
 )
 from .view.grammarViews import(
     Lesson,LessonDetail,LessonAdd
 )
 from .view.questionGroupViews import(
-    QuestionGroupList
+    QuestionGroupList,QuestionGroupDetail,QuestionGroupAdd
 )
 urlpatterns = [
     path('vocabulary',Vocabulary.as_view()),
@@ -28,5 +28,8 @@ urlpatterns+=[
     path('lessons/<int:id>',LessonDetail.as_view()),
 ]
 urlpatterns+=[
-    path('questiongroups',QuestionGroupList.as_view())
+    path('questiongroups',QuestionGroupList.as_view()),
+    path('questiongroupsadd',QuestionGroupAdd.as_view()),
+    path('questiongroups/<int:id>',QuestionGroupDetail.as_view()),
+    
 ]
