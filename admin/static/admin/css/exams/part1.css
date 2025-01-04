@@ -1,0 +1,57 @@
+.sidebar {
+    width:10%;
+}
+#container .container__content {
+    width: 90%;
+}
+.main-content-qsl{
+    flex:70%;
+}
+#search{
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+}
+#search .searchHeader{
+    justify-content: end;
+    flex:10%;
+}
+#search .searchBody{
+    flex:90%;
+}
+.condition{
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+.condition__search input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+.condition__search button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #2bc48a;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.itemSearch{
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.day-box{
+    cursor: pointer;
+}
+#lstSearchItem{
+    height: 90%;
+    overflow-y: scroll;
+}
+#lstSearchItem::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome, Edge, Safari */
+}
