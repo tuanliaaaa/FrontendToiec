@@ -1,0 +1,61 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#header {
+    display: flex;
+    align-items: center;
+    background-color: #2bc48a;
+    line-height: 50px;
+    color: #fff;
+    justify-content: space-between;
+}
+
+
+#header svg {
+    height: 25px;
+    padding: 0 15px;
+}
+
+.header__left {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+}
+#container{
+    padding: 0;
+}
+#container .container__content{
+    padding: 0;
+}                                     
+.container__body .lesson__content {
+    width: 100%;
+}
+.container__body .lesson__body {
+    width: 100%;
+}
+.main-content .containner__title {
+    margin: 10px auto;
+    align-items: center;
+    justify-content: center!important;
+}
+.main-content .containner__title h2{
+    align-items: center;
+}
+.container__body {
+    height: 99%;
+    overflow-y: hidden;
+}
+.container__body .lesson__body {
+    overflow-y: scroll;
+}
+#exercise{
+    height: 100%;
+}

@@ -254,7 +254,10 @@ async function fillInTheBlankExercise(wordIndex) {
                 <div class="pronunciation">
                     <div class="audioDiv">
                         <button class="audio-button">
-                            <img src="https://img.icons8.com/ios-filled/50/ffffff/speaker.png" alt="Play Audio">
+                            <img src="https://img.icons8.com/ios-filled/50/ffffff/speaker.png" alt="Play Audio" onclick="playAudioNext(this)">
+                             <audio class="nondisplay" >
+                                <source src="${wordList[wordIndex].audio}" type="audio/mpeg">
+                            </audio>
                         </button>
                         <div>${wordList[wordIndex].transcription}</div>
                     </div>
@@ -270,14 +273,15 @@ async function fillInTheBlankExercise(wordIndex) {
         wordUseList.shift();
         document.getElementById("answerOfFillQuestion").addEventListener("keydown", async (e) => {
             if (event.key === "Enter") {
-                console.log("data in Blank: ",e.target.value);
-                if(e.target.value==wordList[wordIndex].nameLesson){
+                console.log("data in Blank: ",e.target.value.trim().toLowerCase());
+                console.log("data ressult: ",wordList[wordIndex].nameLesson.trim().toLowerCase());
+                if(e.target.value.trim().toLowerCase()==wordList[wordIndex].nameLesson.trim().toLowerCase()){
                     e.target.style.backgroundColor = "#2bc48a";
                     wordsScore[wordIndex]++;
                 }else{
                     e.target.style.backgroundColor = "#e74c3c";
                 }
-                await sleep(1500);
+                await sleep(1000);
                 if (wordUseList.length != 0) start(wordUseList[0]);
                 else if(nowIndex!=wordList.length)start(nowIndex + 1);
                 else start(nowIndex);
@@ -393,4 +397,18 @@ async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+function playAudioNext(e)
+{
+    console.log(e);
+    if (e.closest('.audio-button')) {
+        const button = e.closest('.audio-button');
+        const audio = button.querySelector('audio');
+        if (audio) {
+            audio.play(); 
+        } else {
+            console.error("Không tìm thấy audio!");
+        }
+    }
+}
 

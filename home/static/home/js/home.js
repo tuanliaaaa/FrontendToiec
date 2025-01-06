@@ -8,9 +8,12 @@ let partImage = {
     part6: '/static/home/img/icons/part6.png',
     part7: '/static/home/img/icons/part7.png'
 };
-
-let checkAuth = checkAccount();
-if(checkAuth) renPageHome();
+async function start()
+{
+    let checkAuth = await checkAccount();
+    if(checkAuth) renPageHome();
+}
+start();
 
 function renPageHome()
 {

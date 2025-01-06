@@ -83,6 +83,9 @@ function renHtmlQuestionGroupForFirst(){
                             <input type="text" placeholder="Tìm kiếm" id="searchQuestion">
                             <button id="searchBtn"><i class="fas fa-search"></i></button>
                         </div>
+                        <div class="group-btn">
+                            <button class="btn btn-save" onclick="linkto('/admin/questiongroupsadd')">Add</button>
+                        </div>
                     </div>
 
                     <div class="study-plan" id="questionGroupList">
@@ -124,4 +127,7 @@ async function renEventListenerForQuestionGroupPage(){
 }
 function goToQuestionGroupDetail(idQuestionGroup){
     window.location.href="/admin/questiongroups/"+idQuestionGroup;
+}
+function linkto(link){
+    window.location.href=link;
 }

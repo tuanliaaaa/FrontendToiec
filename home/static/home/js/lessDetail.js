@@ -1,5 +1,10 @@
-let urlPath = window.location.pathname; // Lấy đường dẫn của URL
-let idGrammar = urlPath.split('/').pop(); // Lấy phần cuối cùng sau dấu "/"
+let urlPath = window.location.pathname; 
+let idGrammar = urlPath.split('/').pop();
+function start()
+{
+   renderRoadMap();
+}
+start();
 
 async function getAjax(url, token) {
     return new Promise((resolve, reject) => {
@@ -26,7 +31,6 @@ async function getAjax(url, token) {
           xhr.send();
     });
  }
-renderRoadMap();
 
 async function renderRoadMap() {
     
@@ -43,4 +47,23 @@ async function renderRoadMap() {
         localStorage.removeItem("refresh_token");
  
     }
+    renEventListenerForQuestionPage();
+}
+
+function renEventListenerForQuestionPage()
+{
+    //Move Tab
+    let buttonNavTabList = document.querySelectorAll('button[data-index^="navbar-"]');
+    buttonNavTabList.forEach(buttonNavTab=>{
+        buttonNavTab.addEventListener("click",(e)=>{
+            document.querySelector('button[data-index^="navbar-"].active').classList.remove("active")
+            e.currentTarget.classList.add('active');
+            let dataIndex = e.currentTarget.getAttribute('data-index');
+            let suffix = dataIndex.split('-')[1];
+            document.querySelector('div[data-nav^="navbar-"]:not(.nondisplay)').classList.add("nondisplay");
+            document.querySelector(`div[data-nav="navbar-${suffix}"]`).classList.remove("nondisplay");
+
+        })
+    })
+   //  eventForBtnQGDetail();
 }

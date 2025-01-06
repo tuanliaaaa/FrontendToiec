@@ -1,0 +1,109 @@
+.flex-direction-column{
+    flex-direction: column;
+}
+.flex-direction-row{
+    flex-direction: row;
+}
+.nondisplay{
+    display: none!important;
+}
+
+/*-------------------------------------------------------  Padding ----------------------------------------------------*/
+.pd5{
+    padding: 5px;
+}
+.pd10{
+    padding: 10px;
+}
+.pd15{
+    padding: 15px;
+}
+.pd20{
+    padding: 20px;
+}
+/*-------------------------------------------------------  Margin ----------------------------------------------------*/
+.mg5 {
+    margin: 5px;
+}
+
+.mg10 {
+    margin: 10px;
+}
+
+.mg15 {
+    margin: 15px;
+}
+
+.mg20 {
+    margin: 20px;
+}
+.mg5-t {
+    margin-top: 5px;
+}
+
+.mg5-r {
+    margin-right: 5px;
+}
+
+.mg5-b {
+    margin-bottom: 5px;
+}
+
+.mg5-l {
+    margin-left: 5px;
+}
+
+.mg10-t {
+    margin-top: 10px;
+}
+
+.mg10-r {
+    margin-right: 10px;
+}
+
+.mg10-b {
+    margin-bottom: 10px;
+}
+
+.mg10-l {
+    margin-left: 10px;
+}
+
+.mg15-t {
+    margin-top: 15px;
+}
+
+.mg15-r {
+    margin-right: 15px;
+}
+
+.mg15-b {
+    margin-bottom: 15px;
+}
+
+.mg15-l {
+    margin-left: 15px;
+}
+
+.mg20-t {
+    margin-top: 20px;
+}
+
+.mg20-r {
+    margin-right: 20px;
+}
+
+.mg20-b {
+    margin-bottom: 20px;
+}
+
+.mg20-l {
+    margin-left: 20px;
+}
+/* ---------------------------------------- Over Flow---------------------------------------------------------*/
+.overflow-scroll{
+    overflow: scroll;
+}
+.overflow-nav-scroll::-webkit-scrollbar {
+    display: none; 
+}
