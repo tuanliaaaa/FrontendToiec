@@ -291,13 +291,13 @@ async function renEvenListenerPageHome()
             document.querySelector(".itemTabHis.active").classList.remove("active");
             let htmlHisListContent="";
             let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=4&page=0',localStorage.getItem("access_token"));
-            console.log("render History: ",response.data);
+            console.log("render History Vocabulary: ",response.data);
             if (response.status >= 200 && response.status < 300) {
                 htmlHisListContent=response.data.data.map((his,index)=>{
                     return `
                         <div class="lstHistory">
                             <div class="lstHistoryDetail">
-                                <a href="/histories/${his.idHistory}" >
+                                <a >
                                     <p  class="lstHistoryDetail-image">
                                         <img src="https://vi.toeicmax.com/icon/vocabulary.png">
                                     </p>
@@ -344,7 +344,7 @@ async function renEvenListenerPageHome()
                     return `
                         <div class="lstHistory">
                             <div class="lstHistoryDetail">
-                                <a href="/histories/${his.idHistory}" >
+                                <a href="/histories/part/${his.idHistory}" >
                                     <p  class="lstHistoryDetail-image">
                                         <img src="${partImage[his.type]}">
                                     </p>
@@ -436,7 +436,7 @@ async function renEvenListenerPageHome()
             return `
                 <div class="lstHistory">
                     <div class="lstHistoryDetail">
-                        <a href="/histories/${his.idHistory}" >
+                        <a >
                             <p  class="lstHistoryDetail-image">
                                 <img src="https://vi.toeicmax.com/icon/vocabulary.png">
                             </p>

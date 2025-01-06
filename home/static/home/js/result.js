@@ -60,7 +60,7 @@ async function renResultPage(){
                     <div class="list-question__item" data-index="${index}">
                         <div class="item__left">
                             <img src="${!checkSelected?'/static/home/img/icons/warning_c.png':(question.isCorrect?'/static/home/img/icons/check.png':'/static/home/img/icons/close.png')}">
-                            <span>Câu ${index+1}</span>
+                            <span>Câu ${indexQuestion+1}</span>
                         </div>
                         <div class="item__right">
                             ${answerResultItemHtml}

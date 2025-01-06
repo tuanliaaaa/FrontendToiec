@@ -5,6 +5,13 @@ let wordsScore = {};
 let nowIndex = 0;
 let countChecked = 0;
 let lessonElement = document.getElementById('page__main');
+let idLesson;
+try{
+
+     idLesson = window.location.href.match(/\/vocabulary\/(\d+)(\/|$)/)[1];
+}catch{
+
+}
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -130,7 +137,8 @@ async function postAjax(url, jsonData, token) {
 
 async function getHistorieVocabularyOfUser()
 {
-    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=12&page=0',localStorage.getItem("access_token"));
+    let response = await getAjax('http://127.0.0.1:8080/api/v1/histories/vocabularies?size=1&page=0&idLesson='+idLesson,localStorage.getItem("access_token"));
+    console.log("rensponse from Server Histories :",response.data);
     if (response.status === 200) {
         let data ={};
         response.data[0]['historyDetails'].forEach(element => {

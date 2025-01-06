@@ -54,3 +54,10 @@ class Setting(View):
 class Signup(View):
     def get(self,request):
         return render(request,'home/signup.html')
+class HistoriesExam(View):
+    def get(self,request,id):
+        return render(request,'home/histories/exam-history.html')
+class Excersize(View):
+    def get(self,request,id,idexcercise):
+        return render(request,'home/learningpath/excercise.html')
+        

@@ -1,12 +1,15 @@
 let mainElement = document.getElementById("main");
 let dataJson;
 let checkAuth;
+let idExam;
+let mapSelected={};
 start();
 async function start()
 {
     checkAuth = await checkAccount();
     if(checkAuth)
     {
+        idExam = window.location.pathname.split('/').pop();
         renIntroPage();
     }
 }
@@ -53,7 +56,7 @@ async function renExamPage()
                 questionChildItem.answerList.forEach((answerItem, answerIndex) => {
                     listAnswer += `<label class="answer__answer-item" data-index="${answerIndex}" data-id="${answerItem.idAnswer}">
                         <input type="radio" name="radio">
-                        <span class="checkmark"></span>${answerItem.answer}
+                        <span class="checkmark"></span>${!["part1"].includes(questionGroupItem.part)?answerItem.answer:String.fromCharCode(65 + answerIndex)}
                     </label>`;
                 })
                 if (questionChildItem.question) {
@@ -66,6 +69,7 @@ async function renExamPage()
                     </div>
                 </div>`;
                 countQuestion++;
+                mapSelected[questionChildItem.idQuestion]=null;
             })
             if (firstItem) {
                 listQuestion += `<div class="mid__item active" data-part="${questionGroupItem.part}" data-index="${countQuestionGroup}" style="display: none">
@@ -186,48 +190,70 @@ function renEventListenerForIntroPage()
         renExamPage();
     });
 }
-function renPageResult()
+async function renPageResult()
 {
     mainElement.classList.add('page-exam-success');
-    mainElement.innerHTML = `
-        <div class="page-container">
-            <div class="page__content">
-                <div class="page__exam-success">
-                    <div class="exam-success__top">
-                        <img src="/static/img/icons/success.png" alt="">
-                        <b>Chúc mừng</b>
-                        <span>Bạn đã hoàn thành bài luyện tập của mình</span>
-                    </div>
-                    <div class="exam-success__bottom">
-                        <div class="exam-success__notify">
-                            <img src="/static/img/icons/warning_c.png" alt="">
-                            <p>Bạn cần <span>Đăng nhập</span> để lưu lại lịch sử học tập</p>
+    let postData =[];
+    console.log("mapSelected: ",mapSelected," ;size: ", Object.keys(mapSelected).length);
+    for (let key in mapSelected) {
+        if (mapSelected.hasOwnProperty(key)) { 
+            postData.push({
+                "id": parseInt(key),
+                "answerList":mapSelected[key]? [
+                    mapSelected[key]
+                ]:[]
+            })
+        }
+    }
+    console.log("postData :",postData);
+    let responsePost = await postAjax(`http://127.0.0.1:8080/api/v1/histories/exams/`+idExam,
+            JSON.stringify({
+                questionList:postData
+            }),
+            localStorage.getItem("access_token"));
+    console.log("render Exams: ",responsePost.data);
+    if (responsePost.status >= 200 && responsePost.status < 300) {
+        
+        mainElement.innerHTML = `
+            <div class="page-container">
+                <div class="page__content">
+                    <div class="page__exam-success">
+                        <div class="exam-success__top">
+                            <img src="/static/img/icons/success.png" alt="">
+                            <b>Chúc mừng</b>
+                            <span>Bạn đã hoàn thành bài luyện tập của mình</span>
                         </div>
-                        <div class="exam-success__result">
-                            <b>Kết quả: <span id="result-label"></span></b>
-                            <div class="result__popup">
-                                <div class="result-popup__top">
-                                    <span>Tỷ lệ dúng</span>
-                                    <span id="percent-result">0%</span>
+                        <div class="exam-success__bottom">
+                            <div class="exam-success__notify">
+                                <img src="/static/img/icons/warning_c.png" alt="">
+                                <p>Bạn cần <span>Đăng nhập</span> để lưu lại lịch sử học tập</p>
+                            </div>
+                            <div class="exam-success__result">
+                                <b>Kết quả: <span id="result-label"></span></b>
+                                <div class="result__popup">
+                                    <div class="result-popup__top">
+                                        <span>Tỷ lệ dúng</span>
+                                        <span id="percent-result">${responsePost.data.data.score}</span>
+                                    </div>
+                                    <div class="result-popup__percent">
+                                        <div class="percent__result" style="width: ${responsePost.data.data.score/900*100}%"></div>
+                                    </div>
+                                    <b>Hãy cố gắng nhiều hơn nữa nhé!</b>
                                 </div>
-                                <div class="result-popup__percent">
-                                    <div class="percent__result" style="width: 0"></div>
-                                </div>
-                                <b>Hãy cố gắng nhiều hơn nữa nhé!</b>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="page__footer page__footer--success">
-                <div class="footer__action">
-                    <a class="btn btn--continue" href="/result">Xem kết quả</a>
-                    <a class="btn btn--continue" id="btn-continue" href="/home">Tiếp tục</a>
-                    <a class="btn btn--action" href="javascript:location.reload()" id="btn-replay">Làm lại</a>
+                <div class="page__footer page__footer--success">
+                    <div class="footer__action">
+                        <a class="btn btn--continue" href="/result">Xem kết quả</a>
+                        <a class="btn btn--continue" id="btn-continue" href="/home">Tiếp tục</a>
+                        <a class="btn btn--action" href="javascript:location.reload()" id="btn-replay">Làm lại</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
+    }
 }
 
 //------------------------------------------------Page Exam ----------------------------------------------------
@@ -238,8 +264,10 @@ function renEvenListenerForExamPage()
     let answersButton = document.querySelectorAll('.answer__answer-item input');
     answersButton.forEach(answerButton => {
         answerButton.addEventListener("change", function () {
+            
             let listAnswerEle = parents(this, '.answer__list');
             let answerBlock = parents(this, '.mid-content__answer');
+            mapSelected[parseInt(answerBlock[0].dataset.id)]= parseInt(this.parentElement.dataset.id);
             let itemQuestionActive = document.querySelector('.mid__item.active'),
                 dataPart = itemQuestionActive.dataset.part;
             document.querySelector('#board-container .question-' + answerBlock[0].dataset.id).classList.add('ans');
@@ -309,9 +337,9 @@ function renEvenListenerForExamPage()
 }
 
 //----------------------------------------------Ren Html By Part -----------------------------------------------
-function part1(part)
+function renPart(part)
 {
-    
+    return ``;
 }
 function renHtmlQuestionPopupMenu()
 {
@@ -588,14 +616,14 @@ function parents(element, selector) {
 }
 
 function timePlayExam() {
-    let totalSeconds1 = 0;
+    let totalSeconds1 = 28;
     window.timePlayExamInterval = setInterval(() => {
         if (totalSeconds1 > 0) {
             totalSeconds1--;
         } else {
             nextQuestion();
         }
-    }, 10);
+    }, 1000);
 }
 
 function nextQuestion() {
@@ -616,7 +644,6 @@ function nextQuestion() {
             timePlayExam();
         }
     } else {
-        console.log("aas1");
 
         clearInterval(window.timePlayExamInterval);
     }

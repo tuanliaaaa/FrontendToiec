@@ -218,3 +218,6 @@ span.question {
     gap: 10px;
     margin: 10px 0;
 }
+.answer__answer-item{
+    margin-bottom: 3px;
+}

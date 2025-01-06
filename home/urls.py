@@ -4,7 +4,9 @@ from .views import (
     ChatSupport,ExamDetail,ExamResult,Exams,Histories,Result,Test,
     StudyBySection,
     Setting,
-    Signup
+    Signup,
+    HistoriesExam,
+    Excersize
 )
 
 urlpatterns = [
@@ -22,6 +24,12 @@ urlpatterns = [
     path("test",Test.as_view()),
     path("setting",Setting.as_view()),
     path('studybysection/<str:section>',StudyBySection.as_view())
+]
+urlpatterns+=[
+    path('roadmapdetail/<int:id>/excercise/<int:idexcercise>',Excersize.as_view())
+]
+urlpatterns+=[
+    path('histories/exams/<int:id>',HistoriesExam.as_view()),
 ]
 urlpatterns+=[
     path('exam/<int:id>',ExamDetail.as_view()),

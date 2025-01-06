@@ -45,7 +45,7 @@ async function renPageResult()
             </div>
             <div class="page__footer page__footer--success">
                 <div class="footer__action">
-                    <a class="btn btn--continue" href="/result">Xem kết quả</a>
+                    <a class="btn btn--continue" id="viewHis">Xem kết quả</a>
                     <a class="btn btn--continue" id="btn-continue" href="/home">Tiếp tục</a>
                     <a class="btn btn--action" href="javascript:location.reload()" id="btn-replay">Làm lại</a>
                 </div>
@@ -66,6 +66,9 @@ async function renPageResult()
         document.querySelector('#result-label').textContent =  (data['score']/10*data['amountQuestionGroup']).toFixed(0)+'/'+data['amountQuestionGroup'];
         document.querySelector('#percent-result').textContent = (data['score']/10*100).toFixed(2)+'%';
         document.querySelector('.percent__result').setAttribute('style', 'width:'+data['score']/10*100+'%');
+        document.getElementById("viewHis").addEventListener("click",()=>{
+            window.location.href="/histories/part/"+data.idHistory;
+        })
     }
 }
 async function renPageLesson() {
