@@ -1,3 +1,6 @@
+*{
+    font-family: Nunito Sans, Google Sans, sans-serif;
+}
 .page__vocabulary {
     width: 100%;
     display: flex;

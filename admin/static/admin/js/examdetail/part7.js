@@ -1,24 +1,27 @@
 let mainElement = document.getElementById("main");
 const idExam = window.location.href.match(/\/exams\/(\d+)\//)[1];
-let qsAddNow=32;
+let qsAddNow=89;
 let mapQuestionGroup={
-    32:null,
-    33:null,
-    34:null,
-    35:null,
-    36:null,
-    37:null,
-    38:null,
-    39:null,
-    40:null,
-    41:null,
-    42:null,
-    43:null
+    89:null,
+    90:null,
+    91:null,
+    92:null,
+    93:null,
+    94:null,
+    95:null,
+    96:null,
+    97:null,
+    98:null,
+    99:null,
+    100:null,
+    101:null,
+    102:null,
+    103:null,
 };
 let listQuestionGroup=[];
 let listQuestionGroupSearch={};
-let part="3",questionGroupTotal=0,questionTotal=0;
-let questionPart=39,questionGroupPart =13;
+let part="7",questionGroupTotal=0,questionTotal=0;
+let questionPart=15,questionGroupPart =15;
 let checkAuth = checkAccount();
 if(checkAuth)renPageQuestion();
 // ----------------------------------------Ren Page-----------------------------------------------
@@ -32,9 +35,9 @@ async function renPageQuestion()
         questionGroupTotal = response.data.data.questionGroups.length;
         let questionItems= response.data.data.questionGroups;
 
-        let indexNow=31,indexquestionItems=0,indexNowQuestionItems=0;
+        let indexNow=89,indexquestionItems=0,indexNowQuestionItems=0;
         let questionItemsHtml='';
-        while(indexNowQuestionItems<questionGroupTotal&&indexNow<questionGroupPart+31)
+        while(indexNowQuestionItems<questionGroupTotal&&indexNow<questionGroupPart+89)
         {            
             if(indexNowQuestionItems<questionGroupTotal)
             {
@@ -135,7 +138,7 @@ async function renPageQuestion()
             `;
             indexNow++;
         }
-        for(let i =indexNow;i<questionGroupPart+31;i++)
+        for(let i =indexNow;i<questionGroupPart+89;i++)
         {
             questionItemsHtml+=`
             <div class="day-box" data-index="QuestionGroup-${i+1}">
@@ -194,11 +197,11 @@ function renHtmlFirstQuestion(){
                 <ul>
                     <li><a href="/admin/exams/${idExam}/part1">Part 1</a></li>
                     <li><a href="/admin/exams/${idExam}/part2">Part 2</a></li>
-                    <li><a href="/admin/exams/${idExam}/part3" class="active">Part 3</a></li>
+                    <li><a href="/admin/exams/${idExam}/part3">Part 3</a></li>
                     <li><a href="/admin/exams/${idExam}/part4">Part 4</a></li>
-                    <li><a href="/admin/exams/${idExam}/part5">Part 5</a></li>
+                    <li><a href="/admin/exams/${idExam}/part5" >Part 5</a></li>
                     <li><a href="/admin/exams/${idExam}/part6">Part 6</a></li>
-                    <li><a href="/admin/exams/${idExam}/part7">Part 7</a></li>
+                    <li><a href="/admin/exams/${idExam}/part7" class="active">Part 7</a></li>
                 </ul>
             </div>
     
@@ -206,7 +209,7 @@ function renHtmlFirstQuestion(){
                 <div class="main-content d-flex">
                     <div class="main-content-qsl">
                         <div class="containner__title align-items-center" style="gap: 10px;">
-                            <h2 class="part1__title">Part 3</h2>
+                            <h2 class="part1__title">Part 7</h2>
                             <div class="question-quantity">
                                 <p>Question:
                                     <span>0/39</span>
@@ -226,7 +229,7 @@ function renHtmlFirstQuestion(){
                         <div class="searchBody day-box">
                             <div class="condition d-flex ">
                                 <div class="d-flex align-items-center">
-                                    <h1 id="qgNowSeach">Câu 7</h1>
+                                    <h1 id="qgNowSeach">Câu 44</h1>
                                 </div>
                                 <div class="condition__search">
                                     <input type="text" placeholder="Tìm kiếm" id="searchQuestion">
@@ -243,7 +246,6 @@ function renHtmlFirstQuestion(){
         </div>
     `;
 }
-
 
 function renEventListenerForQuestionPage()
 {
@@ -268,7 +270,7 @@ function renEventListenerForQuestionPage()
 
     //Search Question Group
     document.getElementById('searchBtn').addEventListener("click",async ()=>{
-        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=13&type=part3`,localStorage.getItem("access_token"));
+        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=31&type=part7`,localStorage.getItem("access_token"));
         console.log("render Question: ",response.data);
         if (response.status >= 200 && response.status < 300) {
             let htmlQuestionGroups = response.data.data.map((questionGroup,indexQuestionGroup)=>{
@@ -379,9 +381,9 @@ async function addQuestionGroupForExam()
         }
     }
     console.log("list question group id request for exam: ",questionGroupListRequest);
-    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}?type=part3`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
+    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}?type=part7`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
     console.log("render Question: ",response.data);
     if (response.status >= 200 && response.status < 300) {
-        window.location.href="/admin/exams/"+idExam+"/part3";
+        window.location.href="/admin/exams/"+idExam+"/part7";
     }
 }

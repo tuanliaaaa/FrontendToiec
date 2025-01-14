@@ -1,6 +1,21 @@
 let mainElement = document.getElementById("main");
-let part="4",questionGroupTotal=0,questionTotal=0;
 const idExam = window.location.href.match(/\/exams\/(\d+)\//)[1];
+let qsAddNow=45;
+let mapQuestionGroup={
+    45:null,
+    46:null,
+    47:null,
+    48:null,
+    49:null,
+    50:null,
+    51:null,
+    52:null,
+    53:null,
+    54:null
+};
+let listQuestionGroup=[];
+let listQuestionGroupSearch={};
+let part="4",questionGroupTotal=0,questionTotal=0;
 let questionPart=30,questionGroupPart =10;
 let checkAuth = checkAccount();
 if(checkAuth)renPageQuestion();
@@ -15,24 +30,44 @@ async function renPageQuestion()
         questionGroupTotal = response.data.data.questionGroups.length;
         let questionItems= response.data.data.questionGroups;
 
-        let indexNow=70,indexquestionItems=0,indexNowQuestionItems=0;
+        let indexNow=44,indexquestionItems=0,indexNowQuestionItems=0;
         let questionItemsHtml='';
-        while(indexNowQuestionItems<questionGroupTotal&&indexNow<questionGroupPart+70)
+        while(indexNowQuestionItems<questionGroupTotal&&indexNow<questionGroupPart+43)
         {            
             if(indexNowQuestionItems<questionGroupTotal)
             {
                 indexquestionItems = questionItems[indexNowQuestionItems].orderOfQuestionGroup-1;
+                mapQuestionGroup[indexquestionItems+1] = questionItems[indexNowQuestionItems].id;
+                listQuestionGroup.push(questionItems[indexNowQuestionItems].id);
                 indexNowQuestionItems++;
             }
             while(indexquestionItems>indexNow)
             {
                 questionItemsHtml+=`
-                    <div class="day-box">
+                    <div class="day-box" data-index="QuestionGroup-${indexNow+1}">
                         <div class="day-box__header d-flex justify-content-between align-items-center">
                             <p>Question ${indexNow+1}</p>
                             <div class="group-btn">
                                 <button class="btn btn-clear">Clear</button>
-                                <button class="btn btn-save">Save</button>
+                                <button class="btn btn-collapse">
+                                    <!-- button save -->
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="day-box__content active">
+                        </div>
+                    </div>
+                `;
+                indexNow++;
+            }
+            questionTotal+=3;
+            questionItemsHtml+=`
+                    <div class="day-box" data-index="QuestionGroup-${indexNow+1}">
+                        <div class="day-box__header d-flex justify-content-between align-items-center">
+                            <p>Question ${indexNow+1}</p>
+                            <div class="group-btn">
+                                <button class="btn btn-clear">Clear</button>
                                 <button class="btn btn-collapse">
                                     <!-- button save -->
                                     <i class="fa-solid fa-minus"></i>
@@ -42,127 +77,12 @@ async function renPageQuestion()
                         <div class="day-box__content active">
                             <div class="day-box__content--container d-flex" style="gap: 10px;">
                                 <div class="question-answer d-flex justify-content-between align-self-center">
-                                    <div class="question-answer__container">
-                                        <div class="question">
-                                            <input type="text" name="questionInput1" placeholder="Question">
-                                        </div>
-                                        <div class="answer">
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label>A</label>
-                                                <input type="text" name="answer1-A">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label>B</label>
-                                                <input type="text" name="answer1-B">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label>C</label>
-                                                <input type="text" name="answer1-C">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label>D</label>
-                                                <input type="text" name="answer1-D">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="question-answer__container">
-                                        <div class="question">
-                                            <input type="text" name="questionInput2" placeholder="Question">
-                                        </div>
-                                        <div class="answer">
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer2">
-                                                <label>A</label>
-                                                <input type="text" name="answer2-A">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer2">
-                                                <label>B</label>
-                                                <input type="text" name="answer2-B">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer2">
-                                                <label>C</label>
-                                                <input type="text" name="answer2-C">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer2">
-                                                <label>D</label>
-                                                <input type="text" name="answer2-D">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="question-answer__container">
-                                        <div class="question">
-                                            <input type="text" name="questionInput3" placeholder="Question">
-                                        </div>
-                                        <div class="answer">
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer3">
-                                                <label>A</label>
-                                                <input type="text" name="answer3-A">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer3">
-                                                <label>B</label>
-                                                <input type="text" name="answer3-B">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer3">
-                                                <label>C</label>
-                                                <input type="text" name="answer3-C">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer3">
-                                                <label>D</label>
-                                                <input type="text" name="answer3-D">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="resource d-flex" style="gap: 10px;">
-                                   
-                                    <div class="resource__item" style="flex: 50%;">
-                                        <div class="resource__item--upload-audio">
-                                            Upload Audio
-                                        </div>
-                                        <input type="file" name="upload-audio" accept="audio/*" class="no-active">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                indexNow++;
-            }
-            questionTotal+=3;
-            questionItemsHtml+=`
-                    <div class="day-box">
-                        <div class="day-box__header d-flex justify-content-between align-items-center">
-                            <p>Question ${indexNow+1}</p>
-                            <div class="group-btn">
-                                <button class="btn btn-clear">Clear</button>
-                                <button class="btn btn-save">Save</button>
-                                <button class="btn btn-collapse">
-                                    <!-- button save -->
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="day-box__content active">
-                            <div class="day-box__content--container d-flex" style="gap: 10px;">
-                                <div class="question-answer d-flex justify-content-between align-self-center">`;
+                                   `;
             let htmlListQuestionGroup = questionItems[indexNowQuestionItems-1].questionList.map((questionItem,indexListQuestionGroup)=>{
                 let htmlAnswerList = questionItem.answerList.map((answer,indexAnswerList)=>{
                     return `
                         <div class="answer-group">
-                            <input type="radio" name="correctAnswer1">
+                            <input type="radio" name="correctAnswer${indexNowQuestionItems}-${indexListQuestionGroup}" ${answer.isCorrect?'checked':''}>
                             <label>${String.fromCharCode(indexAnswerList+65)}</label>
                             <input type="text" name="answer1-A" value="${answer.answer}">
                         </div>
@@ -188,9 +108,6 @@ async function renPageQuestion()
                 if(resourceDetail.resourceType=='audio')
                     htmlResourceAudio+=`
                         <div class="resource__item">
-                            <div class="resource__item--upload-audio">
-                                Upload Audio
-                            </div>
                             <input type="file" name="upload-audio" accept="audio/*" class="no-active">
                             <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
                         </div>
@@ -199,7 +116,6 @@ async function renPageQuestion()
                     htmlResourceImg+=`
                          <div class="resource__item" >
                             <div class="resource__item--upload-img" style="background-image: url(&quot;${resourceDetail.resourceContent}&quot;); background-size: cover;">
-                                
                             </div>
                             <input type="file" name="upload-img" accept="image/*" class="no-active">
                         </div>
@@ -217,15 +133,14 @@ async function renPageQuestion()
             `;
             indexNow++;
         }
-        for(let i =indexNow;i<questionGroupPart+70;i++)
+        for(let i =indexNow;i<questionGroupPart+43;i++)
         {
             questionItemsHtml+=`
-            <div class="day-box">
+            <div class="day-box" data-index="QuestionGroup-${i+1}">
                 <div class="day-box__header d-flex justify-content-between align-items-center">
                     <p>Question ${i+1}</p>
                     <div class="group-btn">
                         <button class="btn btn-clear">Clear</button>
-                        <button class="btn btn-save">Save</button>
                         <button class="btn btn-collapse">
                             <!-- button save -->
                             <i class="fa-solid fa-minus"></i>
@@ -233,97 +148,7 @@ async function renPageQuestion()
                     </div>
                 </div>
                 <div class="day-box__content active">
-                    <div class="day-box__content--container d-flex" style="gap: 10px;">
-                        <div class="question-answer d-flex justify-content-between align-self-center">
-                            <div class="question-answer__container">
-                                <div class="answer">
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-1">A</label>
-                                        <input type="text" name="answer1-A">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-2">B</label>
-                                        <input type="text" name="answer1-B">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-3">C</label>
-                                        <input type="text" name="answer1-C">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-4">D</label>
-                                        <input type="text" name="answer1-D">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="question-answer__container">
-                                <div class="question">
-                                    <input type="text" name="questionInput1" placeholder="Question">
-                                </div>
-                                <div class="answer">
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>A</label>
-                                        <input type="text" name="answer1-A">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>B</label>
-                                        <input type="text" name="answer1-B">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>C</label>
-                                        <input type="text" name="answer1-C">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>D</label>
-                                        <input type="text" name="answer1-D">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="question-answer__container">
-                                <div class="question">
-                                    <input type="text" name="questionInput1" placeholder="Question">
-                                </div>
-                                <div class="answer">
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>A</label>
-                                        <input type="text" name="answer1-A">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>B</label>
-                                        <input type="text" name="answer1-B">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>C</label>
-                                        <input type="text" name="answer1-C">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label>D</label>
-                                        <input type="text" name="answer1-D">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resource d-flex" style="gap: 10px;">
-                            
-                            <div class="resource__item" style="flex: 50%;">
-                                <div class="resource__item--upload-audio">
-                                    Upload Audio
-                                </div>
-                                <input type="file" name="upload-audio" accept="audio/*" class="no-active">
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         `;
@@ -351,7 +176,7 @@ function renHtmlFirstQuestion(){
                     </div>
     
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">
@@ -367,7 +192,7 @@ function renHtmlFirstQuestion(){
                 <ul>
                     <li><a href="/admin/exams/${idExam}/part1">Part 1</a></li>
                     <li><a href="/admin/exams/${idExam}/part2">Part 2</a></li>
-                    <li><a href="/admin/exams/${idExam}/part3">Part 3</a></li>
+                    <li><a href="/admin/exams/${idExam}/part3" >Part 3</a></li>
                     <li><a href="/admin/exams/${idExam}/part4" class="active">Part 4</a></li>
                     <li><a href="/admin/exams/${idExam}/part5">Part 5</a></li>
                     <li><a href="/admin/exams/${idExam}/part6">Part 6</a></li>
@@ -376,17 +201,40 @@ function renHtmlFirstQuestion(){
             </div>
     
             <div class="container__content">
-                <div class="main-content">
-                    <div class="containner__title align-items-center" style="gap: 10px;">
-                        <h2 class="part1__title">Part 3</h2>
-                        <div class="question-quantity">
-                            <p>Question:
-                                <span>0/39</span>
-                            </p>
+                <div class="main-content d-flex">
+                    <div class="main-content-qsl">
+                        <div class="containner__title align-items-center" style="gap: 10px;">
+                            <h2 class="part1__title">Part 4</h2>
+                            <div class="question-quantity">
+                                <p>Question:
+                                    <span>0/39</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="study-plan" id="studyPlan" >
+                            
                         </div>
                     </div>
-                    <div class="study-plan" id="studyPlan" >
-                        
+                    <div id="search" >  
+                        <div class="searchHeader d-flex">
+                            <div class="group-btn ">
+                                <button class="btn btn-save" onclick="addQuestionGroupForExam()">Save</button>
+                            </div>
+                        </div>
+                        <div class="searchBody day-box">
+                            <div class="condition d-flex ">
+                                <div class="d-flex align-items-center">
+                                    <h1 id="qgNowSeach">Câu 45</h1>
+                                </div>
+                                <div class="condition__search">
+                                    <input type="text" placeholder="Tìm kiếm" id="searchQuestion">
+                                    <button id="searchBtn"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></button>
+                                </div>
+                            </div>
+                            <div id="lstSearchItem">
+                            
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -397,138 +245,141 @@ function renHtmlFirstQuestion(){
 
 function renEventListenerForQuestionPage()
 {
-
-
     const questionQuantity = document.querySelector('.question-quantity span');
+    const questionContainers = document.querySelectorAll('.question-answer__container[id]');
     questionQuantity.textContent = questionTotal + '/' + questionPart;
+    // Add Event click to div question group exam
+    let questionGroupElements = document.querySelectorAll('div[data-index^="QuestionGroup-"]');
 
-    // Add auto increment question id .no-question
-    const autoIncrementQuestionId = () => {
-        let noQuestion = 70;
-
-        document.querySelectorAll('.question-answer__container').forEach((container, index) => {
-            const question = container.querySelector('.question');
-            // remove the existing .no-question element
-            const existingNoQuestion = question.querySelector('span');
-            if (existingNoQuestion) {
-                existingNoQuestion.remove();
-            }
-            const numero = document.createElement('span');
-            if (numero) {
-                numero.textContent = `${noQuestion + 1}`;
-            }
-            noQuestion++;
-            question.insertBefore(numero, question.firstChild);
-        });
-    }
-    autoIncrementQuestionId();
-    // Add and Preview Audio
-    document.querySelectorAll('.resource__item').forEach(item => {
-        // upload image
-        const uploadImg = item.querySelector('.resource__item--upload-img');
-        if (uploadImg) {
-            const inputImg = item.querySelector('input[name="upload-img"]');
-            const uploadImgText = uploadImg;
-
-            inputImg.addEventListener('change', function () {
-                const file = this.files[0];
-                if (file) {
-                    const objectURL = URL.createObjectURL(file);
-                    uploadImg.style.backgroundImage = `url(${objectURL})`; // Sử dụng URL ảo thay vì kết quả đọc từ FileReader
-                    uploadImg.style.backgroundSize = 'cover';
-                    uploadImgText.textContent = '';
-                }
-            });
-
-            uploadImg.addEventListener('click', () => {
-                inputImg.click();
-            });
-        };
-
-
-        // upload audio
-        const uploadAudio = item.querySelector('.resource__item--upload-audio');
-        if (uploadAudio) {
-            const inputAudio = item.querySelector('input[name="upload-audio"]');
-
-            uploadAudio.addEventListener('click', () => {
-                inputAudio.click();
-            });
-
-            inputAudio.addEventListener('change', function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function () {
-                        const result = reader.result;
-                        const audio = document.createElement('audio');
-                        audio.setAttribute('controls', '');
-                        audio.setAttribute('src', result);
-
-                        // style audio
-                        audio.style.width = '100%';
-                        audio.style.marginTop = '10px';
-                        audio.style.borderRadius = '12px';
-
-                        // Remove old audio if exists
-                        const existingAudio = item.querySelector('audio');
-                        if (existingAudio) {
-                            existingAudio.remove();
-                        }
-
-                        // append audio to uploadAudio
-                        item.appendChild(audio);
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-        };
-
-        // upload docs and preview
-        const uploadDoc = item.querySelector('.resource__item--upload-doc');
-        if (uploadDoc) {
-            const inputDoc = item.querySelector('input[name="upload-doc"]');
-            const previewContainer = item.querySelector('.preview-container') || document.createElement('div');
-            previewContainer.classList.add('preview-container');
-            item.appendChild(previewContainer);
-
-            inputDoc.addEventListener('change', function () {
-                const files = this.files;
-                if (files.length > 0) {
-                    // Clear existing preview content
-                    previewContainer.innerHTML = '';
-
-                    Array.from(files).forEach(file => {
-                        const docxPreview = document.createElement('div');
-                        docxPreview.classList.add('docx-preview');
-                        previewContainer.appendChild(docxPreview);
-
-                        const options = { inWrapper: false, ignoreWidth: true, ignoreHeight: true };
-                        docx.renderAsync(file, docxPreview, null, options)
-                            .then(() => {
-
-                                // Apply inline styles to .docx element inside .docx-preview
-                                const docxElement = docxPreview.querySelector('.docx');
-                                if (docxElement) {
-                                    docxElement.style.padding = '10px';
-                                    docxElement.style.border = '1px solid #ccc';
-                                    docxElement.style.borderRadius = '12px';
-                                    docxElement.style.marginTop = '8px';
-                                }
-                            })
-                            .catch(err => {
-                                console.error("Error rendering DOCX:", err);
-                            });
-
-                        // Replace "Upload doc" text with file name
-                        uploadDoc.textContent = file.name;
-                    });
-                }
-            });
-
-            uploadDoc.addEventListener('click', () => {
-                inputDoc.click();
-            });
-        }
+    questionGroupElements.forEach(questionGroupElement => {
+        questionGroupElement.addEventListener("click",(e)=>{
+            let dataIndex = e.currentTarget.getAttribute('data-index');
+            let suffix = dataIndex.split('-')[1];
+            document.getElementById("qgNowSeach").innerText="Câu "+suffix;
+            qsAddNow= parseInt(suffix);
+        })
     });
+
+
+    eventForBtnQGDetail();
+
+
+    //Search Question Group
+    document.getElementById('searchBtn').addEventListener("click",async ()=>{
+        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=13&type=part4`,localStorage.getItem("access_token"));
+        console.log("render Question: ",response.data);
+        if (response.status >= 200 && response.status < 300) {
+            let htmlQuestionGroups = response.data.data.map((questionGroup,indexQuestionGroup)=>{
+            let htmlQuetion = questionGroup.questionList.map((question,indexQuestion)=>{
+                    return `<li>${question.question}</li>`
+                }).join('');
+                listQuestionGroupSearch[questionGroup.id]=questionGroup;
+                return !listQuestionGroup.includes(questionGroup.id)?`
+                    <div class="itemSearch" data-index="itemSearch-${questionGroup.id}">
+                        <div>
+                            <h2>Câu ${indexQuestionGroup+1}</h2>
+                        </div>
+                        <ul>
+                            ${htmlQuetion}
+                        </ul>
+                    </div>
+                `:'';
+            }).join('');
+            document.getElementById('lstSearchItem').innerHTML=htmlQuestionGroups;
+        }
+        renEventListenerForSearch();
+    })
+}
+function renEventListenerForSearch()
+{
+    let questionGroupSearchElements = document.querySelectorAll('div[data-index^="itemSearch-"]');
+
+    questionGroupSearchElements.forEach(questionGroupSearchElement => {
+        questionGroupSearchElement.addEventListener("click",(e)=>{
+            let dataIndex = e.currentTarget.getAttribute('data-index');
+            let suffix = dataIndex.split('-')[1];
+            let questionGroup = listQuestionGroupSearch[suffix];
+            console.log("questionGroup clicked Data: ",questionGroup);
+            let htmlQuestionList=questionGroup.questionList.map((question,idxQuestion)=>{
+                let htmlAnsList =  question.answerList.map((answer,idxAnswer)=>{
+                    return `
+                        <div class="answer-group">
+                            <input type="radio" name="correctAnswer-${question.id}-${idxAnswer}" value="" ${answer.isCorrect?'checked':''}>
+                            <label for="answerInput0-1">${String.fromCharCode(idxAnswer+65)}</label>
+                            <input type="text" name="answer1-A" value="${answer.answer}">
+                        </div>
+                    `;
+                }).join('');
+                return `
+                    <div class="question-answer__container">
+                        <div class="question">
+                            <input type="text" name="questionInput2" placeholder="Question" value="${question.question}">
+                        </div>
+                        <div class="answer">
+                            ${htmlAnsList}                            
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            let htmlResourceAudio='',htmlResourceImg='';
+            questionGroup.resourceList.map((resourceDetail,idxResource)=>
+            {
+                if(resourceDetail.resourceType=='audio')
+                    htmlResourceAudio+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                            <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
+                        </div>
+                    `;
+                if(resourceDetail.resourceType=='image')
+                    htmlResourceImg+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <div class="resource__item--upload-img" style="background-image: url(&quot;${resourceDetail.resourceContent}&quot;); background-size: cover;">
+                                
+                            </div>
+                        </div>
+                    `;
+            }).join('');
+            let qsClickedElement=document.querySelector(`div[data-index="QuestionGroup-${qsAddNow}"]`);
+            qsClickedElement.querySelector(".day-box__content").innerHTML=
+                `
+                    <div class="day-box__content--container d-flex" style="gap: 10px;">
+                        <div class="question-answer d-flex justify-content-between align-self-center">
+                            ${htmlQuestionList}
+                        </div>
+                        <div class="resource d-flex" style="gap: 10px;">
+                            ${htmlResourceAudio}
+                            ${htmlResourceImg}
+
+                        </div>
+                    </div>
+                `;
+            listQuestionGroup = listQuestionGroup.filter(item => item !== mapQuestionGroup[qsAddNow]);
+            mapQuestionGroup[qsAddNow]=parseInt(suffix);
+            listQuestionGroup.push(parseInt(suffix))
+            console.log(mapQuestionGroup);
+            document.getElementById('searchBtn').click();
+        })
+    });
+}
+
+async function addQuestionGroupForExam()
+{
+    let questionGroupListRequest=[];
+    for (let key in mapQuestionGroup) {
+        if (mapQuestionGroup[key]) {
+            questionGroupListRequest.push(
+                {
+                    idQuestionGroup: mapQuestionGroup[key],
+                    orderOfQuestionGroup: parseInt(key)
+                }
+            )
+        }
+    }
+    console.log("list question group id request for exam: ",questionGroupListRequest);
+    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}?type=part4`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
+    console.log("render Question: ",response.data);
+    if (response.status >= 200 && response.status < 300) {
+        window.location.href="/admin/exams/"+idExam+"/part4";
+    }
 }

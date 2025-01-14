@@ -25,7 +25,7 @@ btnLogin.addEventListener("click",(e)=>{
             localStorage.setItem("access_token",JSON.parse(xhr.response).data['access_token']);
             localStorage.setItem("refresh_token",JSON.parse(xhr.response).data['refresh_token']);
 
-            window.location="/home";
+            window.location="/admin/vocabulary";
 
         } else {
             alert("Thông tin tài khoản không chính xác");

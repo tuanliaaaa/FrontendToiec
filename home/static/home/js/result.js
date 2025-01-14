@@ -17,7 +17,7 @@ async function renResultPage(){
     console.log("render History: ",response.data);
     if (response.status >= 200 && response.status < 300) {
         questionGroupTotal=response.data.data.questionGroups.length;
-        let resultHtml ="", answerResultHtml="";
+        let resultHtml ="", answerResultHtml="",grqs=0;
         response.data.data.questionGroups.map((item,index)=>{
             let attachmentsHtml = '',
                 answersHtml = '';
@@ -42,6 +42,7 @@ async function renResultPage(){
             }
 
             item.questionList.forEach((question, indexQuestion) => {
+                grqs++;
                 let answerItemsHtml = '';
                 let answerResultItemHtml=``;
                 let checkSelected = false;
@@ -60,7 +61,7 @@ async function renResultPage(){
                     <div class="list-question__item" data-index="${index}">
                         <div class="item__left">
                             <img src="${!checkSelected?'/static/home/img/icons/warning_c.png':(question.isCorrect?'/static/home/img/icons/check.png':'/static/home/img/icons/close.png')}">
-                            <span>Câu ${indexQuestion+1}</span>
+                            <span>Câu ${grqs}</span>
                         </div>
                         <div class="item__right">
                             ${answerResultItemHtml}

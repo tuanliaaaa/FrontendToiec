@@ -12,11 +12,58 @@ async function renPageQuestionGroupDetail()
     let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/${idQuestionGroup}`,localStorage.getItem("access_token"));
     console.log("render Question: ",response.data);
     if (response.status >= 200 && response.status < 300) {
-        let questionGroupData= response.data.data;
+        
+        let htmlQuestionGroup = response.data.data.questionList.map((questionItem,indexQuestion)=>{
+            let htmlAnswerList = questionItem.answerList.map((answer,indexAnswerList)=>{
+                return `
+                    <div class="answer-group">
+                        <input type="radio" name="correctAnswer1" ${answer.isCorrect?'checked':''}>
+                        <label>${String.fromCharCode(indexAnswerList+65)}</label>
+                        <input type="text" name="answer1-A" value="${answer.answer}">
+                    </div>
+                `;
+            }).join('');
+            
+            return ` 
+                <div class="question-answer__container">
+                    <div class="question">
+                        <input type="text" name="questionInput1" placeholder="Question" value="${questionItem.question}">
+                    </div>
+                    <div class="answer">
+                        ${htmlAnswerList}
+                    </div>
+                </div>
+            `;
+        }).join('');
+                               
+
+        let htmlResourceImg =``,htmlResourceAudio=``;
+        response.data.data.resourceList.forEach((resourceDetail,indexResourceDetail)=>{
+            if(resourceDetail.resourceType=='audio')
+                htmlResourceAudio+=`
+                    <div class="resource__item">
+                        <div class="resource__item--upload-audio">
+                            Upload Audio
+                        </div>
+                        <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                        <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
+                    </div>
+                `;
+            if(resourceDetail.resourceType=='image')
+                htmlResourceImg+=`
+                     <div class="resource__item" >
+                        <div class="resource__item--upload-img" style="background-image: url(&quot;${resourceDetail.resourceContent}&quot;); background-size: cover;">
+                            
+                        </div>
+                        <input type="file" name="upload-img" accept="image/*" class="no-active">
+                    </div>
+                `;
+        })
+       
         let htmlResource = ``; 
         document.getElementById('questionGroup').innerHTML=`
             <div class="containner__title align-items-center" style="gap: 10px;">
-                <h2 class="part__title">Part 1</h2>
+                <h2 class="part__title"></h2>
             </div>
             <div class="study-plan">
                 <div class="day-box">
@@ -34,48 +81,11 @@ async function renPageQuestionGroupDetail()
                     <div class="day-box__content active">
                         <div class="day-box__content--container d-flex" style="gap: 10px;">
                             <div class="question-answer d-flex justify-content-between align-self-center">
-                                <div class="question-answer__container">
-                                    <div class="question">
-                                        <input type="text" name="questionInput1" placeholder="Question" value="${questionGroupData.questionList[0].explanation}">
-                                    </div>
-                                    <div class="answer">
-                                        <div class="answer-group">
-                                            <input type="radio" name="correctAnswer1">
-                                            <label for="answerInput1-1">A</label>
-                                            <input type="text" name="answer1-A">
-                                        </div>
-                                        <div class="answer-group">
-                                            <input type="radio" name="correctAnswer1">
-                                            <label for="answerInput1-2">B</label>
-                                            <input type="text" name="answer1-B">
-                                        </div>
-                                        <div class="answer-group">
-                                            <input type="radio" name="correctAnswer1">
-                                            <label for="answerInput1-3">C</label>
-                                            <input type="text" name="answer1-C">
-                                        </div>
-                                        <div class="answer-group">
-                                            <input type="radio" name="correctAnswer1">
-                                            <label for="answerInput1-4">D</label>
-                                            <input type="text" name="answer1-D">
-                                        </div>
-                                    </div>
-                                </div>
+                                ${htmlQuestionGroup}
                             </div>
                             <div class="resource d-flex" style="gap: 10px;">
-                                <div class="resource__item" style="flex: 50%;">
-                                    <div class="resource__item--upload-img" style="background-image: url(&quot;https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png&quot;); background-size: cover;">
-                                        
-                                    </div>
-                                    <input type="file" name="upload-img" accept="image/*" class="no-active">
-                                </div>
-                                <div class="resource__item" style="flex: 50%;">
-                                    <div class="resource__item--upload-audio">
-                                        Upload Audio
-                                    </div>
-                                    <input type="file" name="upload-audio" accept="audio/*" class="no-active">
-                                    <audio controls="" src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
-                                </div>
+                                 ${htmlResourceImg}
+                                ${htmlResourceAudio}
                             </div>
                         </div>
                     </div>
@@ -92,7 +102,7 @@ function renHtmlQuestionGroupForFirst()
                 <div class="divleft"></div>
                 <div class="navbar__menu">
                     <div class="menu-item active">
-                        <a href="/admin/dashboard">Thống kê</a>
+                        <a href="/admin/questiongroups">Quản lý câu hỏi</a>
                     </div>
                     <div class="menu-item">
                         <a href="/admin/exams">Quản lý đề thi</a>
@@ -102,7 +112,7 @@ function renHtmlQuestionGroupForFirst()
                     </div>
 
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">

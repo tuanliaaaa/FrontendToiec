@@ -1,7 +1,8 @@
 let idLesson = window.location.href.substring(window.location.href.lastIndexOf("/") + 1);
-let mainElement = document.getElementById("main");
+let mainElement = document.getElementById("main")
+let listQuestionGroup=[],listQuestionGroupSearch=[],qsAddNow=1,
+mapQuestionGroup={},questionGroupCount=0,listQuestionGroupPost=[];
 async function start(){
-
     let checkAuth = await checkAccount("ROLE_ADMIN");
     if(checkAuth)renPageGrammar();
 }
@@ -192,7 +193,9 @@ function renHtmlForGrammarPageFirst()
                                 </div>
                                 <div id="search">  
                                     <div class="searchHeader d-flex">
-                                        
+                                        <div class="group-btn ">
+                                            <button class="btn btn-save" id="AddQuestionGroup">Add</button>
+                                        </div>
                                     </div>
                                     <div class="searchBody day-box">
                                         <div class="condition d-flex ">
@@ -261,13 +264,19 @@ async function renPageGrammar()
     renEventListenerForQuestionPage();
 }
 async function updateLesson() {
-    let formData = new FormData();
-    let fileInput = document.getElementById("uploadFile");
-    if (fileInput.files.length > 0)formData.append("file", fileInput.files[0]); 
-    formData.append("grammar", JSON.stringify({nameLesson: document.getElementById("topicInput").value}));
-    console.log(formData);
-    let response = await patchFromData("http://127.0.0.1:8080/api/v1/roadmaps/grammars/"+idLesson,localStorage.getItem("access_token"),formData)
-    alert("edit done");
+    if(document.getElementById('theory').classList.contains("nondisplay"))
+    {
+        addQuestionGroupForLesson();
+    }else{
+
+        let formData = new FormData();
+        let fileInput = document.getElementById("uploadFile");
+        if (fileInput.files.length > 0)formData.append("file", fileInput.files[0]); 
+        formData.append("grammar", JSON.stringify({nameLesson: document.getElementById("topicInput").value}));
+        console.log(formData);
+        let response = await patchFromData("http://127.0.0.1:8080/api/v1/roadmaps/grammars/"+idLesson,localStorage.getItem("access_token"),formData)
+        alert("edit done");
+    }
 }
 
 
@@ -276,28 +285,71 @@ function renEventListenerForQuestionPage()
     //Move Tab
     let buttonNavTabList = document.querySelectorAll('button[data-index^="navbar-"]');
     buttonNavTabList.forEach(buttonNavTab=>{
-        buttonNavTab.addEventListener("click",(e)=>{
+        buttonNavTab.addEventListener("click",async(e)=>{
             document.querySelector('button[data-index^="navbar-"].active').classList.remove("active")
             e.currentTarget.classList.add('active');
             let dataIndex = e.currentTarget.getAttribute('data-index');
             let suffix = dataIndex.split('-')[1];
+            if(suffix=="exercise")
+            {
+                let responseExcercise = await getAjax(`http://127.0.0.1:8080/api/v1/roadmaps/grammas/${idLesson}/excercise`);
+                console.log("render responseExcercise: ",responseExcercise);
+                if (responseExcercise.status >= 200 && responseExcercise.status < 300) {
+                    let htmlQs= responseExcercise.data.data.map((questionGroup,idxQuestionGroup)=>{
+                        questionGroupCount++;
+                        let htmlAns = questionGroup.answerList;
+                        return `
+                           <div class="day-box" data-index="QuestionGroup-${questionGroupCount}" onclick="clickSelectedQuestionNow(this)">
+                                <div class="day-box__header d-flex justify-content-between align-items-center">
+                                    <p>Question ${questionGroupCount}</p>
+                                    <div class="group-btn">
+                                        <button class="btn btn-clear">Clear</button>
+                                        <button class="btn btn-collapse">
+                                            <svg class="svg-inline--fa fa-minus" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"></path></svg><!-- <i class="fa-solid fa-minus"></i> Font Awesome fontawesome.com -->
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="day-box__content active">
+                                    <div class="day-box__content--container d-flex" style="gap: 10px;">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                   document.getElementById("studyPlan").innerHTML=htmlQs;
+                }
+            }
             document.querySelector('div[data-nav^="navbar-"]:not(.nondisplay)').classList.add("nondisplay");
             document.querySelector(`div[data-nav="navbar-${suffix}"]`).classList.remove("nondisplay");
 
         })
     })
 
-    // Add Event click to div question group exam
-    let questionGroupElements = document.querySelectorAll('div[data-index^="QuestionGroup-"]');
+    
 
-    questionGroupElements.forEach(questionGroupElement => {
-        questionGroupElement.addEventListener("click",(e)=>{
-            let dataIndex = e.currentTarget.getAttribute('data-index');
-            let suffix = dataIndex.split('-')[1];
-            document.getElementById("qgNowSeach").innerText="Câu "+suffix;
-            qsAddNow= parseInt(suffix);
-        })
-    });
+    // AddQuestin Elemt to list show
+    document.getElementById("AddQuestionGroup").addEventListener("click",()=>{
+        questionGroupCount++;
+        document.getElementById("studyPlan").insertAdjacentHTML("beforeend", 
+            `
+                <div class="day-box" data-index="QuestionGroup-${questionGroupCount}" onclick="clickSelectedQuestionNow(this)">
+                    <div class="day-box__header d-flex justify-content-between align-items-center">
+                        <p>Question ${questionGroupCount}</p>
+                        <div class="group-btn">
+                            <button class="btn btn-clear">Clear</button>
+                            <button class="btn btn-collapse">
+                                <svg class="svg-inline--fa fa-minus" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"></path></svg><!-- <i class="fa-solid fa-minus"></i> Font Awesome fontawesome.com -->
+                            </button>
+                        </div>
+                    </div>
+                    <div class="day-box__content active">
+                        
+                    </div>
+                </div>
+            `
+        );
+    })
 
 
     eventForBtnQGDetail();
@@ -305,12 +357,12 @@ function renEventListenerForQuestionPage()
 
     //Search Question Group
     document.getElementById('searchBtn').addEventListener("click",async ()=>{
-        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=10&type=part1`,localStorage.getItem("access_token"));
+        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=10&type=type`,localStorage.getItem("access_token"));
         console.log("render Question: ",response.data);
         if (response.status >= 200 && response.status < 300) {
             let htmlQuestionGroups = response.data.data.map((questionGroup,indexQuestionGroup)=>{
             let htmlQuetion = questionGroup.questionList.map((question,indexQuestion)=>{
-                    return `<li>${question.explanation}</li>`
+                    return `<li>${question.question}</li>`
                 }).join('');
                 listQuestionGroupSearch[questionGroup.id]=questionGroup;
                 return !listQuestionGroup.includes(questionGroup.id)?`
@@ -340,52 +392,35 @@ function renEventListenerForSearch()
             let questionGroup = listQuestionGroupSearch[suffix];
             console.log("questionGroup clicked Data: ",questionGroup);
             let qsClickedElement=document.querySelector(`div[data-index="QuestionGroup-${qsAddNow}"]`);
+            console.log(qsAddNow,qsClickedElement);
+            let htmlQsAddToShow = questionGroup.questionList.map((questionItem,idxQuestion)=>
+            {
+                let htmlAnsToShow =questionItem.answerList.map((ansItem,idxAnswer)=>
+                {
+                    return `
+                        <div class="answer-group">
+                            <input type="radio" name="correctAnswer0" value="1" ${ansItem.isCorrect?'checked':''}>
+                            <label for="answerInput0-${idxAnswer+1}">${String.fromCharCode(idxAnswer+65)}</label>
+                            <input type="text" name="answer${idxAnswer+1}-${String.fromCharCode(idxAnswer+65)}" value="${ansItem.answer}">
+                        </div>
+                    `;
+                }).join('');
+                return `
+                    <div class="question-answer__container">
+                        <div class="question">
+                            <input type="text" name="questionInput2" placeholder="Question" value="${questionItem.question}">
+                        </div>
+                        <div class="answer">
+                            ${htmlAnsToShow}
+                        </div>
+                    </div>
+                `;
+            }).join('');
             qsClickedElement.querySelector(".day-box__content").innerHTML=
-                `
+            `
                     <div class="day-box__content--container d-flex" style="gap: 10px;">
                         <div class="question-answer d-flex justify-content-between align-self-center">
-                            <div class="question-answer__container">
-                                <div class="question">
-                                    <input type="text" name="questionInput2" placeholder="Question" value="${questionGroup.questionList[0].explanation}">
-                                </div>
-                                <div class="answer">
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="1" checked="">
-                                    <label for="answerInput0-1">A</label>
-                                    <input type="text" name="answer1-A" value="A. She’s eating in a picnic area">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="2">
-                                    <label for="answerInput0-2">B</label>
-                                    <input type="text" name="answer1-B" value="B. She’s waiting in line at a food truck">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="3">
-                                    <label for="answerInput0-3">C</label>
-                                    <input type="text" name="answer1-C" value="C. She’s wiping off a bench.">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="4">
-                                    <label for="answerInput0-4">D</label>
-                                    <input type="text" name="answer1-D" value="D. She’s throwing away a plate.">
-                                </div>
-                                       
-                            </div>
-                            </div>
-                        </div>
-                        <div class="resource d-flex" style="gap: 10px;">
-                                
-                        <div class="resource__item" style="flex: 50%;">
-                            <div class="resource__item--upload-img" style="background-image: url(&quot;https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png&quot;); background-size: cover;">
-                                
-                            </div>
-                        </div>
-                    
-                                
-                        <div class="resource__item" style="flex: 50%;">
-                            <audio controls="" src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
-                        </div>
-                    
+                           ${htmlQsAddToShow}
                         </div>
                     </div>
                 `;
@@ -394,6 +429,34 @@ function renEventListenerForSearch()
             listQuestionGroup.push(parseInt(suffix))
             console.log(mapQuestionGroup);
             document.getElementById('searchBtn').click();
+            console.log("listQuestionGroup: ",listQuestionGroup);
         })
     });
+}
+function clickSelectedQuestionNow(e)
+{
+    let dataIndex = e.getAttribute('data-index');
+    let suffix = dataIndex.split('-')[1];
+    document.getElementById("qgNowSeach").innerText="Câu "+suffix;
+    qsAddNow= parseInt(suffix);
+ 
+}
+
+async function addQuestionGroupForLesson()
+{
+    let questionGroupListRequest=[];
+    listQuestionGroup.forEach((item,index)=>{
+        questionGroupListRequest.push(
+            {
+                idQuestionGroup: item,
+                orderOfQuestionGroup: index+1
+            }
+        )
+    })
+    console.log("list question group id request for exam: ",questionGroupListRequest);
+    let response = await postAjax(`http://127.0.0.1:8080/api/v1/roadmaps/${idLesson}/excercise`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
+    console.log("render Question: ",response.data);
+    if (response.status >= 200 && response.status < 300) {
+        window.location.href="/admin/lessons/"+idLesson;
+    }
 }

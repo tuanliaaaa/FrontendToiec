@@ -50,6 +50,9 @@ async function renPageQuestion()
                                 </button>
                             </div>
                         </div>
+                        <div class="day-box__content active">
+                    
+                        </div>
                     </div>
                 `;
                 indexNow++;
@@ -157,7 +160,7 @@ function renHtmlFirstQuestion(){
                     </div>
     
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">
@@ -284,56 +287,60 @@ function renEventListenerForSearch()
             let suffix = dataIndex.split('-')[1];
             let questionGroup = listQuestionGroupSearch[suffix];
             console.log("questionGroup clicked Data: ",questionGroup);
-            let qsClickedElement=document.querySelector(`div[data-index="QuestionGroup-${qsAddNow}"]`);
-            qsClickedElement.querySelector(".day-box__content").innerHTML=
-                `
-                    <div class="day-box__content--container d-flex" style="gap: 10px;">
-                        <div class="question-answer d-flex justify-content-between align-self-center">
-                            <div class="question-answer__container">
-                                <div class="question">
-                                    <input type="text" name="questionInput2" placeholder="Question" value="${questionGroup.questionList[0].explanation}">
-                                </div>
-                                <div class="answer">
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="1" checked="">
-                                    <label for="answerInput0-1">A</label>
-                                    <input type="text" name="answer1-A" value="A. She’s eating in a picnic area">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="2">
-                                    <label for="answerInput0-2">B</label>
-                                    <input type="text" name="answer1-B" value="B. She’s waiting in line at a food truck">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="3">
-                                    <label for="answerInput0-3">C</label>
-                                    <input type="text" name="answer1-C" value="C. She’s wiping off a bench.">
-                                </div>
-                                    <div class="answer-group">
-                                    <input type="radio" name="correctAnswer0" value="4">
-                                    <label for="answerInput0-4">D</label>
-                                    <input type="text" name="answer1-D" value="D. She’s throwing away a plate.">
-                                </div>
-                                       
-                            </div>
-                            </div>
+            let htmlQuestionList=questionGroup.questionList.map((question,idxQuestion)=>{
+                let htmlAnsList =  question.answerList.map((answer,idxAnswer)=>{
+                    return `
+                        <div class="answer-group">
+                            <input type="radio" name="correctAnswer0" value="1" ${answer.isCorrect?'checked':''}>
+                            <label for="answerInput0-1">A</label>
+                            <input type="text" name="answer1-A" value="${answer.answer}">
                         </div>
-                        <div class="resource d-flex" style="gap: 10px;">
-                                
-                        <div class="resource__item" style="flex: 50%;">
-                            <div class="resource__item--upload-img" style="background-image: url(&quot;https://api.scandict.com/uploads/images/74_1_65c0a3d443c75.png&quot;); background-size: cover;">
-                                
-                            </div>
+                    `;
+                }).join('');
+                return `
+                    <div class="question-answer__container">
+                        <div class="question">
+                            <input type="text" name="questionInput2" placeholder="Question" value="${question.question}">
                         </div>
-                    
-                                
-                        <div class="resource__item" style="flex: 50%;">
-                            <audio controls="" src="https://api.scandict.com/uploads/audios/74_1_65c0a3d72febd.mp3" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
-                        </div>
-                    
+                        <div class="answer">
+                            ${htmlAnsList}                            
                         </div>
                     </div>
                 `;
+            }).join('');
+            let htmlResourceAudio='',htmlResourceImg='';
+            questionGroup.resourceList.map((resourceDetail,idxResource)=>
+            {
+                if(resourceDetail.resourceType=='audio')
+                    htmlResourceAudio+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                            <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
+                        </div>
+                    `;
+                if(resourceDetail.resourceType=='image')
+                    htmlResourceImg+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <div class="resource__item--upload-img" style="background-image: url(&quot;${resourceDetail.resourceContent}&quot;); background-size: cover;">
+                                
+                            </div>
+                        </div>
+                    `;
+            }).join('');
+            let qsClickedElement=document.querySelector(`div[data-index="QuestionGroup-${qsAddNow}"]`);
+            qsClickedElement.querySelector(".day-box__content").innerHTML=
+            `
+                <div class="day-box__content--container d-flex" style="gap: 10px;">
+                    <div class="question-answer d-flex justify-content-between align-self-center">
+                        ${htmlQuestionList}
+                    </div>
+                    <div class="resource d-flex" style="gap: 10px;">
+                        ${htmlResourceImg}
+                        ${htmlResourceAudio}
+
+                    </div>
+                </div>
+            `;
             listQuestionGroup = listQuestionGroup.filter(item => item !== mapQuestionGroup[qsAddNow]);
             mapQuestionGroup[qsAddNow]=parseInt(suffix);
             listQuestionGroup.push(parseInt(suffix))
@@ -357,7 +364,7 @@ async function addQuestionGroupForExam()
         }
     }
     console.log("list question group id request for exam: ",questionGroupListRequest);
-    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
+    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}?type=part1`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
     console.log("render Question: ",response.data);
     if (response.status >= 200 && response.status < 300) {
         window.location.href="/admin/exams/"+idExam+"/part1";

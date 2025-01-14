@@ -3,4 +3,9 @@
 }
 #result .page__content{
     height: calc(100vh - 85px);
+    overflow-y: scroll;
+
+}
+#result .page__content::-webkit-scrollbar {
+    display: none; 
 }

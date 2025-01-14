@@ -51,19 +51,24 @@ async function getAllTopic()
         
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
-                <li>
-                    <a href="/admin/vocabulary/word/${topic.id}" class="section">
-                        <div class="word-learn">
-                            <p class="name">${topic.name}</p>
+                <div class="day-box">
+                    <div class="d-flex spacebetween">
+                        <h2>${topic.name}</h2>
+                        <div class="group-btn">
+                            <button class="btn btn-save" onclick="linkTo('/admin/vocabulary/word/${topic.id}')">Edit</button>
                         </div>
-                    </a>
-                </li>
+                    </div>
+                </div>
             `;
         }).join('');
-        document.getElementById("list-item").innerHTML=topicItemsHtml;
+        document.getElementById("questionGroupList").innerHTML=topicItemsHtml;
     }
 }
 getAllTopic();
 document.querySelector(".AddIcon").addEventListener("click",()=>{
     window.location.href="/admin/vocabulary/add";
 })
+function linkTo(url)
+{
+    window.location.href=url;
+}

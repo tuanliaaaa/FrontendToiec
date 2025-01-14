@@ -246,7 +246,7 @@ async function renPageResult()
                 </div>
                 <div class="page__footer page__footer--success">
                     <div class="footer__action">
-                        <a class="btn btn--continue" href="/result">Xem kết quả</a>
+                        <a class="btn btn--continue" href="/histories/part/${responsePost.data.data.idHistory}">Xem kết quả</a>
                         <a class="btn btn--continue" id="btn-continue" href="/home">Tiếp tục</a>
                         <a class="btn btn--action" href="javascript:location.reload()" id="btn-replay">Làm lại</a>
                     </div>

@@ -141,6 +141,7 @@ async function getHistorieVocabularyOfUser()
     console.log("rensponse from Server Histories :",response.data);
     if (response.status === 200) {
         let data ={};
+        if(response.data.length==0)return {};
         response.data[0]['historyDetails'].forEach(element => {
             data[element.idLessonDetail]=element;
         });

@@ -51,16 +51,21 @@ async function getAllExam()
         
         let topicItemsHtml = response.data.map((topic, index) => {
             return `
-                <li>
-                    <a href="/admin/exams/${topic.idExam}/part1" class="section">
-                        <div class="word-learn">
-                            <p class="name">${topic.examName}</p>
+                <div class="day-box" >
+                    <div class="d-flex spacebetween">
+                        <h2>${topic.examName}</h2>
+                        <div class="group-btn">
+                            <button class="btn btn-save" onclick="linkTo('/admin/exams/${topic.idExam}/part1')">Edit</button>
                         </div>
-                    </a>
-                </li>
+                    </div>
+                </div>
             `;
         }).join('');
-        document.getElementById("list-item").innerHTML=topicItemsHtml;
+        document.getElementById("questionGroupList").innerHTML=topicItemsHtml;
     }
 }
 getAllExam();
+function linkTo(url)
+{
+    window.location.href=url;
+}

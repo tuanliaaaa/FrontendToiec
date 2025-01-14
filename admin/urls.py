@@ -16,7 +16,6 @@ urlpatterns = [
     path('learningpath',LearningPath.as_view()),
     path('learningpath/add',LearningPathAdd.as_view()),
     path('learningpath/<int:idLearningPath>',LearningPathDetail.as_view()),
-    path('dashboard',Dashboard.as_view()),
     path('exams',Exams.as_view()),
     path('exams/<int:id>/<str:part>',ExamDetail.as_view()),
     path('vocabulary/word/<int:id>',VocabularyDetail.as_view()),

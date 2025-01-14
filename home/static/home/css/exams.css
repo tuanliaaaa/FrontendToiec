@@ -1,6 +1,7 @@
 body {
     padding: unset;
     margin: unset;
+    font-family: Nunito Sans, Google Sans, sans-serif;
 }
 
 .page__header {

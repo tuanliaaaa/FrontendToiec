@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -161,4 +161,10 @@ a {
     justify-content: center;
     padding: 0 10px;
     font-size: 14px;
+} */
+#container .container__content{
+    width: 100%;
+}
+.spacebetween{
+    justify-content: space-between;
 }

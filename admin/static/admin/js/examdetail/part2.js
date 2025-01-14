@@ -1,6 +1,36 @@
 let mainElement = document.getElementById("main");
-let part="2",questionTotal=0;
 const idExam = window.location.href.match(/\/exams\/(\d+)\//)[1];
+let qsAddNow=7;
+let mapQuestionGroup={
+    7:null,
+    8:null,
+    9:null,
+    10:null,
+    11:null,
+    12:null,
+    13:null,
+    14:null,
+    15:null,
+    16:null,
+    17:null,
+    18:null,
+    19:null,
+    20:null,
+    21:null,
+    22:null,
+    23:null,
+    24:null,
+    25:null,
+    26:null,
+    27:null,
+    28:null,
+    29:null,
+    30:null,
+    31:null
+};
+let listQuestionGroup=[];
+let listQuestionGroupSearch={};
+let part="2",questionTotal=0;
 let questionPart=25;
 let checkAuth = checkAccount();
 if(checkAuth)renPageQuestion();
@@ -22,17 +52,18 @@ async function renPageQuestion()
             if(indexNowQuestionItems<questionTotal)
             {
                 indexquestionItems = questionItems[indexNowQuestionItems].orderOfQuestionGroup-1;
+                mapQuestionGroup[indexquestionItems+1] = questionItems[indexNowQuestionItems].id;
+                listQuestionGroup.push(questionItems[indexNowQuestionItems].id);
                 indexNowQuestionItems++;
             }
             while(indexquestionItems>indexNow)
             {
                 questionItemsHtml+=`
-                    <div class="day-box">
+                    <div class="day-box" data-index="QuestionGroup-${indexNow+1}">
                         <div class="day-box__header d-flex justify-content-between align-items-center">
                             <p>Question ${indexNow+1}</p>
-                            <div class="group-btn">
+                             <div class="group-btn">
                                 <button class="btn btn-clear">Clear</button>
-                                <button class="btn btn-save">Save</button>
                                 <button class="btn btn-collapse">
                                     <!-- button save -->
                                     <i class="fa-solid fa-minus"></i>
@@ -40,58 +71,18 @@ async function renPageQuestion()
                             </div>
                         </div>
                         <div class="day-box__content active">
-                            <div class="day-box__content--container d-flex" style="gap: 10px;">
-                                <div class="question-answer d-flex justify-content-between align-self-center">
-                                    <div class="question-answer__container">
-                                        <div class="question">
-                                            <input type="text" name="questionInput2" placeholder="Question">
-                                        </div>
-                                        <div class="answer">
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label for="answerInput1-1">A</label>
-                                                <input type="text" name="answer1-A">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label for="answerInput1-2">B</label>
-                                                <input type="text" name="answer1-B">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label for="answerInput1-3">C</label>
-                                                <input type="text" name="answer1-C">
-                                            </div>
-                                            <div class="answer-group">
-                                                <input type="radio" name="correctAnswer1">
-                                                <label for="answerInput1-4">D</label>
-                                                <input type="text" name="answer1-D">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="resource d-flex" style="gap: 10px;">
-                                   
-                                    <div class="resource__item" style="flex: 50%;">
-                                        <div class="resource__item--upload-audio">
-                                            Upload Audio
-                                        </div>
-                                        <input type="file" name="upload-audio" accept="audio/*" class="no-active">
-                                    </div>
-                                </div>
-                            </div>
+                    
                         </div>
                     </div>
                 `;
                 indexNow++;
             }
             questionItemsHtml+=`
-                    <div class="day-box">
+                    <div class="day-box" data-index="QuestionGroup-${indexNow+1}">
                         <div class="day-box__header d-flex justify-content-between align-items-center">
                             <p>Question ${indexNow+1}</p>
                             <div class="group-btn">
                                 <button class="btn btn-clear">Clear</button>
-                                <button class="btn btn-save">Save</button>
                                 <button class="btn btn-collapse">
                                     <!-- button save -->
                                     <i class="fa-solid fa-minus"></i>
@@ -123,9 +114,7 @@ async function renPageQuestion()
                 if(resourceDetail.resourceType=='audio')
                     htmlResourceAudio+=`
                         <div class="resource__item" style="flex: 50%;">
-                            <div class="resource__item--upload-audio">
-                                Upload Audio
-                            </div>
+                            
                             <input type="file" name="upload-audio" accept="audio/*" class="no-active">
                             <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
                         </div>
@@ -157,12 +146,11 @@ async function renPageQuestion()
         for(let i =indexNow;i<questionPart+6;i++)
         {
             questionItemsHtml+=`
-            <div class="day-box">
+            <div class="day-box" data-index="QuestionGroup-${i+1}">
                 <div class="day-box__header d-flex justify-content-between align-items-center">
                     <p>Question ${i+1}</p>
                     <div class="group-btn">
                         <button class="btn btn-clear">Clear</button>
-                        <button class="btn btn-save">Save</button>
                         <button class="btn btn-collapse">
                             <!-- button save -->
                             <i class="fa-solid fa-minus"></i>
@@ -170,46 +158,7 @@ async function renPageQuestion()
                     </div>
                 </div>
                 <div class="day-box__content active">
-                    <div class="day-box__content--container d-flex" style="gap: 10px;">
-                        <div class="question-answer d-flex justify-content-between align-self-center">
-                            <div class="question-answer__container">
-                                <div class="question">
-                                    <input type="text" name="questionInput2" placeholder="Question" >
-                                </div>
-                                <div class="answer">
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-1">A</label>
-                                        <input type="text" name="answer1-A">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-2">B</label>
-                                        <input type="text" name="answer1-B">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-3">C</label>
-                                        <input type="text" name="answer1-C">
-                                    </div>
-                                    <div class="answer-group">
-                                        <input type="radio" name="correctAnswer1">
-                                        <label for="answerInput1-4">D</label>
-                                        <input type="text" name="answer1-D">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resource d-flex" style="gap: 10px;">
-                            
-                            <div class="resource__item" style="flex: 50%;">
-                                <div class="resource__item--upload-audio">
-                                    Upload Audio
-                                </div>
-                                <input type="file" name="upload-audio" accept="audio/*" class="no-active">
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         `;
@@ -217,6 +166,7 @@ async function renPageQuestion()
 
         document.getElementById('studyPlan').innerHTML += questionItemsHtml;
     }
+    console.log(mapQuestionGroup);
     renEventListenerForQuestionPage();
 }
 
@@ -237,7 +187,7 @@ function renHtmlFirstQuestion(){
                     </div>
     
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">
@@ -262,17 +212,40 @@ function renHtmlFirstQuestion(){
             </div>
     
             <div class="container__content">
-                <div class="main-content">
-                    <div class="containner__title align-items-center" style="gap: 10px;">
-                        <h2 class="part1__title">Part 1</h2>
-                        <div class="question-quantity">
-                            <p>Question:
-                                <span>0/25</span>
-                            </p>
+                <div class="main-content d-flex">
+                    <div class="main-content-qsl">
+                        <div class="containner__title align-items-center" style="gap: 10px;">
+                            <h2 class="part1__title">Part 2</h2>
+                            <div class="question-quantity">
+                                <p>Question:
+                                    <span>0/25</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="study-plan" id="studyPlan" >
+                            
                         </div>
                     </div>
-                    <div class="study-plan" id="studyPlan" >
-                        
+                    <div id="search" >  
+                        <div class="searchHeader d-flex">
+                            <div class="group-btn ">
+                                <button class="btn btn-save" onclick="addQuestionGroupForExam()">Save</button>
+                            </div>
+                        </div>
+                        <div class="searchBody day-box">
+                            <div class="condition d-flex ">
+                                <div class="d-flex align-items-center">
+                                    <h1 id="qgNowSeach">Câu 7</h1>
+                                </div>
+                                <div class="condition__search">
+                                    <input type="text" placeholder="Tìm kiếm" id="searchQuestion">
+                                    <button id="searchBtn"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --></button>
+                                </div>
+                            </div>
+                            <div id="lstSearchItem">
+                            
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,116 +259,138 @@ function renEventListenerForQuestionPage()
     const questionQuantity = document.querySelector('.question-quantity span');
     const questionContainers = document.querySelectorAll('.question-answer__container[id]');
     questionQuantity.textContent = questionTotal + '/' + questionPart;
-    // Add and Preview Audio
-document.querySelectorAll('.resource__item').forEach(item => {
-    console.log(item);
-    // upload image
-    const uploadImg = item.querySelector('.resource__item--upload-img');
-    if (uploadImg) {
-        const inputImg = item.querySelector('input[name="upload-img"]');
-        const uploadImgText = uploadImg;
+    // Add Event click to div question group exam
+    let questionGroupElements = document.querySelectorAll('div[data-index^="QuestionGroup-"]');
 
-        inputImg.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const objectURL = URL.createObjectURL(file);
-                uploadImg.style.backgroundImage = `url(${objectURL})`; // Sử dụng URL ảo thay vì kết quả đọc từ FileReader
-                uploadImg.style.backgroundSize = 'cover';
-                uploadImgText.textContent = '';
-            }
-        });
-
-        uploadImg.addEventListener('click', () => {
-            inputImg.click();
-        });
-    };
+    questionGroupElements.forEach(questionGroupElement => {
+        questionGroupElement.addEventListener("click",(e)=>{
+            let dataIndex = e.currentTarget.getAttribute('data-index');
+            let suffix = dataIndex.split('-')[1];
+            document.getElementById("qgNowSeach").innerText="Câu "+suffix;
+            qsAddNow= parseInt(suffix);
+        })
+    });
 
 
-    // upload audio
-    const uploadAudio = item.querySelector('.resource__item--upload-audio');
-    if (uploadAudio) {
-        const inputAudio = item.querySelector('input[name="upload-audio"]');
+    eventForBtnQGDetail();
 
-        uploadAudio.addEventListener('click', () => {
-            inputAudio.click();
-        });
-        console.log('uploadAudio', uploadAudio);
 
-        inputAudio.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function () {
-                    const result = reader.result;
-                    const audio = document.createElement('audio');
-                    audio.setAttribute('controls', '');
-                    audio.setAttribute('src', result);
+    //Search Question Group
+    document.getElementById('searchBtn').addEventListener("click",async ()=>{
+        let response = await getAjax(`http://127.0.0.1:8080/api/v1/questiongroups/search?value=${document.getElementById('searchQuestion').value}&size=31&type=part2`,localStorage.getItem("access_token"));
+        console.log("render Question: ",response.data);
+        if (response.status >= 200 && response.status < 300) {
+            let htmlQuestionGroups = response.data.data.map((questionGroup,indexQuestionGroup)=>{
+            let htmlQuetion = questionGroup.questionList.map((question,indexQuestion)=>{
+                    return `<li>${question.question}</li>`
+                }).join('');
+                listQuestionGroupSearch[questionGroup.id]=questionGroup;
+                return !listQuestionGroup.includes(questionGroup.id)?`
+                    <div class="itemSearch" data-index="itemSearch-${questionGroup.id}">
+                        <div>
+                            <h2>Câu ${indexQuestionGroup+1}</h2>
+                        </div>
+                        <ul>
+                            ${htmlQuetion}
+                        </ul>
+                    </div>
+                `:'';
+            }).join('');
+            document.getElementById('lstSearchItem').innerHTML=htmlQuestionGroups;
+        }
+        renEventListenerForSearch();
+    })
+}
+function renEventListenerForSearch()
+{
+    let questionGroupSearchElements = document.querySelectorAll('div[data-index^="itemSearch-"]');
 
-                    // style audio
-                    audio.style.width = '100%';
-                    audio.style.marginTop = '10px';
-                    audio.style.borderRadius = '12px';
+    questionGroupSearchElements.forEach(questionGroupSearchElement => {
+        questionGroupSearchElement.addEventListener("click",(e)=>{
+            let dataIndex = e.currentTarget.getAttribute('data-index');
+            let suffix = dataIndex.split('-')[1];
+            let questionGroup = listQuestionGroupSearch[suffix];
+            console.log("questionGroup clicked Data: ",questionGroup);
+            let htmlQuestionList=questionGroup.questionList.map((question,idxQuestion)=>{
+                let htmlAnsList =  question.answerList.map((answer,idxAnswer)=>{
+                    return `
+                        <div class="answer-group">
+                            <input type="radio" name="correctAnswer0" value="1" ${answer.isCorrect?'checked':''}>
+                            <label for="answerInput0-1">A</label>
+                            <input type="text" name="answer1-A" value="${answer.answer}">
+                        </div>
+                    `;
+                }).join('');
+                return `
+                    <div class="question-answer__container">
+                        <div class="question">
+                            <input type="text" name="questionInput2" placeholder="Question" value="${question.question}">
+                        </div>
+                        <div class="answer">
+                            ${htmlAnsList}                            
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            let htmlResourceAudio='',htmlResourceImg='';
+            questionGroup.resourceList.map((resourceDetail,idxResource)=>
+            {
+                if(resourceDetail.resourceType=='audio')
+                    htmlResourceAudio+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                            <audio controls="" src="${resourceDetail.resourceContent}" style="width: 100%; margin-top: 10px; border-radius: 12px;"></audio>
+                        </div>
+                    `;
+                if(resourceDetail.resourceType=='image')
+                    htmlResourceImg+=`
+                        <div class="resource__item" style="flex: 50%;">
+                            <div class="resource__item--upload-img" style="background-image: url(&quot;${resourceDetail.resourceContent}&quot;); background-size: cover;">
+                                
+                            </div>
+                        </div>
+                    `;
+            }).join('');
+            let qsClickedElement=document.querySelector(`div[data-index="QuestionGroup-${qsAddNow}"]`);
+            qsClickedElement.querySelector(".day-box__content").innerHTML=
+                `
+                    <div class="day-box__content--container d-flex" style="gap: 10px;">
+                        <div class="question-answer d-flex justify-content-between align-self-center">
+                            ${htmlQuestionList}
+                        </div>
+                        <div class="resource d-flex" style="gap: 10px;">
+                            ${htmlResourceAudio}
+                            ${htmlResourceImg}
 
-                    // Remove old audio if exists
-                    const existingAudio = item.querySelector('audio');
-                    if (existingAudio) {
-                        existingAudio.remove();
-                    }
+                        </div>
+                    </div>
+                `;
+            listQuestionGroup = listQuestionGroup.filter(item => item !== mapQuestionGroup[qsAddNow]);
+            mapQuestionGroup[qsAddNow]=parseInt(suffix);
+            listQuestionGroup.push(parseInt(suffix))
+            console.log(mapQuestionGroup);
+            document.getElementById('searchBtn').click();
+        })
+    });
+}
 
-                    // append audio to uploadAudio
-                    item.appendChild(audio);
+async function addQuestionGroupForExam()
+{
+    let questionGroupListRequest=[];
+    for (let key in mapQuestionGroup) {
+        if (mapQuestionGroup[key]) {
+            questionGroupListRequest.push(
+                {
+                    idQuestionGroup: mapQuestionGroup[key],
+                    orderOfQuestionGroup: parseInt(key)
                 }
-                reader.readAsDataURL(file);
-            }
-        });
-    };
-
-    // upload docs and preview
-    const uploadDoc = item.querySelector('.resource__item--upload-doc');
-    if (uploadDoc) {
-        const inputDoc = item.querySelector('input[name="upload-doc"]');
-        const previewContainer = item.querySelector('.preview-container') || document.createElement('div');
-        previewContainer.classList.add('preview-container');
-        item.appendChild(previewContainer);
-
-        inputDoc.addEventListener('change', function () {
-            const files = this.files;
-            if (files.length > 0) {
-                // Clear existing preview content
-                previewContainer.innerHTML = '';
-
-                Array.from(files).forEach(file => {
-                    const docxPreview = document.createElement('div');
-                    docxPreview.classList.add('docx-preview');
-                    previewContainer.appendChild(docxPreview);
-
-                    const options = { inWrapper: false, ignoreWidth: true, ignoreHeight: true };
-                    docx.renderAsync(file, docxPreview, null, options)
-                        .then(() => {
-                            console.log("docx: finished");
-
-                            // Apply inline styles to .docx element inside .docx-preview
-                            const docxElement = docxPreview.querySelector('.docx');
-                            if (docxElement) {
-                                docxElement.style.padding = '10px';
-                                docxElement.style.border = '1px solid #ccc';
-                                docxElement.style.borderRadius = '12px';
-                                docxElement.style.marginTop = '8px';
-                            }
-                        })
-                        .catch(err => {
-                            console.error("Error rendering DOCX:", err);
-                        });
-
-                    // Replace "Upload doc" text with file name
-                    uploadDoc.textContent = file.name;
-                });
-            }
-        });
-
-        uploadDoc.addEventListener('click', () => {
-            inputDoc.click();
-        });
+            )
+        }
     }
-});
+    console.log("list question group id request for exam: ",questionGroupListRequest);
+    let response = await postAjax(`http://127.0.0.1:8080/api/v1/exams/${idExam}?type=part2`,JSON.stringify(questionGroupListRequest),localStorage.getItem("access_token"));
+    console.log("render Question: ",response.data);
+    if (response.status >= 200 && response.status < 300) {
+        window.location.href="/admin/exams/"+idExam+"/part2";
+    }
 }

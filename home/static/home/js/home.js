@@ -393,7 +393,7 @@ async function renEvenListenerPageHome()
                         return `
                             <div class="lstHistory">
                                 <div class="lstHistoryDetail">
-                                    <a href="/histories/${his.idHistory}" >
+                                    <a href="/histories/part/${his.idHistory}" >
                                         <p  class="lstHistoryDetail-image">
                                             <img src="/static/home/img/icons/exam.png">
                                         </p>

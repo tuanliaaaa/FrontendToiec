@@ -249,7 +249,7 @@ function renHtmlQuestions()
     return `
         <div class="page-container">
             <div class="page__header">
-                <a class="header__left" id="back-page" href="1">
+                <a class="header__left" id="back-page" href="/home">
                     <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

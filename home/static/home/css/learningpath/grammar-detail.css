@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Nunito Sans, Google Sans, sans-serif;
 }
 #header {
     display: flex;
@@ -58,4 +59,7 @@ body{
 }
 #exercise{
     height: 100%;
+}
+#introduction, #introduction .head {
+    position: relative;
 }

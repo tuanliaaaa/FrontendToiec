@@ -18,7 +18,7 @@ function renHtmlQuestionGroupAddForFirst()
                 <div class="divleft"></div>
                 <div class="navbar__menu">
                     <div class="menu-item active">
-                        <a href="/admin/dashboard">Thống kê</a>
+                        <a href="/admin/questiongroups">Quản lý câu hỏi</a>
                     </div>
                     <div class="menu-item">
                         <a href="/admin/exams">Quản lý đề thi</a>
@@ -28,7 +28,7 @@ function renHtmlQuestionGroupAddForFirst()
                     </div>
 
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">
@@ -128,13 +128,13 @@ function renHtmlQuestionGroupAddForFirst()
                                                     <div class="resource__item--upload-img">
                                                         Upload Image
                                                     </div>
-                                                    <input type="file" name="upload-img" accept="image/*" class="no-active">
+                                                    <input type="file" data-index="resource-part1" name="upload-img" accept="image/*" class="no-active">
                                                 </div>
                                                 <div class="resource__item" style="flex: 50%;">
                                                     <div class="resource__item--upload-audio">
                                                         Upload Audio
                                                     </div>
-                                                    <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                                                    <input type="file" data-index="resource-part1" name="upload-audio" accept="audio/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
@@ -159,7 +159,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part2')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <!-- button save -->
                                                 <i class="fa-solid fa-minus"></i>
@@ -171,23 +171,23 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-part2-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part2-question1-1">
                                                             <label for="answerInput1-1">A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-part2-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part2-question1-2">
                                                             <label for="answerInput1-2">B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-part2-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part2-question1-3">
                                                             <label for="answerInput1-3">C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-part2-question1-3">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,7 +197,7 @@ function renHtmlQuestionGroupAddForFirst()
                                                     <div class="resource__item--upload-audio">
                                                         Upload Audio
                                                     </div>
-                                                    <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                                                    <input type="file" name="upload-audio" data-index="resource-part2" accept="audio/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part3')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -233,84 +233,84 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-part3-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part3-question1-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-part3-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part3-question1-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-part3-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part3-question1-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-part3-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part3-question1-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer1-D">
+                                                            <input type="text" name="answer1-D" data-index="answer-part3-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-part3-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part3-question2-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer2-A">
+                                                            <input type="text" name="answer2-A" data-index="answer-part3-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part3-question2-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer2-B">
+                                                            <input type="text" name="answer2-B" data-index="answer-part3-question2-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part3-question2-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer2-C">
+                                                            <input type="text" name="answer2-C" data-index="answer-part3-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part3-question2-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer2-D">
+                                                            <input type="text" name="answer2-D" data-index="answer-part3-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput3" placeholder="Question">
+                                                        <input type="text" name="questionInput3" placeholder="Question" data-index="question-part3-3">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part3-question3-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer3-A">
+                                                            <input type="text" name="answer3-A" data-index="answer-part3-question3-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part3-question3-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer3-B">
+                                                            <input type="text" name="answer3-B"  data-index="answer-part3-question3-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part3-question3-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer3-C">
+                                                            <input type="text" name="answer3-C"  data-index="answer-part3-question3-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part3-question3-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer3-D">
+                                                            <input type="text" name="answer3-D"  data-index="answer-part3-question3-4">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -321,13 +321,13 @@ function renHtmlQuestionGroupAddForFirst()
                                                     <div class="resource__item--upload-img">
                                                         Upload Image
                                                     </div>
-                                                    <input type="file" name="upload-img" accept="image/*" class="no-active">
+                                                    <input type="file" name="upload-img" data-index="resource-part3" accept="image/*" class="no-active">
                                                 </div>
                                                 <div class="resource__item">
                                                     <div class="resource__item--upload-audio">
                                                         Upload Audio
                                                     </div>
-                                                    <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                                                    <input type="file" name="upload-audio" data-index="resource-part3" accept="audio/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
@@ -346,13 +346,13 @@ function renHtmlQuestionGroupAddForFirst()
 
                             </div>
                             <div class="study-plan">
-            
+                
                                 <div class="day-box">
                                     <div class="day-box__header d-flex justify-content-between align-items-center">
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part4')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -363,107 +363,106 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-part4-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part4-question1-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-part4-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part4-question1-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-part4-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part4-question1-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-part4-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part4-question1-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer1-D">
+                                                            <input type="text" name="answer1-D" data-index="answer-part4-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-part4-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part4-question2-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer2-A">
+                                                            <input type="text" name="answer2-A" data-index="answer-part4-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part4-question2-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer2-B">
+                                                            <input type="text" name="answer2-B" data-index="answer-part4-question2-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part4-question2-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer2-C">
+                                                            <input type="text" name="answer2-C" data-index="answer-part4-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part4-question2-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer2-D">
+                                                            <input type="text" name="answer2-D" data-index="answer-part4-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput3" placeholder="Question">
+                                                        <input type="text" name="questionInput3" placeholder="Question" data-index="question-part4-3">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part4-question3-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer3-A">
+                                                            <input type="text" name="answer3-A" data-index="answer-part4-question3-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part4-question3-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer3-B">
+                                                            <input type="text" name="answer3-B"  data-index="answer-part4-question3-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part4-question3-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer3-C">
+                                                            <input type="text" name="answer3-C"  data-index="answer-part4-question3-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part4-question3-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer3-D">
+                                                            <input type="text" name="answer3-D"  data-index="answer-part4-question3-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                             </div>
-                                            <div class="resource d-flex" style="gap: 10px;flex-direction: column;flex: 50%;">
+                                            <div class="resource d-flex" style="gap: 10px;flex-direction: column; flex: 50%;">
                                                 <div class="resource__item">
                                                     <div class="resource__item--upload-img">
                                                         Upload Image
                                                     </div>
-                                                    <input type="file" name="upload-img" accept="image/*" class="no-active">
+                                                    <input type="file" name="upload-img" data-index="resource-part4" accept="image/*" class="no-active">
                                                 </div>
                                                 <div class="resource__item">
                                                     <div class="resource__item--upload-audio">
                                                         Upload Audio
                                                     </div>
-                                                    <input type="file" name="upload-audio" accept="audio/*" class="no-active">
+                                                    <input type="file" name="upload-audio" data-index="resource-part4" accept="audio/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
 
                         </div>
@@ -482,7 +481,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part5')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -492,28 +491,28 @@ function renHtmlQuestionGroupAddForFirst()
                                         <div class="day-box__content--container d-flex" style="gap: 10px;">
                                             <div class="question-answer d-flex justify-content-between align-self-center">
                                                 <div class="question">
-                                                    <input type="text" id="questionInput1" placeholder="Question 1">
+                                                    <input type="text" id="questionInput1" placeholder="Question 1" data-index="question-part5-1">
                                                 </div>
                                                 <div class="answer">
                                                     <div class="answer-group">
-                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-1">
+                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-1" data-index="isCorrectAnswer-part5-question1-1">
                                                         <label for="answerInput1-1">A</label>
-                                                        <input type="text" id="answerInput1-1">
+                                                        <input type="text" id="answerInput1-1" data-index="answer-part5-question1-1">
                                                     </div>
                                                     <div class="answer-group">
-                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-2">
+                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-2" data-index="isCorrectAnswer-part5-question1-2">
                                                         <label for="answerInput1-2">B</label>
-                                                        <input type="text" id="answerInput1-2">
+                                                        <input type="text" id="answerInput1-2" data-index="answer-part5-question1-2">
                                                     </div>
                                                     <div class="answer-group">
-                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-3">
+                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-3" data-index="isCorrectAnswer-part5-question1-3">
                                                         <label for="answerInput1-3">C</label>
-                                                        <input type="text" id="answerInput1-3">
+                                                        <input type="text" id="answerInput1-3" data-index="answer-part5-question1-3">
                                                     </div>
                                                     <div class="answer-group">
-                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-4">
+                                                        <input type="radio" name="correctAnswer1" id="correctAnswer1-4" data-index="isCorrectAnswer-part5-question1-4">
                                                         <label for="answerInput1-4">D</label>
-                                                        <input type="text" id="answerInput1-4">
+                                                        <input type="text" id="answerInput1-4" data-index="answer-part5-question1--4">
                                                     </div>
                                                 </div>
                                             </div>
@@ -540,7 +539,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part6')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -549,98 +548,126 @@ function renHtmlQuestionGroupAddForFirst()
                                     <div class="day-box__content active">
                                         <div class="day-box__content--container d-flex" style="gap: 10px;">
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
-                                                <div class="question-answer__container">
+                                               <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" id="questionInput1-1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-part6-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part6-question1-1">
                                                             <label>A</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer1-A" data-index="answer-part6-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part6-question1-2">
                                                             <label>B</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer1-B" data-index="answer-part6-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part6-question1-3">
                                                             <label>C</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer1-C" data-index="answer-part6-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part6-question1-4">
                                                             <label>D</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer1-D" data-index="answer-part6-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
-            
+
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" id="questionInput1-2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-part6-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part6-question2-1">
                                                             <label>A</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer2-A" data-index="answer-part6-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part6-question2-2">
                                                             <label>B</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer2-B" data-index="answer-part6-question2-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part6-question2-3">
                                                             <label>C</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer2-C" data-index="answer-part6-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part6-question2-4">
                                                             <label>D</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer2-D" data-index="answer-part6-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
-            
+
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" id="questionInput1-3" placeholder="Question">
+                                                        <input type="text" name="questionInput3" placeholder="Question" data-index="question-part6-3">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part6-question3-1">
                                                             <label>A</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer3-A" data-index="answer-part6-question3-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part6-question3-2">
                                                             <label>B</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer3-B" data-index="answer-part6-question3-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part6-question3-3">
                                                             <label>C</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer3-C" data-index="answer-part6-question3-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1-3">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part6-question3-4">
                                                             <label>D</label>
-                                                            <input type="text">
+                                                            <input type="text" name="answer3-D" data-index="answer-part6-question3-4">
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="question-answer__container">
+                                                    <div class="question">
+                                                        <input type="text" name="questionInput4" placeholder="Question" data-index="question-part6-4">
+                                                    </div>
+                                                    <div class="answer">
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part6-question4-1">
+                                                            <label>A</label>
+                                                            <input type="text" name="answer4-A" data-index="answer-part6-question4-1">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part6-question4-2">
+                                                            <label>B</label>
+                                                            <input type="text" name="answer4-B" data-index="answer-part6-question4-2">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part6-question4-3">
+                                                            <label>C</label>
+                                                            <input type="text" name="answer4-C" data-index="answer-part6-question4-3">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part6-question4-4">
+                                                            <label>D</label>
+                                                            <input type="text" name="answer4-D" data-index="answer-part6-question4-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
             
                                             </div>
                                             <div class="resource d-flex" style="gap: 10px;flex-direction: column;flex: 50%;">
                                                 <div class="resource__item">
-                                                    <div class="resource__item--upload-doc">
-                                                        Upload Doc
+                                                    <div class="resource__item--upload-img">
+                                                        Upload Image
                                                     </div>
-                                                    <input type="file" name="upload-doc" class="no-active" accept=".doc,.docx" />
-                                                    <div class="preview-container"></div>
+                                                    <input type="file" name="upload-img" data-index="resource-part6" accept="image/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
@@ -669,7 +696,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('part7')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -680,70 +707,126 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-part7-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part7-question1-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-part7-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part7-question1-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-part7-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part7-question1-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-part7-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-part7-question1-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer1-D">
+                                                            <input type="text" name="answer1-D" data-index="answer-part7-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
-            
+
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-part7-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part7-question2-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer2-A">
+                                                            <input type="text" name="answer2-A" data-index="answer-part7-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part7-question2-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer2-B">
+                                                            <input type="text" name="answer2-B" data-index="answer-part7-question2-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part7-question2-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer2-C">
+                                                            <input type="text" name="answer2-C" data-index="answer-part7-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-part7-question2-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer2-D">
+                                                            <input type="text" name="answer2-D" data-index="answer-part7-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="question-answer__container">
+                                                    <div class="question">
+                                                        <input type="text" name="questionInput3" placeholder="Question" data-index="question-part7-3">
+                                                    </div>
+                                                    <div class="answer">
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part7-question3-1">
+                                                            <label>A</label>
+                                                            <input type="text" name="answer3-A" data-index="answer-part7-question3-1">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part7-question3-2">
+                                                            <label>B</label>
+                                                            <input type="text" name="answer3-B" data-index="answer-part7-question3-2">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part7-question3-3">
+                                                            <label>C</label>
+                                                            <input type="text" name="answer3-C" data-index="answer-part7-question3-3">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer3" data-index="isCorrectAnswer-part7-question3-4">
+                                                            <label>D</label>
+                                                            <input type="text" name="answer3-D" data-index="answer-part7-question3-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="question-answer__container">
+                                                    <div class="question">
+                                                        <input type="text" name="questionInput4" placeholder="Question" data-index="question-part7-4">
+                                                    </div>
+                                                    <div class="answer">
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part7-question4-1">
+                                                            <label>A</label>
+                                                            <input type="text" name="answer4-A" data-index="answer-part7-question4-1">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part7-question4-2">
+                                                            <label>B</label>
+                                                            <input type="text" name="answer4-B" data-index="answer-part7-question4-2">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part7-question4-3">
+                                                            <label>C</label>
+                                                            <input type="text" name="answer4-C" data-index="answer-part7-question4-3">
+                                                        </div>
+                                                        <div class="answer-group">
+                                                            <input type="radio" name="correctAnswer4" data-index="isCorrectAnswer-part7-question4-4">
+                                                            <label>D</label>
+                                                            <input type="text" name="answer4-D" data-index="answer-part7-question4-4">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
             
                                                 <!-- Add Question and Answer Btn -->
                                                 <button class="btn btn-add-qa">Add Question and Answer</button>
                                             </div>
                                             <div class="resource d-flex" style="gap: 10px;flex-direction: column;flex: 50%;">
-                                                <div class="resource__item">
-                                                    <div class="resource__item--upload-doc">
-                                                        Upload Doc
+                                               <div class="resource__item">
+                                                    <div class="resource__item--upload-img">
+                                                        Upload Image
                                                     </div>
-                                                    <input type="file" name="upload-doc" class="no-active" accept=".doc,.docx" />
-                                                    <div class="preview-container"></div>
+                                                    <input type="file" name="upload-img" data-index="resource-part7" accept="image/*" class="no-active">
                                                 </div>
                                             </div>
                                         </div>
@@ -756,9 +839,9 @@ function renHtmlQuestionGroupAddForFirst()
 
                         <div class="tab-panel" role="tabpanel" id="panel-8" aria-labelledby="tab-8" aria-hidden="true">
                         
-                            <!-- Content of Part 7 -->
+                            <!-- Content of TYpe 1 -->
                             <div class="containner__title align-items-center" style="gap: 10px;">
-                                <h2 class="part__title">Part 8</h2>
+                                <h2 class="part__title">Type 1</h2>
                                 <div class="question-quantity">
                                     <p>Question:
                                         <span>0/5</span>
@@ -772,7 +855,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('type1')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -783,56 +866,56 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-type1-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-type1-question1-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-type1-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-type1-question1-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-type1-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-type1-question1-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-type1-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer1">
+                                                            <input type="radio" name="correctAnswer1" data-index="isCorrectAnswer-type1-question1-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer1-D">
+                                                            <input type="text" name="answer1-D" data-index="answer-type1-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-type1-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-type1-question2-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer2-A">
+                                                            <input type="text" name="answer2-A" data-index="answer-type1-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-type1-question2-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer2-B">
+                                                            <input type="text" name="answer2-B" data-index="answer-type1-question2-2" >
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-type1-question2-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer2-C">
+                                                            <input type="text" name="answer2-C" data-index="answer-type1-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="radio" name="correctAnswer2">
+                                                            <input type="radio" name="correctAnswer2" data-index="isCorrectAnswer-type1-question2-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer2-D">
+                                                            <input type="text" name="answer2-D" data-index="answer-type1-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -850,9 +933,9 @@ function renHtmlQuestionGroupAddForFirst()
 
                         <div class="tab-panel" role="tabpanel" id="panel-9" aria-labelledby="tab-9" aria-hidden="true">
                         
-                            <!-- Content of Part 7 -->
+                            <!-- Content of type 2-->
                             <div class="containner__title align-items-center" style="gap: 10px;">
-                                <h2 class="part__title">Part 9</h2>
+                                <h2 class="part__title">Type 2</h2>
                                 <div class="question-quantity">
                                     <p>Question:
                                         <span>0/5</span>
@@ -866,7 +949,7 @@ function renHtmlQuestionGroupAddForFirst()
                                         <p>Question 1</p>
                                         <div class="group-btn">
                                             <button class="btn btn-clear">Clear</button>
-                                            <button class="btn btn-save">Save</button>
+                                            <button class="btn btn-save" onclick="saveQuestionGroup('type2')">Save</button>
                                             <button class="btn btn-collapse">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -877,56 +960,56 @@ function renHtmlQuestionGroupAddForFirst()
                                             <div class="question-answer d-flex justify-content-between align-self-center" style="flex: 50%;">
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput1" placeholder="Question">
+                                                        <input type="text" name="questionInput1" placeholder="Question" data-index="question-type2-1">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer1">
+                                                            <input type="checkbox" name="correctAnswer1" data-index="isCorrectAnswer-type2-question1-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer1-A">
+                                                            <input type="text" name="answer1-A" data-index="answer-type2-question1-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer1">
+                                                            <input type="checkbox" name="correctAnswer1" data-index="isCorrectAnswer-type2-question1-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer1-B">
+                                                            <input type="text" name="answer1-B" data-index="answer-type2-question1-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer1">
+                                                            <input type="checkbox" name="correctAnswer1" data-index="isCorrectAnswer-type2-question1-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer1-C">
+                                                            <input type="text" name="answer1-C" data-index="answer-type2-question1-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer1">
+                                                            <input type="checkbox" name="correctAnswer1" data-index="isCorrectAnswer-type2-question1-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer1-D">
+                                                            <input type="text" name="answer1-D" data-index="answer-type2-question1-4">
                                                         </div>
                                                     </div>
                                                 </div>
             
                                                 <div class="question-answer__container">
                                                     <div class="question">
-                                                        <input type="text" name="questionInput2" placeholder="Question">
+                                                        <input type="text" name="questionInput2" placeholder="Question" data-index="question-type2-2">
                                                     </div>
                                                     <div class="answer">
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer2">
+                                                            <input type="checkbox" name="correctAnswer2" data-index="isCorrectAnswer-type2-question2-1">
                                                             <label>A</label>
-                                                            <input type="text" name="answer2-A">
+                                                            <input type="text" name="answer2-A" data-index="answer-type2-question2-1">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer2">
+                                                            <input type="checkbox" name="correctAnswer2" data-index="isCorrectAnswer-type2-question2-2">
                                                             <label>B</label>
-                                                            <input type="text" name="answer2-B">
+                                                            <input type="text" name="answer2-B" data-index="answer-type2-question2-2">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer2">
+                                                            <input type="checkbox" name="correctAnswer2" data-index="isCorrectAnswer-type2-question2-3">
                                                             <label>C</label>
-                                                            <input type="text" name="answer2-C">
+                                                            <input type="text" name="answer2-C" data-index="answer-type2-question2-3">
                                                         </div>
                                                         <div class="answer-group">
-                                                            <input type="checkbox" name="correctAnswer2">
+                                                            <input type="checkbox" name="correctAnswer2" data-index="isCorrectAnswer-type2-question2-4">
                                                             <label>D</label>
-                                                            <input type="text" name="answer2-D">
+                                                            <input type="text" name="answer2-D" data-index="answer-type2-question2-4">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1146,13 +1229,13 @@ async function saveQuestionGroup(type)
     const formData = new FormData();
     formData.append("questionGroup", JSON.stringify(questionGroupRequest));
 
-    // Add files if available
-    const imageFile = document.querySelector('input[name="upload-img"]').files[0];
-    const audioFile = document.querySelector('input[name="upload-audio"]').files[0];
-    if (imageFile) formData.append("files", imageFile);
-    if (audioFile) formData.append("files", audioFile);
+    let resourceListElement = document.querySelectorAll(`input[data-index^="resource-${type}"]`);
+    resourceListElement.forEach((resourceElement)=>{
+        if (resourceElement.files[0]) formData.append("files", resourceElement.files[0]);
+    })
 
+    console.log(formData);
     const response = await postFormData("http://localhost:8080/api/v1/questiongroups/questionGroups", formData,localStorage.getItem("access_token"));
-
+    if(response.status==201) alert("lưu thành công");
     console.log("response save: ",response.data);
 }

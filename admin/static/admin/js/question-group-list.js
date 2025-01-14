@@ -49,7 +49,7 @@ function renHtmlQuestionGroupForFirst(){
                     </div>
 
                     <div class="menu-item">
-                        <a href="/admin/roadmap">Quản lý lộ trình</a>
+                        <a href="/admin/learningpath">Quản lý lộ trình</a>
                     </div>
                 </div>
                 <div class="navbar__user">
@@ -76,6 +76,9 @@ function renHtmlQuestionGroupForFirst(){
                                 <option value="part5">Part5</option>
                                 <option value="part6">Part6</option>
                                 <option value="part7">Part7</option>
+                                <option value="type1">Type1</option>
+                                <option value="type2">Type2</option>
+
                             </select>
                         </div>
                        
@@ -105,7 +108,7 @@ async function renEventListenerForQuestionGroupPage(){
         if (response.status >= 200 && response.status < 300) {
             let htmlQuestionGroups = response.data.data.map((questionGroup,indexQuestionGroup)=>{
             let htmlQuetion = questionGroup.questionList.map((question,indexQuestion)=>{
-                    return `<li>${question.explanation}</li>`
+                    return `<li>${question.explanation?question.explanation:question.question}</li>`
                 }).join('');
                 return `
                     <div class="day-box" >
